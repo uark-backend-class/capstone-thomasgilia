@@ -4,7 +4,7 @@ const notesController = require('../controllers/notes-controller');
 // const authController = require('../controllers/auth-controller');
 
 router.route('/notes')
-    .get(notesController.getAll)
+    .get(notesController.getAllNotes)
     .post(notesController.newNote);
 
 module.exports = router;

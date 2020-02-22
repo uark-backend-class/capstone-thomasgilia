@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define('note', {
         id: {
-            type: Sequelize.TEXT,
+            type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },

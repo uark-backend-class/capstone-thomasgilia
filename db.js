@@ -5,24 +5,27 @@
 
 const Sequelize = require('sequelize');
 // const { DataTypes } = require("sequelize");
-//added datatype import per documentation - belongs in db.js only? doesnt matter?
-const UserModel = require('./models/user');
-const DocModel = require('./models/doc');
+//added datatype import per documentation - belongs in db.js only? doesn't matter?
+// const UserModel = require('./models/user');
+// const DocModel = require('./models/doc');
 const NoteModel = require('./models/note');
-const ClientModel = require('./models/client');
+// const ClientModel = require('./models/client');
 
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
-const User = UserModel(sequelize, Sequelize);
-const Doc = DocModel(sequelize, Sequelize);
+// const User = UserModel(sequelize, Sequelize);
+// const Doc = DocModel(sequelize, Sequelize);
 const Note = NoteModel(sequelize, Sequelize);
-const Client = ClientModel(sequelize, Sequelize);
+// const Client = ClientModel(sequelize, Sequelize);
 
 sequelize.sync().then(() => console.log('Tables are created!'));
 
 module.exports = {
-  User,
-  Doc,
   Note,
-  Client
 }
+
+// readd exports:
+// User,
+//   Doc,
+//   Note,
+//   Client
