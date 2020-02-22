@@ -4,8 +4,8 @@
 //create relationships between tables/models
 
 const Sequelize = require('sequelize');
-const { DataTypes } = require("sequelize");
-//added datatype import per documentation - belongs in db.js only?
+// const { DataTypes } = require("sequelize");
+//added datatype import per documentation - belongs in db.js only? doesnt matter?
 const UserModel = require('./models/user');
 const DocModel = require('./models/doc');
 const NoteModel = require('./models/note');
