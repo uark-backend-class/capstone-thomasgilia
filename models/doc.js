@@ -5,11 +5,11 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        // category: Sequelize.ENUM('Financial', 'Report format', 'Receives report email', 'etcetera'),
+        category: Sequelize.ENUM('Financial', 'Report format', 'Receives report email', 'etcetera'),
         title: Sequelize.STRING,
         origin: Sequelize.STRING,
         noteAssociated: Sequelize.BOOLEAN,
-        // lastUpdate: Sequelize.DATETIME,
+        lastUpdate: Sequelize.DATE,
         lastUpdateUser: Sequelize.STRING,
         docPath: Sequelize.STRING,
     }

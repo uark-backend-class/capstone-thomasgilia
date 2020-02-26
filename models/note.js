@@ -1,19 +1,20 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define('note', {
         id: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        // category: Sequelize.ENUM('Financial', 'Report format', 'Receives report email', 'etcetera'),
-        subject: Sequelize.STRING,
-        // note: Sequelize.STRING(1234),
-        setUrgent: Sequelize.BOOLEAN,
-        // flagExpires: Sequelize.DATEONLY,
-        docAssociated: Sequelize.BOOLEAN,
-        // revisionLog: Sequelize.STRING(1234),
-        lastUpdateUser: Sequelize.STRING,
-        // lastUpdate: Sequelize.DATETIME
+        category: DataTypes.ENUM('Financial', 'Report format', 'Receives report email', 'etcetera'),
+        subject: DataTypes.STRING,
+        note: DataTypes.STRING(1234),
+        setUrgent: DataTypes.BOOLEAN,
+        flagExpires: DataTypes.DATEONLY,
+        docAssociated: DataTypes.BOOLEAN,
+        associatedDocId: DataTypes.INTEGER,
+        revisionLog: DataTypes.STRING(1234),
+        lastUpdateUser: DataTypes.STRING,
+        lastUpdate: DataTypes.DATE,
     }
     );
 }
