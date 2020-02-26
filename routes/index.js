@@ -8,8 +8,9 @@ router.route('/notes')
     .post(notesController.newNote);
 router.route('/notes/:id')
     .delete(notesController.deleteNote)
-    .put(notesController.updateNote)
-    .put(notesController.setDocId);
+    // .put(notesController.updateNote)
+    .get(notesController.associateDocIdForThisNote)
+    // .put(notesController.setDocId);
 
 router.route('/docs')
     .get(docController.getAllDocs)

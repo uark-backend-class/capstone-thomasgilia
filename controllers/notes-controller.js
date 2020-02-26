@@ -64,15 +64,38 @@ exports.deleteNote = async (req, res) => {
 
 // await foo.addBars([bars1,bars2])
 
-exports.setDocIdForThisNote = async (req, res) => {
+exports.associateDocIdForThisNote = async (req, res) => {
     try {
         const thisNoteId = req.params.id;
+        let docId = 2;                              //mock Id for trying out
         // const note = req.body;
-        // const existingNote = await Note.findByPk(id);
-        await Note.findByPk(thisNoteId).then(console.log(Note));
-            // note => {
-            //     note.setDoc(1)
-            // });
+        // let thisNote = await Note.findByPk(thisNoteId);
+        // console.log(thisNote);
+        
+        // let findThisNote = async () => {
+        //     return await Note.findByPk(thisNoteId)
+        // }
+        // findThisNote();
+
+        // let findTargetDoc = async () => {
+        //     return await Doc.findByPk(docId);
+        // }
+        // findTargetDoc();
+        const existingNote = await Note.findByPk(thisNoteId);
+        let docs = await Doc.findAll();
+        await existingNote.setDoc(docs[0])          
+        // set(associateDocId, docId, { raw: true })
+
+        // let associateDocId = async(note, doc) => {
+        // let newNote = await set(associateDocId, docId, { raw: true });
+        // console.log(newNote);
+        // }
+        // associateDocId(thisNote, targetDoc);
+        // console.log(thisNote);
+        // console.log({ "theNote": thisNote, "theTargetIs": targetDoc });
+
+        //should be able to change associatedDocId directly using set - if cant update join table
+
         // if (!existingNote) {
         //     res.status(404).send();
         //     return;
