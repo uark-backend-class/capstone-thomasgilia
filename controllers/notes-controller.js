@@ -3,6 +3,7 @@
 
 const Note = require('../db').Note;
 const Doc = require('../db').Doc;       //just for associating docs - take out if doesn't work
+const NoteDoc = require('../db').noteDoc;       //need this?
 
 exports.getAllNotes = async (req, res) => {
     try {
@@ -67,34 +68,17 @@ exports.deleteNote = async (req, res) => {
 exports.associateDocIdForThisNote = async (req, res) => {
     try {
         const thisNoteId = req.params.id;
-        let docId = 2;                              //mock Id for trying out
-        // const note = req.body;
-        // let thisNote = await Note.findByPk(thisNoteId);
-        // console.log(thisNote);
-        
-        // let findThisNote = async () => {
-        //     return await Note.findByPk(thisNoteId)
-        // }
-        // findThisNote();
-
-        // let findTargetDoc = async () => {
-        //     return await Doc.findByPk(docId);
-        // }
-        // findTargetDoc();
+        let docId = 2;                              //mock Id for trying out - real life pull from form/search
         const existingNote = await Note.findByPk(thisNoteId);
-        let docs = await Doc.findAll();
-        await existingNote.setDoc(docs[0])          
-        // set(associateDocId, docId, { raw: true })
-
-        // let associateDocId = async(note, doc) => {
-        // let newNote = await set(associateDocId, docId, { raw: true });
-        // console.log(newNote);
-        // }
-        // associateDocId(thisNote, targetDoc);
-        // console.log(thisNote);
-        // console.log({ "theNote": thisNote, "theTargetIs": targetDoc });
-
-        //should be able to change associatedDocId directly using set - if cant update join table
+        // let docs = await Doc.findAll();
+        let targetDoc = await Doc.findByPk(docId)
+        // await existingNote.setDoc(docs[0])          
+        const idAssociation = {
+            noteId: existingNote.id,            //name of fields in associating table
+            docId: targetDoc.id
+        }
+        const newAssociation = await NoteDocs.create(idAssociation, { w: 1 }, { returning: true });     //add {w:1},{returning: true}?
+        return res.status(200);
 
         // if (!existingNote) {
         //     res.status(404).send();
