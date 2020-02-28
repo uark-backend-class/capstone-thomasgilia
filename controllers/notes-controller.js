@@ -3,7 +3,7 @@
 
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
-const NoteDoc = require("../db").noteDoc; //need this?
+const NoteDoc = require("../db").NoteDoc; //need this?
 
 exports.getAllNotes = async (req, res) => {
   try {
@@ -67,20 +67,23 @@ exports.associateDocIdForThisNote = async (req, res) => {
     const thisNoteId = req.params.id;
     let docId = 2; //mock Id for trying out - real life pull from form/search
     const existingNote = await Note.findByPk(thisNoteId);
+    console.log(existingNote);
     // let docs = await Doc.findAll();
     let targetDoc = await Doc.findByPk(docId);
+    console.log(targetDoc);
     // await existingNote.setDoc(docs[0])
-    const idAssociation = {
-      noteId: existingNote.id, //name of fields in associating table
-      docId: targetDoc.id,
-    };
-    const newAssociation = await NoteDocs.create(
-      idAssociation,
-      { w: 1 },
-      { returning: true },
-    ); //add {w:1},{returning: true}?
-    return res.status(200);
-
+    // const idAssociation = {
+    //   noteId: existingNote.id, //name of fields in associating table
+    //   docId: targetDoc.id,
+    // };
+    // //these 4 lines at least got a mention of notedoc in sql in terminal
+    // const newAssociation = await NoteDoc.create(
+    //   idAssociation,
+    //     // { w: 1 },
+    //   { returning: true },
+    // ); //add {w:1},{returning: true}?
+    // return res.status(200);
+    // note.addDoc(doc[1]);
     // if (!existingNote) {
     //     res.status(404).send();
     //     return;
@@ -92,7 +95,7 @@ exports.associateDocIdForThisNote = async (req, res) => {
   }
 };
 
-// //working update - before modification to try out assinging docs to the note
+// //working update - before modification to try out assigning docs to the note
 // exports.updateNote = async (req, res) => {
 //     try {
 //         const id = req.params.id;

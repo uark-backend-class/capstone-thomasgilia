@@ -10,7 +10,7 @@ const Sequelize = require("sequelize");
 const DocModel = require("./models/doc");
 const NoteModel = require("./models/note");
 const NoteDocModel = require("./models/noteDoc");
-// const ClientModel = require('./models/client');
+const ClientModel = require('./models/client');
 
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
@@ -18,11 +18,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL);
 const Doc = DocModel(sequelize, Sequelize);
 const Note = NoteModel(sequelize, Sequelize);
 const NoteDoc = NoteDocModel(sequelize, Sequelize);
-
-// const Client = ClientModel(sequelize, Sequelize);
+const Client = ClientModel(sequelize, Sequelize);
 
 Note.belongsToMany(Doc, { through: NoteDoc, foreignKey: "noteId" });
 Doc.belongsToMany(Note, { through: NoteDoc, foreignKey: "docId" });
+
+// Note.create
 
 sequelize.sync().then(() => console.log("Tables are created!"));
 
