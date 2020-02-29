@@ -3,7 +3,7 @@
 
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
-const NoteDoc = require("../db").NoteDoc; //need this?
+// const NoteDoc = require("../db").NoteDoc; //need this?
 
 exports.getAllNotes = async (req, res) => {
   try {
@@ -38,6 +38,13 @@ exports.deleteNote = async (req, res) => {
     console.log("HERE/'S THE ERROR" + error);
   }
 };
+
+//see if db create correctly then unhide and try this
+// exports.updateNoteClient = async (req, res) => {
+//     req.body.clientId = req.client.id;
+//     await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
+//     res.redirect('/');
+//   }
 
 // exports.updateNote = async (req, res) => {
 //     try {
