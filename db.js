@@ -26,9 +26,14 @@ Doc.belongsToMany(Note, { through: "NoteDoc"});
 Client.hasMany(Note);
 Note.belongsTo(Client);
 
-// Note.create
-
+//standard
 sequelize.sync().then(() => console.log("Tables are created!"));
+
+// DROP TABLE DATA - CAUTION
+// sequelize.sync({force:true}).then(() => console.log("Tables are created!"));
+
+//DROP ALL TABLES - CAUTION
+// sequelize.sync().then(() => sequelize.drop());
 
 module.exports = {
   Note,

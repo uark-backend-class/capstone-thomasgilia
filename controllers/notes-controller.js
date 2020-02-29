@@ -4,6 +4,7 @@
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
 // const NoteDoc = require("../db").NoteDoc; //need this?
+const Client = require("../db").Client;
 
 exports.getAllNotes = async (req, res) => {
   try {
@@ -69,6 +70,12 @@ exports.deleteNote = async (req, res) => {
 
 // await foo.addBars([bars1,bars2])
 
+////////////////////////////////////////////////////////////////////////
+// exports.updateNote = async (req, res) => {
+//   req.body.clientId = req.client.id;
+//   await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
+//   res.redirect('/');
+// }
 exports.associateDocIdForThisNote = async (req, res) => {
   try {
     const thisNoteId = req.params.id;
@@ -134,3 +141,35 @@ exports.associateDocIdForThisNote = async (req, res) => {
 //         console.log(error);
 //     }
 // }
+
+//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+//client related
+
+exports.associateNoteToClient = async (req, res) => {
+  try {
+    //client ID input manually for now
+    const clientId = 2;
+    const noteId = req.params.id;
+    console.log("IIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDD" + noteId + clientId);
+    // const existingNote = await Note.findByPk(noteId);
+    // const existingClient = await Client.findByPk(clientId);
+    // existingClient.setNotes([existingNote]);
+    // // let clientId = await req.body;
+    if (!existingNote) {
+      res.status(404).send("no note with that id");
+      return;
+    }
+  } catch (error) {
+    console.log("HERE/'S THE ERROR" + error);
+  }
+};
+//once associate existing client to existing note, can add feature to deal with new note etc
+// const noteId = req.params.id;
+// if (note){
+//   const existingNote = await Note.findByPk(noteId);
+// }
+// else if (!note){
+//           const note = req.body;
+
+//           let clientId = await req.body;

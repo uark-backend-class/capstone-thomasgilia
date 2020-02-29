@@ -5,6 +5,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    clientName: Sequelize.STRING,
     ownedByUser: Sequelize.STRING,
     hasOwnPriceList: Sequelize.BOOLEAN,
     linkOwnPriceList: Sequelize.STRING,
