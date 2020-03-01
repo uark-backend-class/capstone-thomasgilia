@@ -20,8 +20,8 @@ const Client = ClientModel(sequelize, Sequelize);
 Note.belongsToMany(Doc, { through: "NoteDoc" });
 Doc.belongsToMany(Note, { through: "NoteDoc" });
 
-User.belongsToMany(Client, { through: "UserClient", foreignKey: "uClientId" });
-Client.belongsToMany(User, { through: "UserClient", foreignKey: "userId" });
+User.belongsToMany(Client, { through: "UserClient", foreignKey: "oClientId" });
+Client.belongsToMany(User, { through: "UserClient", foreignKey: "ownerId" });
 
 Client.hasMany(Note);     //notes table has fK = clientID
 Note.belongsTo(Client);

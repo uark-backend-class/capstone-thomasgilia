@@ -1,4 +1,8 @@
 // TO DO:
+// practice query (next lines) then move on to creating views/forms/etc then build more functionality
+//get all docs for a client, via notes
+//get all notes for a client
+
 
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
@@ -38,12 +42,6 @@ exports.deleteNote = async (req, res) => {
   }
 };
 
-//see if db create correctly then unhide and try this
-// exports.updateNoteClient = async (req, res) => {
-//     req.body.clientId = req.client.id;
-//     await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
-//     res.redirect('/');
-//   }
 
 // exports.updateNote = async (req, res) => {
 //     try {

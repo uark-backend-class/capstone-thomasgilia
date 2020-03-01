@@ -1,3 +1,8 @@
+//TO DO:
+//see 'later' down below. for now, keep assoc sep from join controller files then can decide on whether to keep
+//assoc controller with a unified association export, or if want to split the associations into their respective
+//join controller file
+
 const Note = require("../db").Note;
 const Doc = require("../db").Doc;
 const Client = require("../db").Client;
