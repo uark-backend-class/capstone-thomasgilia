@@ -4,7 +4,7 @@ const Client = require("../db").Client;
 
 exports.newClient = async (req, res) => {
   try {
-    let newClient = await Client.create(req.body);
+    let newClient = await Client.create(req.body);    //later is replaced with html form i think
     res.json(newClient);
     console.log(newClient);
   } catch (error) {
@@ -50,21 +50,4 @@ exports.getAllClients = async (req, res) => {
 //     console.log(error);
 //   }
 // };
-// exports.associateClientToNote = async (req, res) => {
-//   try {
-    
-//     // clientInstance.
-//               const note = req.body;
-//               const existingNote = await Note.findByPk(id);
-              
-//               if (!existingNote) {
-//                   res.status(404).send();
-//                   return;
-//               }
 
-
-//     res.json(notes);
-//   } catch (error) {
-//     console.log("HERE/'S THE ERROR" + error);
-//   }
-// };

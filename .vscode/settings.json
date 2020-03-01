@@ -3,6 +3,8 @@
         "dateonly",
         "datetime",
         "freezetablename",
-        "prettierrc"
+        "id",
+        "prettierrc",
+        "uclient"
     ]
 }
