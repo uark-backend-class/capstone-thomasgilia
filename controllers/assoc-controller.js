@@ -68,19 +68,18 @@ exports.associateUsersToClient = async (req, res) => {
 
 //--One(Client)-To-Many(Notes)--//
 exports.associateClientToNote = async (req, res) => {
-    try {
-      const clientId = req.body.clientId;
-      const noteId = req.body.noteId;
-      const existingClient = await Client.findByPk(clientId);
-      await existingClient.setNotes(noteId);
-      let newNote = await existingClient.getNotes(clientId);
-      let checkClientOnNote = [newNote[0].clientId];
-      res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
-    } catch (error) {
-      console.log("HERE'S THE ERROR: " + error);
+  try {
+    const clientId = req.body.clientId;
+    const existingClient = await Client.findByPk(clientId);
+    const noteIdArray = [req.body.noteId]; //our array of notes from request - may be one value but still array
+    for (let id of noteIdArray) {           //making the association for each id
+      await existingClient.setNotes(id);
     }
-  };
-
+    res.send("Note(s) " + noteIdArray + " now associated with client " + clientId);
+  } catch (error) {
+    console.log("HERE'S THE ERROR: " + error);
+  }
+};
 
 //---FOR LATER---//
 //later can think about combining these. Thoughts:

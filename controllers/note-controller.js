@@ -1,8 +1,7 @@
 // TO DO:
 // practice query (next lines) then move on to creating views/forms/etc then build more functionality
-//get all docs for a client, via notes
 //get all notes for a client
-
+//get all docs for a client, via notes
 
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work

@@ -3,6 +3,10 @@ const noteController = require("../controllers/note-controller");
 const docController = require("../controllers/doc-controller");
 const clientController = require("../controllers/client-controller");
 const assocController = require("../controllers/assoc-controller");
+const NoteDocController = require("../controllers/NoteDoc-controller");
+const NoteClientController = require("../controllers/NoteClient-controller");
+const UserClientController = require("../controllers/UserClient-controller");
+
 // const authController = require('../controllers/auth-controller');
 
 router
@@ -42,5 +46,8 @@ router.route("/associationsNotesToDoc").put(assocController.associateNotesToDoc)
 router.route("/associationsClientsToUser").put(assocController.associateClientsToUser);
 router.route("/associationsUsersToClient").put(assocController.associateUsersToClient);
 router.route("/associationsClientToNote").put(assocController.associateClientToNote);
+
+//querying using join controllers
+router.route("/listClientNotes").get(NoteClientController.allNotesThisClient);
 
 module.exports = router;
