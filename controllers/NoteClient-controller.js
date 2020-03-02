@@ -20,12 +20,13 @@ exports.allDocsThisClient = async (req, res) => {
   try {
     const clientId = req.body.clientId;
     let existingClient = await Client.findByPk(clientId);
-    let noteList = await existingClient.getNotes(clientId);         //array of notes assoc to that client
-    for (let doc of docList){
-        await noteList.findAll({where: {noteId: noteId}})
+    let noteList = await existingClient.getNotes(clientId); //array of notes assoc to that client
+    for (let doc of docList) {
+      await noteList.findAll({ where: { noteId: noteId } });
 
-    let noteList = await existingClient.getNotes(clientId); //listing all associations for that client
-    console.log(noteList);
+      let noteList = await existingClient.getNotes(clientId); //listing all associations for that client
+      console.log(noteList);
+    }
   } catch (error) {
     console.log("HERE'S THE ERROR: " + error);
   }

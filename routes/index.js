@@ -50,4 +50,7 @@ router.route("/associationsClientToNote").put(assocController.associateClientToN
 //querying using join controllers
 router.route("/listClientNotes").get(NoteClientController.allNotesThisClient);
 
+router.route("/listResource").get(NoteDocController.createResource);
+router.route("/createResource").post(NoteDocController.createResource);
+
 module.exports = router;

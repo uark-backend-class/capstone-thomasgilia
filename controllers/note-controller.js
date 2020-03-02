@@ -16,6 +16,8 @@ exports.getAllNotes = async (req, res) => {
   }
 };
 
+
+
 exports.newNote = async (req, res) => {
   try {
     let newNote = await Note.create(req.body);

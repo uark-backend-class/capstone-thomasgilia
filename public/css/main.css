@@ -1,0 +1,37 @@
+/* temporary code */
+
+.header {
+    font-size: 80px;
+    font-family: cursive;
+    transition: font-size 4s;
+  }
+  
+  .header-small {
+    font-size: 20px;
+    font-family: cursive;
+    transition: font-size 4s;
+  }
+  
+  .red-text {
+    color: red;
+  }
+  
+  #logo {
+    background-color: black;
+  }
+  
+  h1 {
+    border-radius: 20px;
+  }
+  
+  .name1.name2 {
+    background-color: green;
+  }
+  
+  .name1.name2 .name2 {
+    background-color: blue;
+  }
+  
+  p.intro {
+    background-color: salmon;
+  }

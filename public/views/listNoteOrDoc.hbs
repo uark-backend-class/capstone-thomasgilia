@@ -1,0 +1,20 @@
+<h1>{{resourceType}}</h1>
+
+{{#if newDo}}
+<a class="btn btn-primary" href='/add/'>{{resourceType}}</a>
+  {{ else }}
+{{/if}}
+<a class="btn btn-primary" href='/add/'>{{resourceType}}</a>
+
+<table class="table">
+  <tr>
+    <th>{{resourceType}} Subject</th>
+    <th>{{resourceType}} Id</th>
+     </tr>
+  {{#each Resource }}
+    <tr>
+      <td>{{this.title}} {{this.id}}</td>
+      <td><a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit</a> <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete</a></td>
+    </tr>
+  {{/each}}
+</table>
