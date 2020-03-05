@@ -1,15 +1,18 @@
+{{#if hasClient}}
+<h1>List of all {{resourceType}}s for client {{thisClient.clientName}}</h1>
+{{else}}
 <h1>List of all {{resourceType}}s</h1>
+{{/if}}
 
 {{#if newDoc}}
 <a class="btn btn-primary" href='/add{{resourceType}}/'>New {{resourceType}}</a>
-  {{ else }}
+{{ else }}
 {{/if}}
 <a class="btn btn-primary" href='/add{{resourceType}}/'>New {{resourceType}}</a>
 
-
 <table class="table">
   <tr>
-    <th>{{resourceType}} Subject</th>
+    <th>{{resourceType}} Title</th>
     <th>{{resourceType}} Id</th>
     <th></th>
   </tr>
@@ -22,3 +25,5 @@
   </tr>
   {{/each}}
 </table>
+
+</div>

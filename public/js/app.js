@@ -1,10 +1,13 @@
-//temporary code
-const myHeader = document.querySelector('#logo');
+// let addResourceNode = document.querySelector('#addResource');
 
-myHeader.textContent = 'My new homepage!';
-
-document.addEventListener('mousemove', event => {       
-    let divNode = document.querySelector('#mousemovediv');      //telling it where in the html we'll put info
-    divNode.textContent = event.pageX + ', ' + event.pageY;     //pushing the info from the event into the visible 
-    //text portion of html. i.e. will show coords in browser
-});
+// addResourceNode.addEventListener("click", event => {
+//     let resourceTypeDivNode = document.querySelector('#selectResourceType');
+//     let inputNode = document.createElement("input");        //creating our input node to use lower down
+//     inputNode.name = "hey there";  //adding attributes to our input. otherwise it adds just input with no attributes
+//     inputNode.type = "text";    //ditto
+//     let breakNode = document.createElement("br");
+//     resourceTypeDivNode.appendChild(inputNode);           //adding our newly created nodes to our existing DOM
+//     resourceTypeDivNode.appendChild(breakNode);
+//     //in above line, need to dynamically create node in js to tell it what to append into the child - create element
+//     console.log("add new");
+// });

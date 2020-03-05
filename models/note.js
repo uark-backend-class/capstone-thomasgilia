@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       "Receives report email",
       "etcetera",
     ),
-    subject: DataTypes.STRING,
+    title: DataTypes.STRING,
     note: DataTypes.STRING(1234),
     setUrgent: DataTypes.BOOLEAN,
     flagExpires: DataTypes.DATEONLY,

@@ -5,32 +5,26 @@
 const Note = require("../db").Note;
 const Client = require("../db").Client;
 //
-exports.allNotesThisClient = async (req, res) => {
-  try {
-    const clientId = req.body.clientId;
-    let thisClient = await Client.findByPk(clientId);
-    let noteList = await thisClient.getNotes(clientId);
-    res.json(noteList);
-  } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
-  }
-};
 
-exports.allDocsThisClient = async (req, res) => {
-  try {
-    const clientId = req.body.clientId;
-    let existingClient = await Client.findByPk(clientId);
-    let noteList = await existingClient.getNotes(clientId); //array of notes assoc to that client
-    for (let doc of docList) {
-      await noteList.findAll({ where: { noteId: noteId } });
 
-      let noteList = await existingClient.getNotes(clientId); //listing all associations for that client
-      console.log(noteList);
-    }
-  } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
-  }
-};
+// exports.allNotesThisClient = async (req, res) => {
+//   try {
+//     // const clientId = req.body.clientId;
+//     const clientId = 2; //temporary
+//     let existingClient = await Client.findByPk(clientId);
+//     let resources = await existingClient.getNotes(clientId); //array of notes assoc to that client
+//     // for (let note of noteList) {
+//     //   await noteList.findAll({ where: { noteId: noteId } });
+
+//     //   let noteList = await existingClient.getNotes(clientId); //listing all associations for that client
+//     //   console.log(noteList);
+//     // }
+//     res.send(resources);
+//     // res.render("listNoteOrDoc", { resourceType: "Note", resources });
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// };
 
 //just copied over
 // exports.associateClientToNote = async (req, res) => {

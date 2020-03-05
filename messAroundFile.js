@@ -1,16 +1,19 @@
-xports.associateClientToNote = async (req, res) => {
-    try {
-      const clientId = req.body.clientId;
-      const existingClient = await Client.findByPk(clientId);
-      const noteIdArray = [req.body.noteId]; //our array of notes from request - may be one value but still array
-      for (let id of noteIdArray) {           //making the association for each id
-        await existingClient.setNotes(id);
-      }
-      let noteList = await existingClient.getNotes(clientId); //listing all associations for that client
-      console.log(noteList);
-      res.send("Note(s) " + noteIdArray + " now associated with client " + clientId);
-    } catch (error) {
-      console.log("HERE'S THE ERROR: " + error);
-    }
-  };
-  
+<div>
+  <div id="selectResourceType"></div>
+  <h2>What type of document do you want to create?</h2>
+  <form action="/creationControl" method="get">
+    <div>
+      <input type="radio" id="Note" name="chooseType" value="note" checked>
+      <label for="note">Note</label>
+    </div>
+
+    <div>
+      <input type="radio" id="Document" name="chooseType" value="document">
+      <label for="document">Document</label>
+    </div>
+
+    <button type='submit' id='addResource'>Select Resource</button>
+  </form>
+  <script src="../../../js/app.js"></script>
+</div>
+

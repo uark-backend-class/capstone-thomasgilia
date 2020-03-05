@@ -48,8 +48,12 @@ router.route("/associationsUsersToClient").put(assocController.associateUsersToC
 router.route("/associationsClientToNote").put(assocController.associateClientToNote);
 
 //querying using join controllers
-router.route("/listClientNotes").get(NoteClientController.allNotesThisClient);
+// router.route("/listClientNotes/:id").get(clientController.allNotesThisClient);
+//may revert to prev line
+router.route("/listClientResources/:id").get(clientController.listResourceThisClient);
+router.route("/listClientD ocs/:id").get(clientController.listResourceThisClient);
 
+// router.route("/creationControl").get(NoteDocController.creationControl);
 router.route("/listResource").get(NoteDocController.listResource);
 // router.route("/createResource").post(NoteDocController.createResource);
 

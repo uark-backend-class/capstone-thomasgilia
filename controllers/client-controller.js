@@ -1,10 +1,10 @@
 const Note = require("../db").Note;
-// const Doc = require("../db").Doc; 
+// const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 
 exports.newClient = async (req, res) => {
   try {
-    let newClient = await Client.create(req.body);    //later is replaced with html form i think
+    let newClient = await Client.create(req.body); //later is replaced with html form i think
     res.json(newClient);
     console.log(newClient);
   } catch (error) {
@@ -18,6 +18,53 @@ exports.getAllClients = async (req, res) => {
     res.json(allClients);
   } catch (error) {
     console.log("HERE/'S THE ERROR" + error);
+  }
+};
+
+// exports.allNotesThisClient = async (req, res) => {
+//   try {
+//     const clientId = 2;
+//     // const clientId = req.params.clientId;
+//     // console.log(clientId);
+//     let thisClient = await Client.findByPk(clientId);
+//     let resources = await thisClient.getNotes(clientId);
+//     let hasClient = true;
+//     // res.json(noteList);
+//     res.render("listNoteOrDoc", { resourceType: "Note", hasClient, thisClient, resources });
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// };
+
+//prob do need to break apart
+exports.listResourceThisClient = async (req, res) => {
+  try {
+    const clientId = 2; //temporary
+    let resourceType = "Document"; //temporary
+    let thisClient = await Client.findByPk(clientId);
+
+    let hasClient = true;
+    if (resourceType == "Note") {
+      let resources = await Note.findAll({where: {clientId: clientId}});
+      // let resources = await thisClient.getNotes(clientId);
+      res.render("listNoteOrDoc", {
+        resourceType,
+        hasClient,
+        thisClient,
+        resources,
+      });
+    } else if (resourceType == "Document") {
+      // let resources = await Doc.findAll();
+      let resources = await thisClient.getDocs(clientId);
+      res.render("listNoteOrDoc", {
+        resourceType,
+        hasClient,
+        thisClient,
+        resources,
+      });
+    }
+  } catch (error) {
+    console.log("HERE'S THE ERROR: " + error);
   }
 };
 
@@ -50,4 +97,3 @@ exports.getAllClients = async (req, res) => {
 //     console.log(error);
 //   }
 // };
-
