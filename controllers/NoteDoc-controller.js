@@ -12,7 +12,7 @@ const Doc = require("../db").Doc;
 //   }
 // };
 
-exports.listResource = async (req, res) => {
+exports.listAllResources = async (req, res) => {
   try {
     let resourceType = "Document"; //temporary
 

@@ -11,28 +11,26 @@ const UserClientController = require("../controllers/UserClient-controller");
 
 router
   .route("/notes")
-  .get(noteController.getAllNotes)
-  .post(noteController.newNote);
+  // .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
+  .post(noteController.newNote);        //working in insomnia. ready to connect to view (post method)
 router
   .route("/notes/:id")
-  .delete(noteController.deleteNote)
-  // .put(noteController.updateNote)
-  .get(noteController.associateDocIdForThisNote);
-// .put(noteController.setDocId);
+  .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnoteordoc.hbs
+  .put(noteController.updateNote)       //working in insomnia. working to improve
 
 router
   .route("/docs")
-  .get(docController.getAllDocs)
-  .post(docController.newDoc);
+  .get(docController.getAllDocs)        //working in insomnia. 
+  .post(docController.newDoc);          //working in insomnia. 
 router
   .route("/docs/:id")
-  .delete(docController.deleteDoc)
-  .put(docController.replaceDoc);
+  .delete(docController.deleteDoc)      //think should work - just like note delete
+  .put(docController.replaceDoc);       //needs work
 
 router
   .route("/clients")
-  .get(clientController.getAllClients)
-  .post(clientController.newClient);
+  .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
+  .post(clientController.newClient);    //working in insomnia. ready to connect to view (post method)
 
 // router
 //   .route("/associateThisNoteToClient/:id")
@@ -41,11 +39,11 @@ router
 
 
 //once get away from routes, can simplify these two association routes
-router.route("/associationsDocsToNote").put(assocController.associateDocsToNote);
-router.route("/associationsNotesToDoc").put(assocController.associateNotesToDoc);
-router.route("/associationsClientsToUser").put(assocController.associateClientsToUser);
-router.route("/associationsUsersToClient").put(assocController.associateUsersToClient);
-router.route("/associationsClientToNote").put(assocController.associateClientToNote);
+router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //not giving error but not working
+router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
+router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //has one but no test yet
+router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //has one but no test yet
+router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
 
 //querying using join controllers
 // router.route("/listClientNotes/:id").get(clientController.allNotesThisClient);
@@ -54,7 +52,7 @@ router.route("/listClientResources/:id").get(clientController.listResourceThisCl
 router.route("/listClientD ocs/:id").get(clientController.listResourceThisClient);
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-router.route("/listResource").get(NoteDocController.listResource);
+// router.route("/listAllResources").get(NoteDocController.listAllResources);
 // router.route("/createResource").post(NoteDocController.createResource);
 
 module.exports = router;

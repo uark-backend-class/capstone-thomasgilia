@@ -11,14 +11,16 @@ const User = require("../db").User;
 //Many(Notes)-To-Many(Docs)//
 exports.associateDocsToNote = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     let { noteId, docId } = req.body; //example request body is { noteId: 1, docId:[2,3] }  note can't be array
     //but docs can because many notes
     console.log("this is docID: " + docId + ", this is noteID: " + noteId);
-
+    let docIdArray = [docId];
+    console.log("this is docIDArray:");
+    console.log(docIdArray);
     //associating the docs to the note:
-    const existingNote = await Note.findByPk(noteId);
-    await existingNote.addDocs(docId); //addDocs to add array of mult docs, addDoc to add one doc not in array
+    // const existingNote = await Note.findByPk(noteId);
+    // await existingNote.addDocs(docIdArray); //addDocs to add array of mult docs, addDoc to add one doc not in array
 
     //to get all of the docs associated with that particular note:
     //(like a one to many via fk except it is smart enough to know that it has to go through join table to access Doc)
@@ -40,6 +42,46 @@ exports.associateNotesToDoc = async (req, res) => {
     console.log("HERE/'S THE ERROR" + error);
   }
 };
+
+// ---------------------------------------------------------------------------------------------------------------------
+//deprecated from notecontroller
+// // exports.updateNote = async (req, res) => {
+// //   req.body.clientId = req.client.id;
+// //   await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
+// //   res.redirect('/');
+// // }
+// exports.associateDocIdForThisNote = async (req, res) => {
+//   try {
+//     const thisNoteId = req.params.id;
+//     let docId = 2; //mock Id for trying out - real life pull from form/search
+//     const existingNote = await Note.findByPk(thisNoteId);
+//     console.log(existingNote);
+//     // let docs = await Doc.findAll();
+//     let targetDoc = await Doc.findByPk(docId);
+//     console.log(targetDoc);
+//     // await existingNote.setDoc(docs[0])
+//     // const idAssociation = {
+//     //   noteId: existingNote.id, //name of fields in associating table
+//     //   docId: targetDoc.id,
+//     // };
+//     // //these 4 lines at least got a mention of notedoc in sql in terminal
+//     // const newAssociation = await NoteDoc.create(
+//     //   idAssociation,
+//     //     // { w: 1 },
+//     //   { returning: true },
+//     // ); //add {w:1},{returning: true}?
+//     // return res.status(200);
+//     // note.addDoc(doc[1]);
+//     // if (!existingNote) {
+//     //     res.status(404).send();
+//     //     return;
+//     // }
+//     // const updatedNote = await existingNote.update(note);
+//     // res.json(nd);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 //Many(Clients)-To-Many(Users)//
 exports.associateClientsToUser = async (req, res) => {
@@ -67,19 +109,51 @@ exports.associateUsersToClient = async (req, res) => {
 };
 
 //--One(Client)-To-Many(Notes)--//
+
+//doesnt work
+// exports.associateClientToNote = async (req, res) => {
+//   try {
+//     const clientId = req.body.clientId;
+//     const existingClient = await Client.findByPk(clientId);
+//     // const noteIdArray = [req.body.noteId]; //our array of notes from request - may be one value but still array
+//     for (let id of noteIdArray) {           //making the association for each id
+//       await existingClient.setNotes(id);
+//     }
+//     res.send("Note(s) " + noteIdArray + " now associated with client " + clientId);
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// };
+
+//working version
 exports.associateClientToNote = async (req, res) => {
-  try {
-    const clientId = req.body.clientId;
-    const existingClient = await Client.findByPk(clientId);
-    const noteIdArray = [req.body.noteId]; //our array of notes from request - may be one value but still array
-    for (let id of noteIdArray) {           //making the association for each id
-      await existingClient.setNotes(id);
-    }
-    res.send("Note(s) " + noteIdArray + " now associated with client " + clientId);
-  } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
-  }
-};
+try {
+  const clientId = req.body.clientId;
+  const noteId = req.body.noteId;
+  const existingClient = await Client.findByPk(clientId);
+  await existingClient.setNotes(noteId);
+  let newNote = await existingClient.getNotes(clientId);
+  let checkClientOnNote = [newNote[0].clientId];
+  res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
+} catch (error) {
+  console.log("HERE'S THE ERROR: " + error);
+}
+}
+
+// //not working
+// exports.associateClientToNote = async (req, res) => {
+//   try {
+//     const clientId = req.body.clientId;
+//     const existingClient = await Client.findByPk(clientId);
+//     const noteIdArray = [req.body.noteId]; //our array of notes from request - may be one value but still array
+//     for (let id of noteIdArray) {
+//       //making the association for each id
+//       await existingClient.setNotes(id);
+//     }
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// };
 
 //---FOR LATER---//
 //later can think about combining these. Thoughts:

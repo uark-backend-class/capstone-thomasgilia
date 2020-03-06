@@ -1,7 +1,40 @@
 <form action="/{{ action }}" method="post">
-  Username: <input type="text" name="username"/>
-  <br/>
-  Password: <input type="password" name="password"/>
-  <br/>
+  Resource Title: <input type="text" name="title" />
+  <br />
+  <div>
+    Flag Urgent?:
+    <input type="radio" id="yes" name="urgent" value="Yes">
+    <label for="yes">Yes</label><br>
+    <input type="radio" id="no" name="urgent" value="no">
+  </div>
+  <br />
+  <div>
+    <label for="flagExpires">Flag expiration date:</label>
+    <br />
+    <input type="date" id="flagExpires" name="flagExpires" value="2018-07-22">
+    <br />
+  </div>
+  <br />
+  <div>
+    <label for="category">Choose a category:</label>
+    <select name="category" id="category">
+      <option value="">--Please choose an option--</option>
+      <option value="financial">financial</option>
+      <option value="something else">something</option>
+    </select>
+  </div>
+  <br />
+  Note: <input type="blob" name="note" />
+  <br />
+  Revision log: <input type="blob" name="revisionLog" />
+  <br />
+  <div>
+    <label for="lastUpdate">Last update:</label>
+    <br />
+    <input type="date" id="lastUpdate" name="lastUpdate" value="2018-07-22">
+    <br />
+  </div>
+  <input type="hidden" name="docAssociated" value="false" />
+  <input type="hidden" name="lastUpdateUser" value="tempuser" />
   <button type="submit">{{ buttonText }}</button>
 </form>

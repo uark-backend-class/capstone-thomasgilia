@@ -36,33 +36,71 @@ exports.getAllClients = async (req, res) => {
 //   }
 // };
 
-//prob do need to break apart
+// exports.listResourceThisClient = async (req, res) => {
+//   try {
+//     const clientId = 2; //temporary
+//     let resourceType = "Note"; //temporary
+//     let hasClient = true;
+//     if (resourceType == "Note") {
+//       const resources = await Note.findAll({ where: { clientId: clientId } }); //gives whole note
+//       // let resources = await thisClient.getNotes();  //works at least to give whole note in conjuct w/ previous findbypk
+//       // let thisClient = await Client.findByPk(clientId);
+//       // console.log(resources[0].id);//have to iterate to get all. handlebars #each is iterating!
+//       // console.log(thisClient.toJSON().clientName);    //THIS WORKS
+
+//       return resources;
+
+//       // for (let i = 0; i <= resources.length; i++) {
+//       //   // const resources = await Note.findAll({ where: { clientId: clientId } }); //gives whole note
+//       //   clientName.push(resources.clientName); //getting there but need to access note i guess...
+//       //   // console.log(resources.toJSON());
+//       // } //replace with foreach later
+//       // console.log(clientName); //have to iterate to get all. handlebars #each is iterating!
+//     }
+//     // const clientName = await Client.findByPk(clientId).clientName;
+//     // const clientName = thisClient.clientName;
+//     // console.log(thisClient.toJSON().clientName);
+//     // console.log(clientName);
+//     const thisClient = await Client.findByPk(clientId);
+//     // res.render("listNoteOrDoc", {
+//     //   resourceType,
+//     //   hasClient,
+//     //   thisClient,
+//     //   resources,
+//     res.json(thisClient);
+//     // });
+//     // } else if (resourceType == "Document") {
+//     //   let resources = await Doc.findAll();
+//     //   let resources = await thisClient.getDocs(clientId);
+//     //   console.log(resources[id]);
+//     //   res.render("listNoteOrDoc", {
+//     //     resourceType,
+//     //     hasClient,
+//     //     thisClient,
+//     //     resources,
+//     //   });
+//     // }
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// };
+
+//this chunk of code works!!!!!!!!!!!!
 exports.listResourceThisClient = async (req, res) => {
   try {
     const clientId = 2; //temporary
-    let resourceType = "Document"; //temporary
-    let thisClient = await Client.findByPk(clientId);
-
+    let resourceType = "Note"; //temporary
     let hasClient = true;
-    if (resourceType == "Note") {
-      let resources = await Note.findAll({where: {clientId: clientId}});
-      // let resources = await thisClient.getNotes(clientId);
-      res.render("listNoteOrDoc", {
-        resourceType,
-        hasClient,
-        thisClient,
-        resources,
-      });
-    } else if (resourceType == "Document") {
-      // let resources = await Doc.findAll();
-      let resources = await thisClient.getDocs(clientId);
-      res.render("listNoteOrDoc", {
-        resourceType,
-        hasClient,
-        thisClient,
-        resources,
-      });
-    }
+    let resources = await Note.findAll({ where: { clientId: clientId } });
+    let thisClient = await Client.findByPk(clientId);
+    let typeNote;
+    res.render("listNoteOrDoc", {
+      resourceType,
+      hasClient,
+      thisClient,
+      resources,
+      typeNote,
+    });
   } catch (error) {
     console.log("HERE'S THE ERROR: " + error);
   }

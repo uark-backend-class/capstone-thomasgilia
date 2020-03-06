@@ -1,29 +1,25 @@
-{{#if hasClient}}
-<h1>List of all {{resourceType}}s for client {{thisClient.clientName}}</h1>
-{{else}}
-<h1>List of all {{resourceType}}s</h1>
-{{/if}}
+<h1>{{#if hasClient}}List of all {{resourceType}}s for client {{thisClient.clientName}}
+  {{else}}
+  List of all {{resourceType}}s
+  {{/if}}
+</h1>
 
-{{#if newDoc}}
-<a class="btn btn-primary" href='/add{{resourceType}}/'>New {{resourceType}}</a>
-{{ else }}
-{{/if}}
-<a class="btn btn-primary" href='/add{{resourceType}}/'>New {{resourceType}}</a>
-
-<table class="table">
-  <tr>
-    <th>{{resourceType}} Title</th>
-    <th>{{resourceType}} Id</th>
-    <th></th>
-  </tr>
-  {{#each resources }}
-  <tr>
-    <td>{{this.title}}</td>
-    <td>{{this.id}}</td>
-    <td><a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit</a> <a
-        class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete</a></td>
-  </tr>
-  {{/each}}
-</table>
-
-</div>
+<div>
+  <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
+  <div>
+    <table class="table">
+      <tr>
+        <th>{{resourceType}} Title</th>
+        <th>{{resourceType}} Id</th>
+        <th></th>
+      </tr>
+      {{#each resources }}
+      <tr>
+        <td>{{this.title}}</td>
+        <td>{{this.id}}</td>
+        <td><a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit</a>
+          <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete</a></td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
