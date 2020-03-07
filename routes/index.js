@@ -11,7 +11,7 @@ const UserClientController = require("../controllers/UserClient-controller");
 
 router
   .route("/notes")
-  // .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
+  .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
   .post(noteController.newNote);        //working in insomnia. ready to connect to view (post method)
 router
   .route("/notes/:id")
@@ -20,7 +20,7 @@ router
 
 router
   .route("/docs")
-  .get(docController.getAllDocs)        //working in insomnia. 
+  .get(docController.getAllDocs)        //working in insomnia. //obsolete/replace with listresources?
   .post(docController.newDoc);          //working in insomnia. 
 router
   .route("/docs/:id")
@@ -52,7 +52,8 @@ router.route("/listClientResources/:id").get(clientController.listResourceThisCl
 router.route("/listClientD ocs/:id").get(clientController.listResourceThisClient);
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-// router.route("/listAllResources").get(NoteDocController.listAllResources);
+router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnoteordoc view 
+  //but still manual entry some values
 // router.route("/createResource").post(NoteDocController.createResource);
 
 module.exports = router;
