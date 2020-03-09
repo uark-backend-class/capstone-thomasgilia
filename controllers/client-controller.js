@@ -1,5 +1,5 @@
 const Note = require("../db").Note;
-// const Doc = require("../db").Doc;
+const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 
 exports.newClient = async (req, res) => {
@@ -21,6 +21,8 @@ exports.getAllClients = async (req, res) => {
   }
 };
 
+//...........................................
+// //works for note only - replaced by below
 // exports.allNotesThisClient = async (req, res) => {
 //   try {
 //     const clientId = 2;
@@ -36,102 +38,76 @@ exports.getAllClients = async (req, res) => {
 //   }
 // };
 
+//...........................................
+// //also works for note only - replaced by below
 // exports.listResourceThisClient = async (req, res) => {
 //   try {
 //     const clientId = 2; //temporary
 //     let resourceType = "Note"; //temporary
 //     let hasClient = true;
-//     if (resourceType == "Note") {
 //       const resources = await Note.findAll({ where: { clientId: clientId } }); //gives whole note
 //       // let resources = await thisClient.getNotes();  //works at least to give whole note in conjuct w/ previous findbypk
-//       // let thisClient = await Client.findByPk(clientId);
-//       // console.log(resources[0].id);//have to iterate to get all. handlebars #each is iterating!
-//       // console.log(thisClient.toJSON().clientName);    //THIS WORKS
-
-//       return resources;
-
-//       // for (let i = 0; i <= resources.length; i++) {
-//       //   // const resources = await Note.findAll({ where: { clientId: clientId } }); //gives whole note
-//       //   clientName.push(resources.clientName); //getting there but need to access note i guess...
-//       //   // console.log(resources.toJSON());
-//       // } //replace with foreach later
-//       // console.log(clientName); //have to iterate to get all. handlebars #each is iterating!
-//     }
-//     // const clientName = await Client.findByPk(clientId).clientName;
-//     // const clientName = thisClient.clientName;
-//     // console.log(thisClient.toJSON().clientName);
-//     // console.log(clientName);
-//     const thisClient = await Client.findByPk(clientId);
-//     // res.render("listNoteOrDoc", {
-//     //   resourceType,
-//     //   hasClient,
-//     //   thisClient,
-//     //   resources,
-//     res.json(thisClient);
-//     // });
-//     // } else if (resourceType == "Document") {
-//     //   let resources = await Doc.findAll();
-//     //   let resources = await thisClient.getDocs(clientId);
-//     //   console.log(resources[id]);
-//     //   res.render("listNoteOrDoc", {
-//     //     resourceType,
-//     //     hasClient,
-//     //     thisClient,
-//     //     resources,
-//     //   });
-//     // }
+//       //console.log(resources[0].id);//have to iterate to get all. handlebars #each is iterating!
+//     let thisClient = await Client.findByPk(clientId);
+//     let typeNote;
+//     res.render("listNoteOrDoc", {
+//       resourceType,
+//       hasClient,
+//       thisClient,
+//       resources,
+//       typeNote,
+//     });
 //   } catch (error) {
 //     console.log("HERE'S THE ERROR: " + error);
 //   }
 // };
 
-//this chunk of code works!!!!!!!!!!!!
+
+//works and works with listDocorNote.hbs
 exports.listResourceThisClient = async (req, res) => {
   try {
     const clientId = 2; //temporary
-    let resourceType = "Note"; //temporary
+    let resourceType = "Doc"; //temporary
     let hasClient = true;
-    let resources = await Note.findAll({ where: { clientId: clientId } });
+    let notes = await Note.findAll({ where: { clientId: clientId } });
     let thisClient = await Client.findByPk(clientId);
-    let typeNote;
+    let resources = [];
+    if (resourceType == "Note") {
+      resources.push = notes;
+      return resources;
+      // let typeNote;   //why had this? need to put render within if/else separately and have this typenote thing?
+    } else if (resourceType = "Doc") {
+      //iterate through each note in notes above to get docs associated with each note
+      for (let note of notes) {
+        thisNoteId = note.id;       //this note's id
+        thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
+        resources = await thisNote.getDocs();       //gets docs associated to that individual note
+      }
+    }
     res.render("listNoteOrDoc", {
       resourceType,
       hasClient,
       thisClient,
       resources,
-      typeNote,
+      // typeNote,
     });
   } catch (error) {
     console.log("HERE'S THE ERROR: " + error);
   }
 };
 
-// exports.deleteClient = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const obsoleteClient = await Client.findByPk(id);
-//     if (!obsoleteClient) {
-//       res.status(404).send();
-//       return;
-//     }
-//     await obsoleteClient.destroy();
-//     res.json(obsoleteClient);
-//   } catch (error) {
-//     console.log("HERE/'S THE ERROR" + error);
-//   }
-// };
-
-// exports.associateDocIdForThisNote = async (req, res) => {
-//   try {
-//     const thisNoteId = req.params.id;
-//     let docId = 2; //mock Id for trying out - real life pull from form/search
-//     const existingNote = await Note.findByPk(thisNoteId);
-//     console.log(existingNote);
-//     // let docs = await Doc.findAll();
-//     let targetDoc = await Doc.findByPk(docId);
-//     console.log(targetDoc);
-//     // await existingNote.setDoc(docs[0])
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+//doesn't work despite being identical to note and doc deletes
+exports.deleteClient = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const obsoleteClient = await Client.findByPk(id);
+    if (!obsoleteClient) {
+      res.status(404).send();
+      return;
+    }
+    await obsoleteClient.destroy();
+    res.json(obsoleteClient);
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};

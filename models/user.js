@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     lastName: Sequelize.STRING,
     email: Sequelize.STRING,
     accessLevel: Sequelize.STRING,
-    clientsOwned: Sequelize.STRING,
+    
   });
 };
 

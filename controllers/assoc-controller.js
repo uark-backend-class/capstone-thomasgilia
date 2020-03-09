@@ -8,19 +8,19 @@ const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 const User = require("../db").User;
 
-//Many(Notes)-To-Many(Docs)//
+//Many(Notes)-To-Many(Docs)// working
 exports.associateDocsToNote = async (req, res) => {
   try {
     // console.log(req.body);
     let { noteId, docId } = req.body; //example request body is { noteId: 1, docId:[2,3] }  note can't be array
     //but docs can because many notes
     console.log("this is docID: " + docId + ", this is noteID: " + noteId);
-    let docIdArray = [docId];
+    let docIdArray = docId;
     console.log("this is docIDArray:");
     console.log(docIdArray);
     //associating the docs to the note:
-    // const existingNote = await Note.findByPk(noteId);
-    // await existingNote.addDocs(docIdArray); //addDocs to add array of mult docs, addDoc to add one doc not in array
+    const existingNote = await Note.findByPk(noteId);
+    await existingNote.addDocs(docIdArray); //addDocs to add array of mult docs, addDoc to add one doc not in array
 
     //to get all of the docs associated with that particular note:
     //(like a one to many via fk except it is smart enough to know that it has to go through join table to access Doc)
@@ -86,23 +86,26 @@ exports.associateNotesToDoc = async (req, res) => {
 //Many(Clients)-To-Many(Users)//
 exports.associateClientsToUser = async (req, res) => {
   try {
-    const { uClientId, userId } = req.body;
-    const existingUser = await User.findByPk(userId);
-    await existingUser.addClients(uClientId);
-    const updatedUser = await User.findByPk(userId, { include: [Client] });
+    const { oClientId, ownerId } = req.body;
+    const existingUser = await User.findByPk(ownerId);    //find the one user
+    await existingUser.addClients(oClientId);             //associate the clients
+    const updatedUser = await User.findByPk(ownerId, { include: [Client] });    //find the one user again including Client
     res.send(updatedUser);
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
 };
 
-exports.associateUsersToClient = async (req, res) => {
+
+exports.associateUsersToClient = async (req, res) => {    //works
   try {
-    const { uClientId, userId } = req.body;
-    const existingClient = await User.findByPk(userId);
-    await existingClient.addUser(userId);
-    const updatedClient = await Client.findByPk(uClientId, { include: [User] });
-    res.send(updatedClient);
+    const { oClientId, ownerId } = req.body;    //correct
+    // console.log("oClientId: " + oClientId + ", ownerId: " + ownerId);
+    const existingClient = await Client.findByPk(oClientId);
+    await existingClient.addUsers(ownerId);
+    
+    // const updatedClient = await Client.findByPk(oClientId, { include: [User] });
+    res.send("success");
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
