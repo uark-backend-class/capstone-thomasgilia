@@ -9,10 +9,14 @@ const UserClientController = require("../controllers/UserClient-controller");
 const userController = require("../controllers/user-controller");
 // const authController = require('../controllers/auth-controller');
 
+// router
+// .route("/notes")                       //worked but deprecated - replace with listResources
+// .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
 router
   .route("/notes")
-  .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
-  .post(noteController.newNote);        //working in insomnia. ready to connect to view (post method)
+  .get(noteController.newResource)      //working in browser
+  .post(noteController.newNote);        //creates a new note but info in form does not translate to note (nulls)
+
 router
   .route("/notes/:id")
   .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnoteordoc.hbs
@@ -31,14 +35,12 @@ router
   .route("/clients")
   .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
   .post(clientController.newClient)    //working in insomnia. ready to connect to view (post method)
-
 router
   .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
 
 router
   .route("/users")
   .post(userController.newUser);    //working in insomnia. ready to connect to view (post method)
-
 router
   .route("/users/:id")
   .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
@@ -46,8 +48,8 @@ router
 //once get away from routes, can simplify these two association routes
 router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
 router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
-router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //think working insomnia
-router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //has one but no test yet
+router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
+router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
 router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
 
 //querying using join controllers
@@ -62,5 +64,7 @@ router.route("/listAllResources").get(NoteDocController.listAllResources);    //
 // router.route("/createResource").post(NoteDocController.createResource);
 
 router.route("/homepageUser:id").get(userController.homepage);
+
+router.route("/").get(userController.root);     //placeholder for redirects
 
 module.exports = router;

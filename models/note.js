@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       "Report format",
       "Receives report email",
       "etcetera",
+      ""
     ),
     title: DataTypes.STRING,
     note: DataTypes.STRING(1234),
     setUrgent: DataTypes.BOOLEAN,
-    flagExpires: DataTypes.DATEONLY,
+    flagExpires: DataTypes.STRING,
     docAssociated: DataTypes.BOOLEAN,
-    associatedDocId: DataTypes.INTEGER,
     revisionLog: DataTypes.STRING(1234),
     lastUpdateUser: DataTypes.STRING,
-    lastUpdate: DataTypes.DATE,
+    // lastUpdate: DataTypes.DATE,
   });
 };
 //add logging field to note and doc models

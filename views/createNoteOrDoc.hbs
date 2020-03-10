@@ -1,40 +1,40 @@
+<h1>Create a new {{resourceType}}</h1>
 <form action="/{{ action }}" method="post">
-  Resource Title: <input type="text" name="title" />
+  {{resourceType}} Title: <input type="text" name="title" />
   <br />
   <div>
+    <br>
     Flag Urgent?:
-    <input type="radio" id="yes" name="urgent" value="Yes">
-    <label for="yes">Yes</label><br>
-    <input type="radio" id="no" name="urgent" value="no">
+    <input type="radio" id="true" name="setUrgent" >
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="setUrgent">
+    <label for="false">No</label><br>
   </div>
   <br />
   <div>
     <label for="flagExpires">Flag expiration date:</label>
-    <br />
-    <input type="date" id="flagExpires" name="flagExpires" value="2018-07-22">
-    <br />
+    <input type="date" id="flagExpires" name="flagExpires" value="01/01/2020">
   </div>
   <br />
   <div>
     <label for="category">Choose a category:</label>
     <select name="category" id="category">
-      <option value="">--Please choose an option--</option>
-      <option value="financial">financial</option>
-      <option value="something else">something</option>
+      <option value="" selected>--Please choose an option--</option>
+      
+      <option value="Financial">Financial</option>
+      <option value="Report format">Report format</option>
     </select>
   </div>
   <br />
   Note: <input type="blob" name="note" />
+  <br>
   <br />
-  Revision log: <input type="blob" name="revisionLog" />
+  Revision log: <input type="textbox" name="revisionLog" />
+  <br>
   <br />
-  <div>
-    <label for="lastUpdate">Last update:</label>
-    <br />
-    <input type="date" id="lastUpdate" name="lastUpdate" value="2018-07-22">
-    <br />
-  </div>
   <input type="hidden" name="docAssociated" value="false" />
-  <input type="hidden" name="lastUpdateUser" value="tempuser" />
+  <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
+<!--  <input type="hidden" name="lastUpdate" value="{{resources.lastUpdate}}" />  -->
+  <input type="hidden" name="id" value="{{resources.id}}" />
   <button type="submit">{{ buttonText }}</button>
 </form>

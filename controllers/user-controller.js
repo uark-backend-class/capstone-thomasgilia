@@ -64,6 +64,15 @@ exports.deleteUser = async (req, res) => {      //destroys user and attached wor
 };
 
 
+exports.root = async (req, res) => {
+    try {
+        res.send("This is the root");
+    } catch (error) {
+        console.log("HERE'S THE ERROR" + error);
+    }
+}
+
+
 //User-CLient join table IDs:  oClientId  ownerId
 exports.homepage = async (req, res) => {
     try {

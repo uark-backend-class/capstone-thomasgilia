@@ -14,7 +14,7 @@ const Doc = require("../db").Doc;
 
 exports.listAllResources = async (req, res) => {
   try {
-    let resourceType = "Document"; //temporary
+    let resourceType = "Note"; //temporary
 
     // let resourceType = req.param.resourceType; //have to add to param...
     if (resourceType == "Note") {
@@ -45,6 +45,7 @@ exports.listAllResources = async (req, res) => {
 //   }
 // };
 
+//maybe deprecated - put on sep note and doc controllers?
 // exports.CreateResource = async (req, res) => {
 //   // let resourceType = req.param.resourceType; //have to add to param...
 //   let resourceType = "Document"; //temporary
