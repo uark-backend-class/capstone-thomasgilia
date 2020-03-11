@@ -1,0 +1,76 @@
+<!--may remove
+    <h1>{{#if hasClient}}List of all {{resourceType}}s for client {{thisClient.clientName}}
+  {{else}}
+  List of all {{resourceType}}s
+  {{/if}}
+</h1>   -->
+
+<h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
+    {{else}}
+    {{resourceType}} with no associated Client
+    {{/if}}
+</h1>
+
+<div>
+    <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
+    <button type='button' id='assocSelector'>Add association</button><br />
+    <a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
+    <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
+
+    <div>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th>{{resourceType}}: {{resources.title}}</th>
+                <br>
+            </tr>
+            <tr>
+                <td>{{resources.note}}</td>
+                <br>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <table class="table">
+        <tr>
+            <div id="currentType">
+                <th>{{resourceType}} Id</th>
+            </div>
+            <th>Flag Urgent?:</th>
+            <th>Flag expiration date:</th>
+            <th>Category:</th>
+            <th>Associated Resources:</th>
+            <th>Last Update:</th>
+            <th>Last updated by:</th>
+        </tr>
+        <tr>
+            <div id="currentId">
+                <td>{{resources.id}}</td>
+            </div>
+            <td>{{resources.setUrgent}}</td>
+            <td>{{resources.flagExpires}}</td>
+            <td>{{resources.category}}</td>
+            <td>{{resources.docAssociated}}</td>
+            <td>{{resources.revisionLog}}</td>
+            <td>{{resources.lastUpdateUser}}</td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Revision Log:</th>
+            <br>
+        </tr>
+        <tr>
+            <td>{{resources.revisionLog}}</td>
+            <br>
+        </tr>
+    </table>
+    <div id="currentType">
+        <input type="text" name=" {{resourceType}}" /><br />
+    </div>
+    <div id="currentId">
+        <input type="text" name="{{resources.id}}" /><br />
+    </div>
+    <script src="./js/app.js"></script>
+</div>

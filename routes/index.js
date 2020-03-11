@@ -19,7 +19,7 @@ router
 
 router
   .route("/notes/:id")
-  .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnoteordoc.hbs
+  .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
   .put(noteController.updateNote)       //working in insomnia. working to improve
 
 router
@@ -46,11 +46,13 @@ router
   .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
 
 //once get away from routes, can simplify these two association routes
-router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
-router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
-router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
-router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
-router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
+router.route("/associations").get(assocController.associationsPage);  
+router.route("/associations").post(assocController.associations, assocController.associateDocsToNote); 
+// router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
+// router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
+// router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
+// router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
+// router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
 
 //querying using join controllers
 // router.route("/listClientNotes/:id").get(clientController.allNotesThisClient);
@@ -59,7 +61,7 @@ router.route("/listClientResources/:id").get(clientController.listResourceThisCl
 // router.route("/listClientDocs/:id").get(clientController.listResourceThisClient);  //route  deprecated but may need to change route
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnoteordoc view 
+router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
 //but still manual entry some values
 // router.route("/createResource").post(NoteDocController.createResource);
 

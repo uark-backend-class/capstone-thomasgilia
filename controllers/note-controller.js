@@ -58,44 +58,21 @@ exports.newResource = (req, res) => {
 //   res.redirect('/');
 // }
 
-//this or createNOteOrDOc.hbs is not working. creates a new note but info in form does not translate to note (nulls)
-exports.newNote = async (req, res) => {     //needs next? didn't seem to help
+exports.newNote = async (req, res) => {
   try {
-    // let { title, setUrgent, docAssociated, lastUpdateUser, category, note, flagExpires, revisionLog, lastUpdate } = req.body;
-    let resources = await Note.upsert(req.body);
-    // let id = req.body.id;//doesnt have pk assigned yet so returns empty string for id
-    let searchObject = req.body;
-    delete searchObject["id"];
-    delete searchObject["lastUpdateUser"];
-    let newNoteId = Note.findAll({ Where: { searchObject })     //=================not working yet - idea is to
-    //search Notes for the note just created using the body of the req (with temp false values of id and lastUpdateUser removed)
-    //to search then indirectly getting the actual id created when it was created......header//=================================
-    //==================
-
-    console.log(searchObject);
-    // console.log(req.body);
-    // let resources = req.body.id;
-    // res.render("listNoteOrDoc", {
-    //   resources,
-    //   resourceType: "Note"
-    // });
-
-    // let newNote = await Note.create({setUrgent, docAssociated, lastUpdateUser, category, note, flagExpires, revisionLog, lastUpdate});
-    // let thisNote = await Note.findByPk(req.body.id);
-    // await Note.upsert(req.body);  
-    // console.log(newNote.title);
-    // let newNote = await Note.create();
-    // await Note.upsert(newNote);
-    res.render("listNoteOrDoc", { resourceType: "Note", resources });
+    let resources = await Note.create(req.body);
+    //may not need the below but it resulted in cleaner list view:
+    // let thisNote = await Note.create(req.body); //let resources = await Note.upsert(req.body);  this also worked to create note from form
+    // let thisNoteObj = thisNote.get({plain: true});   //gives the note (just created) body as an object so can directly access id
+    //   // console.log(resources.id); //gives id
+    // let id = thisNoteObj.id;
+    let clientId = resources.clientId;
+    let thisClient = await Client.findByPk(clientId);
+    res.render("viewNoteOrDoc", { resourceType: "Note", resources, thisClient });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
 };
-// User.create({ username: 'barfooz', isAdmin: true }, { fields: [ 'username' ] }).then(user => {
-//   // let's assume the default of isAdmin is false:
-//   console.log(user.get({
-//     plain: true
-//   })) // => { username: 'barfooz', isAdmin: false }
 
 exports.deleteNote = async (req, res) => {
   try {

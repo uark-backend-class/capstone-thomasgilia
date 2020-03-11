@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       ""
     ),
     title: DataTypes.STRING,
-    note: DataTypes.STRING(1234),
+    note: DataTypes.TEXT,
     setUrgent: DataTypes.BOOLEAN,
     flagExpires: DataTypes.STRING,
     docAssociated: DataTypes.BOOLEAN,
-    revisionLog: DataTypes.STRING(1234),
+    revisionLog: DataTypes.TEXT,
     lastUpdateUser: DataTypes.STRING,
     // lastUpdate: DataTypes.DATE,
   });

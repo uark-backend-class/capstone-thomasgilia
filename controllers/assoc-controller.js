@@ -8,38 +8,68 @@ const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 const User = require("../db").User;
 
-//Many(Notes)-To-Many(Docs)// working
-exports.associateDocsToNote = async (req, res) => {
+//render associations form
+exports.associationsPage = (req, res) => {
+  res.render('associations', { action: 'associations', buttonText: 'Create Association' });
+};
+// exports.associations = async (req, res, next) => {
+//   try {
+//     let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
+//take in association request, send to next controller based on selection, send specific selection values (i.e. note 1,
+//client 2) to next controller. 
+exports.associations = async (req, res, next) => {
   try {
-    // console.log(req.body);
-    let { noteId, docId } = req.body; //example request body is { noteId: 1, docId:[2,3] }  note can't be array
-    //but docs can because many notes
-    console.log("this is docID: " + docId + ", this is noteID: " + noteId);
-    let docIdArray = docId;
-    console.log("this is docIDArray:");
-    console.log(docIdArray);
-    //associating the docs to the note:
-    const existingNote = await Note.findByPk(noteId);
-    await existingNote.addDocs(docIdArray); //addDocs to add array of mult docs, addDoc to add one doc not in array
+    let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
+    if (assoc1type == "note" && assoc2type == "doc(s)") {
+      res.render("/associateDocsToNote", { assoc1type, assoc1Id, assoc2type, assoc2Id });
+    }
 
-    //to get all of the docs associated with that particular note:
-    //(like a one to many via fk except it is smart enough to know that it has to go through join table to access Doc)
-    const updatedNote = await Note.findByPk(noteId, { include: [Doc] });
-    res.send(updatedNote);
+    //   exports.associateNotesToDoc = async (req, res) => {
+    //     exports.associateDocsToNote = async (req, res) => {
+    //       exports.associateUsersToClient = async (req, res) => {    //works
+    //         exports.associateClientToNote = async (req, res) => {
+    // router.route("/associations").get(assocController.associations);  //works in insomnia
+    // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
+    // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
+    // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
+    // router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working bu
+
+    // res.render('associations', {message: "Association set"});
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
 };
 
+
+//Many(Notes)-To-Many(Docs)// working
+
+exports.associateDocsToNote = async (req, res) => {
+  try {
+    const { assoc1Id, assoc2Id } = req.body;
+    let noteId = assoc1Id;
+    let docId = assoc2Id;
+    let docIdArray = docId;
+    const existingNote = await Note.findByPk(noteId);
+    await existingNote.addDocs(docIdArray);
+    const updatedNote = await Note.findByPk(noteId, { include: [Doc] });
+    res.render("/associations", { assoc1type, assoc1Id, assoc2type, assoc2Id, existingDoc, success: "Association processed" });
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
+
+//messed up working copy - see working insomnia version before changes on 3/11
 exports.associateNotesToDoc = async (req, res) => {
   try {
-    const { noteId, docId } = req.body;
+    const { assoc1Id, assoc2Id } = req.body;
+    let noteId = assoc1Id;
+    let docId = assoc2Id;
     const existingDoc = await Doc.findByPk(docId);
     await existingDoc.addNotes(noteId);
     const updatedDoc = await Doc.findByPk(docId, { include: [Note] });
-    res.send(updatedDoc);
+    res.render("/associations", { assoc1type, assoc1Id, assoc2type, assoc2Id, existingDoc, success: "Association processed" });
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR" + error);
   }
 };
 
@@ -103,7 +133,7 @@ exports.associateUsersToClient = async (req, res) => {    //works
     // console.log("oClientId: " + oClientId + ", ownerId: " + ownerId);
     const existingClient = await Client.findByPk(oClientId);
     await existingClient.addUsers(ownerId);
-    
+
     // const updatedClient = await Client.findByPk(oClientId, { include: [User] });
     res.send("success");
   } catch (error) {
@@ -129,19 +159,19 @@ exports.associateUsersToClient = async (req, res) => {    //works
 // };
 
 //working version
-exports.associateClientToNote = async (req, res) => {
-try {
-  const clientId = req.body.clientId;
-  const noteId = req.body.noteId;
-  const existingClient = await Client.findByPk(clientId);
-  await existingClient.setNotes(noteId);
-  let newNote = await existingClient.getNotes(clientId);
-  let checkClientOnNote = [newNote[0].clientId];
-  res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
-} catch (error) {
-  console.log("HERE'S THE ERROR: " + error);
-}
-}
+// exports.associateClientToNote = async (req, res) => {
+//   try {
+//     const clientId = req.body.clientId;
+//     const noteId = req.body.noteId;
+//     const existingClient = await Client.findByPk(clientId);
+//     await existingClient.setNotes(noteId);
+//     let newNote = await existingClient.getNotes(clientId);
+//     let checkClientOnNote = [newNote[0].clientId];
+//     res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// }
 
 // //not working
 // exports.associateClientToNote = async (req, res) => {

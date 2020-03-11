@@ -20,7 +20,7 @@ const Client = require("../db").Client;
 //     //   console.log(noteList);
 //     // }
 //     res.send(resources);
-//     // res.render("listNoteOrDoc", { resourceType: "Note", resources });
+//     // res.render("listNotesOrDocs", { resourceType: "Note", resources });
 //   } catch (error) {
 //     console.log("HERE'S THE ERROR: " + error);
 //   }

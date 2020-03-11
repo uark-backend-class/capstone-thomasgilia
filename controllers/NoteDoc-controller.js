@@ -19,10 +19,10 @@ exports.listAllResources = async (req, res) => {
     // let resourceType = req.param.resourceType; //have to add to param...
     if (resourceType == "Note") {
       let resources = await Note.findAll();
-      res.render("listNoteOrDoc", { resourceType: "Note", resources });
+      res.render("listNotesOrDocs", { resourceType: "Note", resources });
     } else if (resourceType == "Document") {
       let resources = await Doc.findAll();
-      res.render("listNoteOrDoc", { resourceType: "Document", resources });
+      res.render("listNotesOrDocs", { resourceType: "Document", resources });
     }
   } catch (error) {
     console.log("HERE'S THE ERROR: " + error);
@@ -35,10 +35,10 @@ exports.listAllResources = async (req, res) => {
 //     let clientID = 2; //temporary
 //     if (resourceType == "Note") {
 //       let resources = await Note.findAll();
-//       res.render("listNoteOrDoc", { resourceType: "Note", resources });
+//       res.render("listNotesOrDocs", { resourceType: "Note", resources });
 //     } else if (resourceType == "Document") {
 //       let resources = await Doc.findAll();
-//       res.render("listNoteOrDoc", { resourceType: "Document", resources });
+//       res.render("listNotesOrDocs", { resourceType: "Document", resources });
 //     }
 //   } catch (error) {
 //     console.log("HERE'S THE ERROR: " + error);

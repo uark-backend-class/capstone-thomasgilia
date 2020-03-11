@@ -32,7 +32,7 @@ exports.getAllClients = async (req, res) => {
 //     let resources = await thisClient.getNotes(clientId);
 //     let hasClient = true;
 //     // res.json(noteList);
-//     res.render("listNoteOrDoc", { resourceType: "Note", hasClient, thisClient, resources });
+//     res.render("listNotesOrDocs", { resourceType: "Note", hasClient, thisClient, resources });
 //   } catch (error) {
 //     console.log("HERE'S THE ERROR: " + error);
 //   }
@@ -50,7 +50,7 @@ exports.getAllClients = async (req, res) => {
 //       //console.log(resources[0].id);//have to iterate to get all. handlebars #each is iterating!
 //     let thisClient = await Client.findByPk(clientId);
 //     let typeNote;
-//     res.render("listNoteOrDoc", {
+//     res.render("listNotesOrDocs", {
 //       resourceType,
 //       hasClient,
 //       thisClient,
@@ -84,7 +84,7 @@ exports.listResourceThisClient = async (req, res) => {
         resources = await thisNote.getDocs();       //gets docs associated to that individual note
       }
     }
-    res.render("listNoteOrDoc", {
+    res.render("listNotesOrDocs", {
       resourceType,
       hasClient,
       thisClient,
