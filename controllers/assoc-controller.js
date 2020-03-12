@@ -45,14 +45,14 @@ exports.associations = async (req, res, next) => {
 
 exports.associateDocsToNote = async (req, res) => {
   try {
-    const { assoc1Id, assoc2Id } = req.body;
+    const {assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body; 
     let noteId = assoc1Id;
-    let docId = assoc2Id;
-    let docIdArray = docId;
+    // let docId = assoc1Id;
+    let docIdArray = assoc2Id;
     const existingNote = await Note.findByPk(noteId);
     await existingNote.addDocs(docIdArray);
-    const updatedNote = await Note.findByPk(noteId, { include: [Doc] });
-    res.render("/associations", { assoc1type, assoc1Id, assoc2type, assoc2Id, existingDoc, success: "Association processed" });
+    const resources = await Note.findByPk(noteId, { include: [Doc] });
+    res.render("/viewNoteOrDoc", {resources, success: "Association processed" });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }

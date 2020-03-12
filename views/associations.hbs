@@ -5,11 +5,7 @@
     <!--first, render associations view. there, select value for association 1 and association 2. sensd to associations
  controller function. controller sets next to appropriate controller function based on association 1 and 2 values. 
  each association controller sets the association then responds to same view with success message-->
-  
-    {{resourceType}} Title: <input type="text" name="title" />
-    <br />
-
-    <label for="assoc1Type">Select primary resource:</label>
+          <label for="assoc1Type">Select primary resource:</label>
     <select name="assoc1Type" id="assoc1Type">
         <option value="" selected>--Please choose an option--</option>
         <option value="current">Current ({{assoc1Type}})</option>
@@ -22,7 +18,7 @@
     <select name="assoc1Id" id="assoc1Id">
         <option value="" selected>--Please choose an option--</option>
         <option value="current">Current {{resourceType}} ({{assoc1Id}})</option>
-        <option value="note">Note Id</option>
+        <option value="note">1</option>          <!--temporary-->
         <option value="document">Document Id</option>
         <option value="client">Client Id</option>
     </select>
@@ -42,7 +38,7 @@
         <option value="" selected>--Please choose an option--</option>
         <option value="current">Current {{resourceType}} ({{assoc2Id}})</option>
         <option value="note">Note Id</option>
-        <option value="document">Document Id</option>
+        <option value="document">2</option>         <!--temporary-->
         <option value="client">Client Id</option>
     </select> </div>
     <br />
