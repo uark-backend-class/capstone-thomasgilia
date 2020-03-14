@@ -15,46 +15,72 @@ const User = require("../db").User;
 // };
 // // exports.associations = async (req, res, next) => {
 // //   try {
-// //     let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
+// //     let { assoc1Type, assoc1Id, assoc2Type, assoc2Id } = req.body;
 // //take in association request, send to next controller based on selection, send specific selection values (i.e. note 1,
 // //client 2) to next controller. 
 
-exports.associations = async (req, res, next) => {
-  try {
-    // let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
-    if (assoc1type == "note" && assoc2type == "doc(s)") {
-      res.render("/viewNoteOrDoc",{assoc1Id,assoc1type});   //pass orig id and type back to view to render orig resource view
-    }
+// exports.associations = async (req, res) => {
+//   try {
+//     console.log(req.body);
 
-    //   exports.associateNotesToDoc = async (req, res) => {
-    //     exports.associateDocsToNote = async (req, res) => {
-    //       exports.associateUsersToClient = async (req, res) => {    //works
-    //         exports.associateClientToNote = async (req, res) => {
-    // router.route("/associations").get(assocController.associations);  //works in insomnia
-    // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
-    // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
-    // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
-    // router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working bu
+//     // const clientId = 2;//req.body.assoc2Id;
+//     // const noteId = 2; //req.body.assoc1Id;
+//     // const existingClient = await Client.findByPk(clientId);
+//     // await existingClient.setNote(noteId);
+//     // let resources = await Note.findByPk(noteId);
+//     res.redirect("/");
+//     // console.log(assoc1Type);
+//     // console.log(assoc2Id);
+//     // console.log(assoc2Type);
+    
+//     // // let resources;
+//     // // // // let { assoc1Type, assoc1Id, assoc2Type, assoc2Id } = req.body;
+//     // // // if (assoc1Type == "Note" && assoc2Type == "Document") {
+//     // // // }
+//     // // // else if (assoc1Type == "Note" && assoc2Type == "Client") {  //associateClientToNote 
+//     //   const noteId = assoc1Id;
+//     //   const clientId = assoc2Id;
+//     // //   console.log(assoc2Id);
+//     //   const thisClient = await Client.findByPk(clientId);
+//     //   await thisClient.setNotes(noteId);
+//     // let resources = await Note.findByPk(noteId);
+//     // //   // let resources = await existingClient.getNotes(clientId);
+//     // //   // let checkClientOnNote = [newNote[0].clientId];
+//     // //   console.log("success");
+//     // // // }
+//     // // // else { console.log("no such association possible") }
+//     // res.render("/viewNoteOrDoc", {resourceType: "Note", resources, assoc1Id, assoc1Type, thisClient} );   //pass orig id and Type back to view to render orig resource view
+//     //res.render("/viewNoteOrDoc");   //pass orig id and Type back to view to render orig resource view
 
-    // res.render('associations', {message: "Association set"});
-  } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
-  }
-};
+//     //   exports.associateNotesToDoc = async (req, res) => {
+//     //     exports.associateDocsToNote = async (req, res) => {
+//     //       exports.associateUsersToClient = async (req, res) => {    //works
+//     //         exports.associateClientToNote = async (req, res) => {
+//     // router.route("/associations").get(assocController.associations);  //works in insomnia
+//     // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
+//     // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
+//     // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
+//     // router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working bu
+
+//     // res.render('associations', {message: "Association set"});
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR" + error);
+//   }
+// };
 
 
 //Many(Notes)-To-Many(Docs)// working
 
 exports.associateDocsToNote = async (req, res) => {
   try {
-    const {assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body; 
+    const { assoc1Type, assoc1Id, assoc2Type, assoc2Id } = req.body;
     let noteId = assoc1Id;
     // let docId = assoc1Id;
     let docIdArray = assoc2Id;
     const existingNote = await Note.findByPk(noteId);
     await existingNote.addDocs(docIdArray);
     const resources = await Note.findByPk(noteId, { include: [Doc] });
-    res.render("/viewNoteOrDoc", {resources, success: "Association processed" });
+    res.render("/viewNoteOrDoc", { resources, success: "Association processed" });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
@@ -69,7 +95,7 @@ exports.associateNotesToDoc = async (req, res) => {
     const existingDoc = await Doc.findByPk(docId);
     await existingDoc.addNotes(noteId);
     const updatedDoc = await Doc.findByPk(docId, { include: [Note] });
-    res.render("/associations", { assoc1type, assoc1Id, assoc2type, assoc2Id, existingDoc, success: "Association processed" });
+    res.render("/associations", { assoc1Type, assoc1Id, assoc2Type, assoc2Id, existingDoc, success: "Association processed" });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
@@ -161,19 +187,20 @@ exports.associateUsersToClient = async (req, res) => {    //works
 // };
 
 // working version
-exports.associateClientToNote = async (req, res) => {
-  try {
-    const clientId = req.body.clientId;
-    const noteId = req.body.noteId;
-    const existingClient = await Client.findByPk(clientId);
-    await existingClient.setNotes(noteId);
-    let newNote = await existingClient.getNotes(clientId);
-    let checkClientOnNote = [newNote[0].clientId];
-    res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
-  } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
-  }
-}
+//deprecated (unless need to use in insomnia)- into associations export above
+// exports.associateClientToNote = async (req, res) => {
+//   try {
+//     const clientId = req.body.clientId;
+//     const noteId = req.body.noteId;
+//     const existingClient = await Client.findByPk(clientId);
+//     await existingClient.setNotes(noteId);
+//     let newNote = await existingClient.getNotes(clientId);
+//     let checkClientOnNote = [newNote[0].clientId];
+//     res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR: " + error);
+//   }
+// }
 
 // //not working
 // exports.associateClientToNote = async (req, res) => {

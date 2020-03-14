@@ -1,0 +1,64 @@
+<h1>    {{resourceType}} with no associated Client
+</h1>
+<div>
+        <div>
+        <table class="table">
+            <tr>
+                <th>{{resourceType}}: {{resources.title}}</th>
+                <br>
+            </tr>
+            <tr>
+                <td>{{resources.note}}</td>
+                <br>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <table class="table">
+        <tr>
+            <th>{{resourceType}} Id</th>
+            <th>Flag Urgent?:</th>
+            <th>Flag expiration date:</th>
+            <th>Category:</th>
+            <th>Associated Resources:</th>
+            <th>Last Update:</th>
+            <th>Last updated by:</th>
+        </tr>
+        <tr>
+            <td>{{resources.id}}</td>
+            <td>{{resources.setUrgent}}</td>
+            <td>{{resources.flagExpires}}</td>
+            <td>{{resources.category}}</td>
+            <td>{{resources.docAssociated}}</td>
+            <td>{{resources.revisionLog}}</td>
+            <td>{{resources.lastUpdateUser}}</td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Revision Log:</th>
+            <br>
+        </tr>
+        <tr>
+            <td>{{resources.revisionLog}}</td>
+            <br>
+        </tr>
+    </table>
+</div>
+<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx -->
+<h2>This note belongs to client:</h2>
+<form action="/addNoteToClient/noteId:{{noteId}}" method="post"></form>
+<select name="clientId" id="clientId">
+    <option value="" selected>--Choose Client--</option>
+    {{#each allClients}}
+    <option value="clientId">{{this.id}}</option>  <!--<option value="{{this.clientId}}">{{this.clientName}}</option>-->
+    {{/each}}
+</select>   
+
+<input type="hidden" name="noteId" value="{{resources.id}}" />
+<button type="submit">Add Client</button>
+</form>
+
+<h2>
+Please choose client above before associating documents
+</h2>

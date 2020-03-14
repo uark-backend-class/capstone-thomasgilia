@@ -1,3 +1,4 @@
+<!-- deprecated -->
 <h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
     {{else}}
     {{resourceType}} with no associated Client
@@ -54,53 +55,35 @@
         </tr>
     </table>
 </div>
-<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx -->
-<!--   doc association -->
-<form action="/associations" method="post">
-    <h2>Documents associated with this Note:</h2>
-    {{#if existingResource}}
-    <table class="table">
-        <tr>
-            <th>Document Title</th>
-            <th>Document Id</th>
-        </tr>
-        <tr>
-            {{#each docList}}
-            <td>{{this.title}}</td>
-            <td>{{this.id}}</td>
-        </tr>
-        {{/each}}
-    </table>
-    {{/if}}
-    <select name="chooseDocument" id="chooseDocument">
-        <option value="" selected>--None--</option>
-        {{#each docList}}
-        <option>{{this}}</option>
-        {{/each}}
-    </select>
-
-    <input type="hidden" name="assoc1Type" value="{{resourceType}}" />
-    <input type="hidden" name="assoc1Id" value="{{resources.id}}" />
-
-    <button type="submit">Add Doc</button>
-</form>
-<br />
-<!--   client association form -->
-<form action="/associations" method="post"></form>
+<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx--> 
 <h2>This note belongs to client:</h2>
-{{#if thisClient}}{{thisClient.clientName}}
-{{else}}
-<select name="chooseClient" id="chooseClient">
+{{thisClient.clientName}}, client Id: {{thisClient.id}}
+
+<!--   doc association -->
+<h2>Documents associated with this Note:</h2>
+<table class="table">
+    <tr>
+        <th>Document Title</th>
+        <th>Document Id</th>
+    </tr>
+    <tr>
+        {{#each docsThisNote}}
+        <td>{{this.title}}</td>
+        <td>{{this.id}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<form action="/addDocToNote/noteId:{{noteId}}" method="put"></form>
+<h2>Add docs for this Note</h2>
+<select name="docId" id="docId">
     <option value="" selected>--None--</option>
-    {{#each clientList}}
-    <option>{{this}}</option>
+    {{#each allDocsThisClient}}
+    <option value={{this.id}}>{{this.id}}</option>
     {{/each}}
 </select>
-{{/if}}
-<!--now 'chooseClient' value should be on object being sent on-->
+
+<input type="hidden" name="noteId" value="{{noteId}}" />
 <input type="hidden" name="docAssociated" value="true" />
-<input type="hidden" name="assoc1Type" value="{{resourceType}}" />
-<input type="hidden" name="assoc1Id" value="{{resources.id}}" />
-<input type="hidden" name="assoc2Type" value="Client" />
-<button type="submit">Add Client</button>
+<button type="submit">Add Doc</button>
 </form>

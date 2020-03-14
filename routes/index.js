@@ -14,8 +14,10 @@ const userController = require("../controllers/user-controller");
 // .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
 router
   .route("/notes")
-  .get(noteController.newResource)      //working in browser
-  .post(noteController.newNote);        //creates a new note but info in form does not translate to note (nulls)
+  .get(noteController.newResource)      //working in browser         deprecated?
+  .post(noteController.newNote);        
+router.route("/addNoteToClient/noteId:noteId").post(noteController.addNoteToClient); 
+router.route("/addDocToNote/noteId:noteId").put(noteController.addDocToNote); 
 
 router
   .route("/notes/:id")
@@ -46,25 +48,26 @@ router
   .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
 
 // router.route("/associations").get(assocController.associationsPage);  
-router.route("/associations").post(assocController.associations); 
+// router.route("/associations").put(noteController.associations); 
+
 // router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
 // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
 // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
 // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
-router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
+// router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
 
 //querying using join controllers
 // router.route("/listClientNotes/:id").get(clientController.allNotesThisClient);
 //may revert to prev line
-router.route("/listClientResources/:id").get(clientController.listResourceThisClient);  //works (with temp inputs) with view
+// router.route("/listClientResources/:id").get(clientController.listResourceThisClient);  //works (with temp inputs) with view
 // router.route("/listClientDocs/:id").get(clientController.listResourceThisClient);  //route  deprecated but may need to change route
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
+// router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
 //but still manual entry some values
 // router.route("/createResource").post(NoteDocController.createResource);
 
-router.route("/homepageUser:id").get(userController.homepage);
+// router.route("/homepageUser:id").get(userController.homepage);
 
 router.route("/").get(userController.root);     //placeholder for redirects
 

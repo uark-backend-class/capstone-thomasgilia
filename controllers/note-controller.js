@@ -18,7 +18,7 @@ const Client = require("../db").Client;
 //can combine/but on notedoc page later if want
 //works - just brings up the form with a get. then the next function will populate and post to same route
 exports.newResource = (req, res) => {
-  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note' });
+  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note" });
 };
 // exports.CreateResource = async (req, res) => {
 //   // let resourceType = req.param.resourceType; //have to add to param...
@@ -58,134 +58,218 @@ exports.newResource = (req, res) => {
 //   res.redirect('/');
 // }
 
+//sep routes for new notes and existing notes. new notes renders with client list choice only. existing notes render
+//with client selected and docs selection avail for that client. will need the selection of client in newnote required 
+//field before new note can be created
 exports.newNote = async (req, res) => {
   try {
-    let resources = await Note.create(req.body);
+    // console.log(req.body);
+    // let resources = await Note.create(req.body);
     //may not need the below but it resulted in cleaner list view:
-    // let thisNote = await Note.create(req.body); //let resources = await Note.upsert(req.body);  this also worked to create note from form
-    // let thisNoteObj = thisNote.get({plain: true});   //gives the note (just created) body as an object so can directly access id
-    //   // console.log(resources.id); //gives id
-    // let id = thisNoteObj.id;
-    // let clientId = resources.clientId;
-    let clientId;
-    let thisClient = await Client.findByPk(clientId);
-    let allClients = await Client.findAll();    //for dropdown in view
-    // let clientList = [];    //for dropdown in view
-    // let thisClientId = [];    //for dropdown in view
-    // for (let client of allClients) {
-    //   clientId = client.id;
-    //   // clientId = 1;
-    //   let clientName = client.clientName;
-    //   clientList.push(clientName);
-    //   thisClientId.push(clientId);
+    let thisNote = await Note.create(req.body); //let resources = await Note.upsert(req.body);  this also worked to create note from form
+    // let thisNoteObj = thisNote.get({ plain: true });   //gives the note (just created) body as an object so can directly access id
+    // console.log(thisNote.id); //gives id
+    let resources = thisNote;
+    let noteId = thisNote.id;
+    let allClients = await Client.findAll();
+    // console.log(assoc1Id);
+    res.render("viewNewNote", {
+      resourceType: "Note", existingResource: false, resources, allClients, noteId, resourceType: "Note"
+    });
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
+
+exports.addNoteToClient = async (req, res) => {
+  try {
+    console.log(req.body);
+    // on the note, clientId is created but null. so think need to upsert
+    const clientId = req.body.clientId;
+    const noteId = req.body.noteId;
+    const thisClient = await Client.findByPk(clientId);   //this particular client
+    await thisClient.setNote(noteId);
+    let resources = await Note.findByPk(noteId);    //this particular note
+    let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
+    let allDocsThisClient = [];
+    // let thisClientNotes = await Note.findAll({ where: { clientId: clientId } });
+    // for (let note of thisClientNotes){
+    //   let id = note.id;
+    // let thisNote = await Note.findByPk(id, { include: [Doc] });
+    // console.log(thisNote);
+    // allDocsThisClient.push(thisNote.Doc);
     // }
-    // let docList;
-    // let docListIds;
-    let allDocsThisClient;
-    let allDocsThisNote;
-    //all docs assoc with the client
-    if (clientId == 1) {      //temp
 
-      // let thisClient = await Client.findByPk(2);//clientIdd
-      let thisClientNotes = await Note.findAll({ where: { clientId: clientId } });  	//also works to give whole note
-      ///////// let resources = await thisClient.getNotes(); 	 //works at least to give whole note   
-
-      // let allNotesThisClient = await thisClient.getNotes();
-      console.log(thisClientNotes);
-      for (let note of thisClientNotes) {       //getting all docs associated to client through all client's notes
-        thisNoteId = note.id;
-        thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });
-        // allDocsThisNote = await thisNote.getDocs();
-        docList = await thisNote.getDocs();
-        //   // allDocsThisClient += allDocsThisNote;
-        //   // return allDocsThisClient;
-        console.log(docList);
-        //   // for (let docs of allDocsThisClient) {
-        //   //   docList.push(allDocsThisNote);
-        //   //   docList.push(allDocsThisNote);
-        //   // }
-        // }
-        // console.log(allDocsThisClient);
-        // // console.log("CRApTARDARY xxxx");
-        // // for (let docs of allDocsThisClient) {
-        // //   docId = doc.id;
-        // //   let docTitle = doc.title;
-        // //   docList.push(docTitle);
-        // //   docListIds.push(docId);
-        // // }
-      } 
-    }else {  //else find all docs
-        docList = await Doc.findAll();    //for dropdown in view
-        //can just ref above rather than listing title and id sep?
-        // for (let doc of docList) {
-        //   docId = doc.id;
-        //   let docTitle = doc.title;
-        //   docList.push(docTitle);
-        //   docListIds.push(docId);
-        // }
-      }
-      // console.log(allDocsThisNote);
-
-      res.render("viewNoteOrDoc", {
-        resourceType: "Note", existingResource: true, resources, thisClient, allClients,
-        allDocsThisClient, docList
-      });
-    } catch (error) {
-      console.log("HERE'S THE ERROR" + error);
+    let allNotesThisClient = await Note.findAll({ where: { clientId: clientId } });
+    for (let note of allNotesThisClient) {
+      thisNoteId = note.id;       //this note's id
+      thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
+      let docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
+      allDocsThisClient.push(docsForThisNote);
     }
-  };
 
-  exports.deleteNote = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const obsoleteNote = await Note.findByPk(id);
-      if (!obsoleteNote) {
-        res.status(404).send();
-        return;
-      }
-      await obsoleteNote.destroy();
-      res.json(obsoleteNote);
-    } catch (error) {
-      console.log("HERE/'S THE ERROR" + error);
+    res.render("viewNoteOrDoc", {
+      resourceType: "Note", existingResource: true, resources, allClients, docsThisNote, allDocsThisClient,
+      thisClient, allNotesThisClient
+    });
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
+// allDocsThisClient             
+// docId
+
+
+exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a time
+  try {
+    const { noteId, docId } = req.body;
+  
+    const thisNote = await Note.findByPk(noteId); //getting this note
+    const thisNoteIncDocs = await Note.findByPk(noteId, { include: [Doc] });  //getting this note inc docs  //rename resources?
+    let docsForThisNote = await thisNoteIncDocs.getDocs();   //getting docs already on note
+
+    let docIdArray;
+
+    for(let doc of docsForThisNote){
+    // let docIdArray = docsForThisNote.id;  //getting ids already on note
+    docIdArray.push(doc.id);   //adding new doc so array has old and new
     }
-  };
+    await thisNote.addDocs(docIdArray);  //adding all docs to note hopefully
 
-  // //need to fix
-  // exports.updateNote = async (req, res) => {
-  //     try {
-  //         const id = req.params.id;
-  //         const note = req.body.note;
-  //         const existingNote = await Note.findByPk(id);
-  //         let docs = await Doc.findAll();
-  //         await existingNote.setDoc(docs[0])          //referring to the whole instance of a doc here - need to ref
-  //         // the id of the instance instead? also is it setDocs not docs?
+    let resources = await Note.findByPk(noteId);
 
-  //         // if (!existingNote) {
-  //         //     res.status(404).send();
-  //         //     return;
-  //         // }
-  //         // const updatedNote = await existingNote.update(note);
-  //         // res.json(updatedNote);
-  //     }
-  //     catch (error) {
-  //         console.log(error);
-  //     }
-  // };
+    res.render("viewNoteOrDoc", { resources, resourceType: "Note", success: "Association processed" });
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
 
-  // // await foo.addBars([bars1,bars2])
 
-  exports.updateNote = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const note = req.body;
-      const existingNote = await Note.findByPk(id);
-      if (!existingNote) {
-        res.status(404).send();
-        return;
-      }
-      const updatedNote = await existingNote.update(note);
-      res.json(updatedNote);
-    } catch (error) {
-      console.log(error);
+//..............
+
+// exports.viewNote = async (req, res) => {
+//   try {
+//     if (resources.clientId) {
+//       let clientId = resources.clientId;
+//       let thisClient = await Client.findByPk(clientId);
+//     } else {
+//       let allClients = await Client.findAll();    //for dropdown in view
+//       // let clientList = [];    //for dropdown in view
+//       // let thisClientId = [];    //for dropdown in view
+//       // for (let client of allClients) {
+//       //   clientId = client.id;
+//       //   // clientId = 1;
+//       //   let clientName = client.clientName;
+//       //   clientList.push(clientName);
+//       //   thisClientId.push(clientId);
+//       // }
+//       // let docList;
+//       // let docListIds;
+//       // let allDocsThisClient;
+//       // let allDocsThisNote;
+//       //     //all docs assoc with the client
+//       //     if (clientId == 1) {      //temp
+//       // //put in sepearate ifelse than finding client?
+//       //       // let thisClient = await Client.findByPk(2);//clientIdd
+//       //       let thisClientNotes = await Note.findAll({ where: { clientId: clientId } });  	//also works to give whole note
+//       //       ///////// let resources = await thisClient.getNotes(); 	 //works at least to give whole note   
+
+//       //       // let allNotesThisClient = await thisClient.getNotes();
+//       //       console.log(thisClientNotes);
+//       //       for (let note of thisClientNotes) {       //getting all docs associated to client through all client's notes
+//       //         thisNoteId = note.id;
+//       //         thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });
+//       //         // allDocsThisNote = await thisNote.getDocs();
+//       //         docList = await thisNote.getDocs();
+//       //         //   // allDocsThisClient += allDocsThisNote;
+//       //         //   // return allDocsThisClient;
+//       //         console.log(docList);
+//       //         //   // for (let docs of allDocsThisClient) {
+//       //         //   //   docList.push(allDocsThisNote);
+//       //         //   //   docList.push(allDocsThisNote);
+//       //         //   // }
+//       //         // }
+//       //         // console.log(allDocsThisClient);
+//       //         // // console.log("CRApTARDARY xxxx");
+//       //         // // for (let docs of allDocsThisClient) {
+//       //         // //   docId = doc.id;
+//       //         // //   let docTitle = doc.title;
+//       //         // //   docList.push(docTitle);
+//       //         // //   docListIds.push(docId);
+//       //         // // }
+//       //       }
+//       //     } else {  //else find all docs
+//       //       docList = await Doc.findAll();    //for dropdown in view
+//       //       //can just ref above rather than listing title and id sep?
+//       //       // for (let doc of docList) {
+//       //       //   docId = doc.id;
+//       //       //   let docTitle = doc.title;
+//       //       //   docList.push(docTitle);
+//       //       //   docListIds.push(docId);
+//       //       // }
+//       //     }
+//       //     // console.log(allDocsThisNote);
+//     }
+//     res.render("viewNoteOrDoc", {
+//       resourceType: "Note", resources, thisClient, allClients,
+//       allDocsThisClient, assoc1Id, assoc1Type,
+//     });
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR" + error);
+//   }
+// };
+
+exports.deleteNote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const obsoleteNote = await Note.findByPk(id);
+    if (!obsoleteNote) {
+      res.status(404).send();
+      return;
     }
-  };
+    await obsoleteNote.destroy();
+    res.json(obsoleteNote);
+  } catch (error) {
+    console.log("HERE/'S THE ERROR" + error);
+  }
+};
+
+// //need to fix
+// exports.updateNote = async (req, res) => {
+//     try {
+//         const id = req.params.id;
+//         const note = req.body.note;
+//         const existingNote = await Note.findByPk(id);
+//         let docs = await Doc.findAll();
+//         await existingNote.setDoc(docs[0])          //referring to the whole instance of a doc here - need to ref
+//         // the id of the instance instead? also is it setDocs not docs?
+
+//         // if (!existingNote) {
+//         //     res.status(404).send();
+//         //     return;
+//         // }
+//         // const updatedNote = await existingNote.update(note);
+//         // res.json(updatedNote);
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// // await foo.addBars([bars1,bars2])
+
+exports.updateNote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const note = req.body;
+    const existingNote = await Note.findByPk(id);
+    if (!existingNote) {
+      res.status(404).send();
+      return;
+    }
+    const updatedNote = await existingNote.update(note);
+    res.json(updatedNote);
+  } catch (error) {
+    console.log(error);
+  }
+};
