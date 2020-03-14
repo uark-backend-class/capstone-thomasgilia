@@ -1,10 +1,3 @@
-<!--may remove
-    <h1>{{#if hasClient}}List of all {{resourceType}}s for client {{thisClient.clientName}}
-  {{else}}
-  List of all {{resourceType}}s
-  {{/if}}
-</h1>   -->
-
 <h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
     {{else}}
     {{resourceType}} with no associated Client
@@ -13,12 +6,10 @@
 
 <div>
     <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
-    <a class="btn btn-primary" href='/associations/' value="current">Add association to this {{resourceType}}</a>
+    <!-- Deprecated
+        <a class="btn btn-primary" href='/associations/' value="current">Add association to this {{resourceType}}</a>-->
     <a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
     <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
-    
-    <div>
-    </div>
     <div>
         <table class="table">
             <tr>
@@ -62,6 +53,54 @@
             <br>
         </tr>
     </table>
+</div>
+<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx -->
+<!--   doc association -->
+<form action="/associations" method="post">
+    <h2>Documents associated with this Note:</h2>
+    {{#if existingResource}}
+    <table class="table">
+        <tr>
+            <th>Document Title</th>
+            <th>Document Id</th>
+        </tr>
+        <tr>
+            {{#each docList}}
+            <td>{{this.title}}</td>
+            <td>{{this.id}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    {{/if}}
+    <select name="chooseDocument" id="chooseDocument">
+        <option value="" selected>--None--</option>
+        {{#each docList}}
+        <option>{{this}}</option>
+        {{/each}}
+    </select>
+
+    <input type="hidden" name="assoc1Type" value="{{resourceType}}" />
+    <input type="hidden" name="assoc1Id" value="{{resources.id}}" />
+
+    <button type="submit">Add Doc</button>
+</form>
+<br />
+<!--   client association form -->
+<form action="/associations" method="post"></form>
+<h2>This note belongs to client:</h2>
+{{#if thisClient}}{{thisClient.clientName}}
+{{else}}
+<select name="chooseClient" id="chooseClient">
+    <option value="" selected>--None--</option>
+    {{#each clientList}}
+    <option>{{this}}</option>
+    {{/each}}
+</select>
+{{/if}}
+<!--now 'chooseClient' value should be on object being sent on-->
+<input type="hidden" name="docAssociated" value="true" />
 <input type="hidden" name="assoc1Type" value="{{resourceType}}" />
 <input type="hidden" name="assoc1Id" value="{{resources.id}}" />
-</div>
+<input type="hidden" name="assoc2Type" value="Client" />
+<button type="submit">Add Client</button>
+</form>

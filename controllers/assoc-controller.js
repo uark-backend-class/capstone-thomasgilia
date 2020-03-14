@@ -8,20 +8,22 @@ const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 const User = require("../db").User;
 
-//render associations form
-exports.associationsPage = (req, res) => {
-  res.render('associations', { action: 'associations', buttonText: 'Create Association' });
-};
-// exports.associations = async (req, res, next) => {
-//   try {
-//     let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
-//take in association request, send to next controller based on selection, send specific selection values (i.e. note 1,
-//client 2) to next controller. 
+// //deprecated
+// //render associations form
+// exports.associationsPage = (req, res) => {
+//   res.render('associations', { action: 'associations', buttonText: 'Create Association' });
+// };
+// // exports.associations = async (req, res, next) => {
+// //   try {
+// //     let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
+// //take in association request, send to next controller based on selection, send specific selection values (i.e. note 1,
+// //client 2) to next controller. 
+
 exports.associations = async (req, res, next) => {
   try {
-    let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
+    // let { assoc1type, assoc1Id, assoc2type, assoc2Id } = req.body;
     if (assoc1type == "note" && assoc2type == "doc(s)") {
-      res.render("/associateDocsToNote", { assoc1type, assoc1Id, assoc2type, assoc2Id });
+      res.render("/viewNoteOrDoc",{assoc1Id,assoc1type});   //pass orig id and type back to view to render orig resource view
     }
 
     //   exports.associateNotesToDoc = async (req, res) => {
@@ -158,20 +160,20 @@ exports.associateUsersToClient = async (req, res) => {    //works
 //   }
 // };
 
-//working version
-// exports.associateClientToNote = async (req, res) => {
-//   try {
-//     const clientId = req.body.clientId;
-//     const noteId = req.body.noteId;
-//     const existingClient = await Client.findByPk(clientId);
-//     await existingClient.setNotes(noteId);
-//     let newNote = await existingClient.getNotes(clientId);
-//     let checkClientOnNote = [newNote[0].clientId];
-//     res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
-//   } catch (error) {
-//     console.log("HERE'S THE ERROR: " + error);
-//   }
-// }
+// working version
+exports.associateClientToNote = async (req, res) => {
+  try {
+    const clientId = req.body.clientId;
+    const noteId = req.body.noteId;
+    const existingClient = await Client.findByPk(clientId);
+    await existingClient.setNotes(noteId);
+    let newNote = await existingClient.getNotes(clientId);
+    let checkClientOnNote = [newNote[0].clientId];
+    res.send("Note " + noteId + " is now associated with client " + checkClientOnNote);
+  } catch (error) {
+    console.log("HERE'S THE ERROR: " + error);
+  }
+}
 
 // //not working
 // exports.associateClientToNote = async (req, res) => {

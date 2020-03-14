@@ -45,14 +45,13 @@ router
   .route("/users/:id")
   .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
 
-//once get away from routes, can simplify these two association routes
-router.route("/associations").get(assocController.associationsPage);  
-router.route("/associations").post(assocController.associations, assocController.associateDocsToNote); 
+// router.route("/associations").get(assocController.associationsPage);  
+router.route("/associations").post(assocController.associations); 
 // router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
 // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
 // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
 // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia
-// router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
+router.route("/associateClientToNote").put(assocController.associateClientToNote);    //has working but has pending changes version too
 
 //querying using join controllers
 // router.route("/listClientNotes/:id").get(clientController.allNotesThisClient);

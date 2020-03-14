@@ -1,3 +1,5 @@
+//for now - deprecated
+
 let assocSelector = document.querySelector('#assocSelector');
 
 assocSelector.addEventListener("click", event => {

@@ -33,7 +33,7 @@ Workspace.belongsTo(User);    //workspace table has fK = userId
 
 //standard
 sequelize.sync().then(() => console.log("Tables are created!"));
-// sequelize.sync({force:true}).then(() => console.log("Tables are created!"));
+// sequelize.sync({force:true}).then(() => console.log("Table data has been cleared!"));
 // DROP TABLE DATA
 
 //DROP ALL TABLES - CAUTION
