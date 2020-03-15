@@ -1,5 +1,11 @@
 // TO DO:
+//try changing to upsert on the associations?
 
+// exports.updateStudent = async (req, res) => {
+//   req.body.userId = req.user.id;
+//   await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
+//   res.redirect('/');
+// }
 
 const Note = require("../db").Note;
 const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
@@ -37,26 +43,6 @@ exports.newResource = (req, res) => {
 //   }
 // };
 
-//-----------------think need s/t like this for my fields
-// let username = req.body.username;
-//   let password = req.body.password;
-
-/* <form action="/update" method="POST">
-  First Name: <input type="text" name="firstName" value="{{ student.firstName }}" />
-  <br/>
-  Last Name: <input type="text" name="lastName" value="{{ student.lastName }}" />
-  <br/>
-  Phone: <input type="text" name="phone" value="{{ student.phone }}" />
-  <br/>
-  <input type="hidden" name="id" value="{{ student.id }}" />
-  <button class="btn btn-primary" type="submit">Submit</button>
-</form> */
-
-// exports.updateStudent = async (req, res) => {
-//   req.body.userId = req.user.id;
-//   await Student.upsert(req.body);  //  { firstName: "Bob", lastName: "Smith", userId: 2, phone: "555-5555" }
-//   res.redirect('/');
-// }
 
 //sep routes for new notes and existing notes. new notes renders with client list choice only. existing notes render
 //with client selected and docs selection avail for that client. will need the selection of client in newnote required 
@@ -90,7 +76,7 @@ exports.addNoteToClient = async (req, res) => {
     const clientId = req.body.clientId;
     const noteId = req.body.noteId;   //or could do req.params.noteId now i think
     const thisClient = await Client.findByPk(clientId);   //this particular client
-    await thisClient.setNote(noteId);
+    await thisClient.setNotes(noteId);
     let resources = await Note.findByPk(noteId);    //this particular note after client associated
     let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
     let allDocsThisClient = [];
@@ -109,7 +95,7 @@ exports.addNoteToClient = async (req, res) => {
       let docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
       allDocsThisClient.push(docsForThisNote);
     }
-
+    let allClients = Client.findAll();
     res.render("viewNoteOrDoc", {
       resourceType: "Note", existingResource: true, resources, allClients, docsThisNote, allDocsThisClient,
       thisClient, allNotesThisClient
@@ -135,12 +121,15 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       // let docIdArray = docsForThisNote.id;  //getting ids already on note
       docIdArray.push(doc.id);   //adding new doc so array has old and new
     }
-    await thisNote.addDocs(docIdArray);  //adding all docs to note hopefully
+    // await thisNote.addDocs(docIdArray);  //adding all docs to note hopefully
+    // await thisNote.removeDocs(existingDocsForThisNote);  //removing docs for this note?
+    // await thisNote.addDocs(docIdArray);  //adding docs for this note?
+    await thisNote.setDocs(docIdArray);  //adding all old and new docs to note. if not in array, will be removed.
 
     //updated note values to send over:
     let resources = await Note.findByPk(noteId);  //updated note
     let docsThisNote = await resources.getDocs();  //docs for updated note
-    const clientId = resources.clientId;
+    // const clientId = resources.clientId;
     const thisClient = await Client.findByPk(clientId);   //this particular client
     let allNotesThisClient = await Note.findAll({ where: { clientId: clientId } });
     let allDocsThisClient = [];
@@ -150,10 +139,12 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       let docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
       allDocsThisClient.push(docsForThisNote);
     }
-    
+
     //re-render with new resources (updated note)
-    res.render("viewNoteOrDoc", { resources, resourceType: "Note", success: "Association processed", allDocsThisClient, 
-    thisClient, docsThisNote});
+    res.render("viewNoteOrDoc", {
+      resources, resourceType: "Note", success: "Association processed", allDocsThisClient,
+      thisClient, docsThisNote
+    });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }

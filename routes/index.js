@@ -16,7 +16,9 @@ router
   .route("/notes")
   .get(noteController.newResource)      //working in browser         deprecated?
   .post(noteController.newNote);        
-router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
+router.route("/notes/note:noteId").post(noteController.addNoteToClient); 
+// router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
+
 router.route("/addDocToNote/note:noteId").put(noteController.addDocToNote); 
 
 router
