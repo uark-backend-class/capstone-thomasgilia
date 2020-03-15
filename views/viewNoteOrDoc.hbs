@@ -1,10 +1,23 @@
-<!-- deprecated -->
+<!-- deprecated
 <h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
     {{else}}
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
+-->
 
+<!-- from addNoteToClient including
+noteId on params or as resources.id
+      resourceType: "Note", existingResource: true, resources (is the note), allClients, docsThisNote, allDocsThisClient,
+      thisClient, allNotesThisClient
+-->
+
+<!-- next render, from addDocToNote including
+ resources (updated note), resourceType: "Note", success: "Association processed" , thisClient, docsThisNote
+-->
+
+
+<!-- Display current note -->
 <div>
     <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
     <!-- Deprecated
@@ -55,11 +68,11 @@
         </tr>
     </table>
 </div>
-<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx--> 
+
 <h2>This note belongs to client:</h2>
 {{thisClient.clientName}}, client Id: {{thisClient.id}}
 
-<!--   doc association -->
+<!--   display current docs associated to the note -->
 <h2>Documents associated with this Note:</h2>
 <table class="table">
     <tr>
@@ -74,7 +87,8 @@
     {{/each}}
 </table>
 
-<form action="/addDocToNote/noteId:{{noteId}}" method="put"></form>
+<!--   additional doc association -->
+<form action="/addDocToNote/note{{resources.id}}" method="put"></form>
 <h2>Add docs for this Note</h2>
 <select name="docId" id="docId">
     <option value="" selected>--None--</option>
@@ -83,7 +97,7 @@
     {{/each}}
 </select>
 
-<input type="hidden" name="noteId" value="{{noteId}}" />
+<input type="hidden" name="noteId" value="{{resources.id}}" />  <!--or it is on params?-->
 <input type="hidden" name="docAssociated" value="true" />
 <button type="submit">Add Doc</button>
 </form>

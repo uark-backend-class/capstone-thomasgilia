@@ -62,6 +62,7 @@ exports.newResource = (req, res) => {
 //with client selected and docs selection avail for that client. will need the selection of client in newnote required 
 //field before new note can be created
 exports.newNote = async (req, res) => {
+  // coming from createNoteOrDoc.hbs /post request
   try {
     // console.log(req.body);
     // let resources = await Note.create(req.body);
@@ -70,7 +71,7 @@ exports.newNote = async (req, res) => {
     // let thisNoteObj = thisNote.get({ plain: true });   //gives the note (just created) body as an object so can directly access id
     // console.log(thisNote.id); //gives id
     let resources = thisNote;
-    let noteId = thisNote.id;
+    let noteId = thisNote.id;     //first access to the noteId
     let allClients = await Client.findAll();
     // console.log(assoc1Id);
     res.render("viewNewNote", {
@@ -82,14 +83,15 @@ exports.newNote = async (req, res) => {
 };
 
 exports.addNoteToClient = async (req, res) => {
+  //from viewNewNote.hbs with noteId (via params and hidden noteId for now), clientId
   try {
     console.log(req.body);
     // on the note, clientId is created but null. so think need to upsert
     const clientId = req.body.clientId;
-    const noteId = req.body.noteId;
+    const noteId = req.body.noteId;   //or could do req.params.noteId now i think
     const thisClient = await Client.findByPk(clientId);   //this particular client
     await thisClient.setNote(noteId);
-    let resources = await Note.findByPk(noteId);    //this particular note
+    let resources = await Note.findByPk(noteId);    //this particular note after client associated
     let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
     let allDocsThisClient = [];
     // let thisClientNotes = await Note.findAll({ where: { clientId: clientId } });
@@ -102,7 +104,7 @@ exports.addNoteToClient = async (req, res) => {
 
     let allNotesThisClient = await Note.findAll({ where: { clientId: clientId } });
     for (let note of allNotesThisClient) {
-      thisNoteId = note.id;       //this note's id
+      thisNoteId = note.id;       //one note's id
       thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
       let docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
       allDocsThisClient.push(docsForThisNote);
@@ -121,24 +123,37 @@ exports.addNoteToClient = async (req, res) => {
 
 
 exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a time
+  //coming from viewNoteOrDoc with docId, noteId (and on params), docAssociated hidden
   try {
     const { noteId, docId } = req.body;
-  
+
     const thisNote = await Note.findByPk(noteId); //getting this note
     const thisNoteIncDocs = await Note.findByPk(noteId, { include: [Doc] });  //getting this note inc docs  //rename resources?
-    let docsForThisNote = await thisNoteIncDocs.getDocs();   //getting docs already on note
-
+    let existingDocsForThisNote = await thisNoteIncDocs.getDocs();   //getting docs already on note
     let docIdArray;
-
-    for(let doc of docsForThisNote){
-    // let docIdArray = docsForThisNote.id;  //getting ids already on note
-    docIdArray.push(doc.id);   //adding new doc so array has old and new
+    for (let doc of docsForThisNote) {
+      // let docIdArray = docsForThisNote.id;  //getting ids already on note
+      docIdArray.push(doc.id);   //adding new doc so array has old and new
     }
     await thisNote.addDocs(docIdArray);  //adding all docs to note hopefully
 
-    let resources = await Note.findByPk(noteId);
-
-    res.render("viewNoteOrDoc", { resources, resourceType: "Note", success: "Association processed" });
+    //updated note values to send over:
+    let resources = await Note.findByPk(noteId);  //updated note
+    let docsThisNote = await resources.getDocs();  //docs for updated note
+    const clientId = resources.clientId;
+    const thisClient = await Client.findByPk(clientId);   //this particular client
+    let allNotesThisClient = await Note.findAll({ where: { clientId: clientId } });
+    let allDocsThisClient = [];
+    for (let note of allNotesThisClient) {
+      thisNoteId = note.id;       //one note's id
+      thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
+      let docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
+      allDocsThisClient.push(docsForThisNote);
+    }
+    
+    //re-render with new resources (updated note)
+    res.render("viewNoteOrDoc", { resources, resourceType: "Note", success: "Association processed", allDocsThisClient, 
+    thisClient, docsThisNote});
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }

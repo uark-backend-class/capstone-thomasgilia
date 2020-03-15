@@ -16,8 +16,8 @@ router
   .route("/notes")
   .get(noteController.newResource)      //working in browser         deprecated?
   .post(noteController.newNote);        
-router.route("/addNoteToClient/noteId:noteId").post(noteController.addNoteToClient); 
-router.route("/addDocToNote/noteId:noteId").put(noteController.addDocToNote); 
+router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
+router.route("/addDocToNote/note:noteId").put(noteController.addDocToNote); 
 
 router
   .route("/notes/:id")
@@ -26,8 +26,9 @@ router
 
 router
   .route("/docs")
-  .get(docController.getAllDocs)        //working in insomnia. //obsolete/replace with listResources?
-  .post(docController.newDoc);          //working in insomnia. 
+  .post(docController.newDoc)         //working in insomnia. 
+  .get(docController.getAllDocs);        //working in insomnia. //obsolete/replace with listResources?
+  //(not tested after switched order of newDoc and getAllDocs)
 router
   .route("/docs/:id")
   .delete(docController.deleteDoc)      //think should work - just like note delete
@@ -35,10 +36,12 @@ router
 
 router
   .route("/clients")
-  .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
   .post(clientController.newClient)    //working in insomnia. ready to connect to view (post method)
+  .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
+  //(not tested after switched order of newClient and getAllClients)
 router
   .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
+//add a get clients route?
 
 router
   .route("/users")

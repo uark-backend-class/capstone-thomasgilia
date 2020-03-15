@@ -1,3 +1,8 @@
+<!--coming from note-controller.newNote bringing:
+    resourceType: "Note", existingResource: false, resources, allClients, resourceType: "Note"
+    resources= the new Note -->
+
+<!--display newly created note-->
 <h1>    {{resourceType}} with no associated Client
 </h1>
 <div>
@@ -45,9 +50,10 @@
         </tr>
     </table>
 </div>
-<!--   xxxxxxxxxxxxxxxxxxxxxxxxxxx WORKING HERE  xxxxxxxxxxxxxxxxxxxxxxxx -->
+
 <h2>This note belongs to client:</h2>
-<form action="/addNoteToClient/noteId:{{noteId}}" method="post"></form>
+<!--associate note to client-->
+<form action="/addNoteToClient/note{{resources.id}}" method="put"></form>
 <select name="clientId" id="clientId">
     <option value="" selected>--Choose Client--</option>
     {{#each allClients}}
@@ -55,7 +61,7 @@
     {{/each}}
 </select>   
 
-<input type="hidden" name="noteId" value="{{resources.id}}" />
+<input type="hidden" name="noteId" value="{{resources.id}}" />   <!--don't need now - its in params?-->
 <button type="submit">Add Client</button>
 </form>
 
