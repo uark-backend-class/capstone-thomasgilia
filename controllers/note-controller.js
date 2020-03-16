@@ -124,23 +124,26 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
     // processing with original note
     const clientId = req.body.clientId;
     const noteId = req.body.noteId;
-    const docId = req.body.docId;
+    let docId = req.body.docId;
+    docId = Number.parseInt(docId);
     let note = await Note.findByPk(noteId, { include: [Doc] });  //updated note
     let existingDocsForThisNote = await note.getDocs();
-    let docIdArray = [docId]; // let docIdArray = docsForThisNote.id;  //getting ids already on note
+    let tempDocIdArray = [docId]; // let docIdArray = docsForThisNote.id;  //getting ids already on note
     for (let doc of existingDocsForThisNote) {
-      let docId = doc.id;
-      docIdArray.push(docId);
+        let tempDocId = doc.id;
+        tempDocIdArray.push(tempDocId);
     }
+    let docIdArray = [...new Set(tempDocIdArray)];   //getting rid of duplicates
+    console.log(docIdArray);
     let thisNote = await Note.findByPk(noteId);
     await thisNote.setDocs(docIdArray);  //adding all old and new docs to note. if not in array, will be removed.
 
-    const thisClient = await Client.findByPk(clientId);   //this particular client
+    let thisClient = await Client.findByPk(clientId);   //this particular client
     //updated note values to send over:
     let resources = await Note.findByPk(noteId, { include: [Doc] });  //updated note
     let docsThisNote = await resources.getDocs();  //docs for updated note
 
-    const updatedClientNotes = await thisClient.getNotes();
+    let updatedClientNotes = await thisClient.getNotes();
     //--get find each note including docs then pull docs, adding all to an array
     let allDocsThisClient = [];
     let tempDocIds = [];
@@ -154,10 +157,16 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       }
     }
     let finalDocIds = [...new Set(tempDocIds)];   //getting rid of duplicates
-    for (let docId of finalDocIds) {              //getting the whole docs not ids
-      let doc = await Doc.findByPk(docId);
+    for (let thisDocId of finalDocIds) {              //getting the whole docs not ids
+      let doc = await Doc.findByPk(thisDocId);
       allDocsThisClient.push(doc);
     }
+    // for (let thisDocId of finalDocIds) {              //getting the whole docs not ids
+    //   let doc = await Doc.findByPk(thisDocId);
+    //   if (thisDocId === docId) {
+    //     console.log("association already exists");
+    //   } else { allDocsThisClient.push(doc); }
+    // }
     //re-render with new resources (updated note)
     res.render("finalView", {
       resources, resourceType: "Note", success: "Association processed", allDocsThisClient,
@@ -181,7 +190,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
 //     //--grab updated note then all docs attached to that note to send on
 //     let resources = await Note.findByPk(noteId);    //this particular note after client associated
 //     let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
-  
+
 //     res.redirect("/");
 //   } catch (error) {
 //     console.log("HERE'S THE ERROR" + error);
@@ -325,7 +334,7 @@ exports.deleteNote = async (req, res) => {
 // //need to fix
 // exports.updateNote = async (req, res) => {
 //     try {
-//         const id = req.params.id;
+//         let id = req.params.id;
 //         const note = req.body.note;
 //         const existingNote = await Note.findByPk(id);
 //         let docs = await Doc.findAll();
@@ -348,14 +357,14 @@ exports.deleteNote = async (req, res) => {
 
 exports.updateNote = async (req, res) => {
   try {
-    const id = req.params.id;
-    const note = req.body;
-    const existingNote = await Note.findByPk(id);
+    let id = req.params.id;
+    let note = req.body;
+    let existingNote = await Note.findByPk(id);
     if (!existingNote) {
       res.status(404).send();
       return;
     }
-    const updatedNote = await existingNote.update(note);
+    let updatedNote = await existingNote.update(note);
     res.json(updatedNote);
   } catch (error) {
     console.log(error);
