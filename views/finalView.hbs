@@ -1,0 +1,71 @@
+
+<h1>{{resourceType}} for client {{thisClient.clientName}}
+    </h1>
+
+<!-- Display current note -->
+
+<a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
+<a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
+<a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
+<div>
+    <table class="table">
+        <tr>
+            <th>{{resourceType}}: {{resources.title}}</th>
+            <br>
+        </tr>
+        <tr>
+            <td>{{resources.note}}</td>
+            <br>
+        </tr>
+    </table>
+</div>
+<br>
+<table class="table">
+    <tr>
+        <th>{{resourceType}} Id</th>
+        <th>Flag Urgent?:</th>
+        <th>Flag expiration date:</th>
+        <th>Category:</th>
+        <th>Associated Resources:</th>
+        <th>Last Update:</th>
+        <th>Last updated by:</th>
+    </tr>
+    <tr>
+        <td>{{resources.id}}</td>
+        <td>{{resources.setUrgent}}</td>
+        <td>{{resources.flagExpires}}</td>
+        <td>{{resources.category}}</td>
+        <td>{{resources.docAssociated}}</td>
+        <td>{{resources.revisionLog}}</td>
+        <td>{{resources.lastUpdateUser}}</td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>Revision Log:</th>
+        <br>
+    </tr>
+    <tr>
+        <td>{{resources.revisionLog}}</td>
+        <br>
+    </tr>
+</table>
+</div>
+
+<h2>This note belongs to client:</h2>
+{{thisClient.clientName}}, client Id {{thisClient.id}}
+
+<!--   display current docs associated to the note -->
+<h2>Documents associated with this Note:</h2>
+<table class="table">
+    <tr>
+        <th>Document Title</th>
+        <th>Document Id</th>
+    </tr>
+    <tr>
+        {{#each docsThisNote}}
+        <td>{{this.title}}</td>
+        <td>{{this.id}}</td>
+    </tr>
+    {{/each}}
+</table>

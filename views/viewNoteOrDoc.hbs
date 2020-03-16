@@ -1,10 +1,8 @@
-<!-- deprecated
 <h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
     {{else}}
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
--->
 
 <!-- from addNoteToClient including
 noteId on params or as resources.id
@@ -13,64 +11,79 @@ noteId on params or as resources.id
 -->
 
 <!-- next render, from addDocToNote including
- resources (updated note), resourceType: "Note", success: "Association processed" , thisClient, docsThisNote
+ resources (updated note), resourceType: "Note", success: "Association processed" , thisClient, allDocsThisClient, 
+ docsThisNote
 -->
 
+<div>
+    <table class="table">
+        <tr>
+            <th>title</th>
+            <th>id</th>
+        </tr>
+        <tr>
+            {{#each allDocsThisClient}}
+            <td>{{this.title}}</td>
+            <td>{{this.id}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
 
 <!-- Display current note -->
-<div>
-    <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
-    <!-- Deprecated
+
+<a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
+<!-- Deprecated
         <a class="btn btn-primary" href='/associations/' value="current">Add association to this {{resourceType}}</a>-->
-    <a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
-    <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
-    <div>
-        <table class="table">
-            <tr>
-                <th>{{resourceType}}: {{resources.title}}</th>
-                <br>
-            </tr>
-            <tr>
-                <td>{{resources.note}}</td>
-                <br>
-            </tr>
-        </table>
-    </div>
-    <br>
+<a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
+<a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
+<div>
     <table class="table">
         <tr>
-            <th>{{resourceType}} Id</th>
-            <th>Flag Urgent?:</th>
-            <th>Flag expiration date:</th>
-            <th>Category:</th>
-            <th>Associated Resources:</th>
-            <th>Last Update:</th>
-            <th>Last updated by:</th>
-        </tr>
-        <tr>
-            <td>{{resources.id}}</td>
-            <td>{{resources.setUrgent}}</td>
-            <td>{{resources.flagExpires}}</td>
-            <td>{{resources.category}}</td>
-            <td>{{resources.docAssociated}}</td>
-            <td>{{resources.revisionLog}}</td>
-            <td>{{resources.lastUpdateUser}}</td>
-        </tr>
-    </table>
-    <table class="table">
-        <tr>
-            <th>Revision Log:</th>
+            <th>{{resourceType}}: {{resources.title}}</th>
             <br>
         </tr>
         <tr>
-            <td>{{resources.revisionLog}}</td>
+            <td>{{resources.note}}</td>
             <br>
         </tr>
     </table>
 </div>
+<br>
+<table class="table">
+    <tr>
+        <th>{{resourceType}} Id</th>
+        <th>Flag Urgent?:</th>
+        <th>Flag expiration date:</th>
+        <th>Category:</th>
+        <th>Associated Resources:</th>
+        <th>Last Update:</th>
+        <th>Last updated by:</th>
+    </tr>
+    <tr>
+        <td>{{resources.id}}</td>
+        <td>{{resources.setUrgent}}</td>
+        <td>{{resources.flagExpires}}</td>
+        <td>{{resources.category}}</td>
+        <td>{{resources.docAssociated}}</td>
+        <td>{{resources.revisionLog}}</td>
+        <td>{{resources.lastUpdateUser}}</td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>Revision Log:</th>
+        <br>
+    </tr>
+    <tr>
+        <td>{{resources.revisionLog}}</td>
+        <br>
+    </tr>
+</table>
+</div>
 
 <h2>This note belongs to client:</h2>
-{{thisClient.clientName}}, client Id: {{thisClient.id}}
+{{thisClient.clientName}}, client Id {{thisClient.id}}
 
 <!--   display current docs associated to the note -->
 <h2>Documents associated with this Note:</h2>
@@ -86,18 +99,20 @@ noteId on params or as resources.id
     </tr>
     {{/each}}
 </table>
-
-<!--   additional doc association -->
-<form action="/addDocToNote/note{{resources.id}}" method="put"></form>
-<h2>Add docs for this Note</h2>
-<select name="docId" id="docId">
-    <option value="" selected>--None--</option>
-    {{#each allDocsThisClient}}
-    <option value={{this.id}}>{{this.id}}</option>
-    {{/each}}
-</select>
-
-<input type="hidden" name="noteId" value="{{resources.id}}" />  <!--or it is on params?-->
-<input type="hidden" name="docAssociated" value="true" />
-<button type="submit">Add Doc</button>
-</form>
+<div>
+    <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
+    <div>
+        <label for="docId">Add docs for this Note</label>
+            <select name="docId" id="docId">
+            <option>--None--</option>
+            {{#each allDocsThisClient}}
+            <option>{{this.id}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <input type="hidden" name="noteId" value="{{resources.id}}" />
+    <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+    <input type="hidden" name="docAssociated" value="true" />
+    <button type="submit">Add Doc</button>
+    </form>
+</div>

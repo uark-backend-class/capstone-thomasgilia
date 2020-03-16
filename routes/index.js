@@ -15,11 +15,14 @@ const userController = require("../controllers/user-controller");
 router
   .route("/notes")
   .get(noteController.newResource)      //working in browser         deprecated?
-  .post(noteController.newNote);        
-router.route("/notes/note:noteId").post(noteController.addNoteToClient); 
+  .post(noteController.newNote);
+router.route("/notes/note:noteId").post(noteController.addNoteToClient);
+router.route("/notes/note:noteId/client:clientId")
+  .post(noteController.addDocToNote);
+  // .post(noteController.finalView);
 // router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
 
-router.route("/addDocToNote/note:noteId").put(noteController.addDocToNote); 
+// router.route("/addDocToNote/note:noteId").put(noteController.addDocToNote); //deprecated?
 
 router
   .route("/notes/:id")
@@ -30,7 +33,7 @@ router
   .route("/docs")
   .post(docController.newDoc)         //working in insomnia. 
   .get(docController.getAllDocs);        //working in insomnia. //obsolete/replace with listResources?
-  //(not tested after switched order of newDoc and getAllDocs)
+//(not tested after switched order of newDoc and getAllDocs)
 router
   .route("/docs/:id")
   .delete(docController.deleteDoc)      //think should work - just like note delete
@@ -40,7 +43,7 @@ router
   .route("/clients")
   .post(clientController.newClient)    //working in insomnia. ready to connect to view (post method)
   .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
-  //(not tested after switched order of newClient and getAllClients)
+//(not tested after switched order of newClient and getAllClients)
 router
   .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
 //add a get clients route?
@@ -55,7 +58,7 @@ router
 // router.route("/associations").get(assocController.associationsPage);  
 // router.route("/associations").put(noteController.associations); 
 
-// router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
+router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia
 // router.route("/associateNotesToDoc").put(assocController.associateNotesToDoc);  //works in insomnia
 // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia
 // router.route("/associateUsersToClient").put(assocController.associateUsersToClient);  //working insomnia

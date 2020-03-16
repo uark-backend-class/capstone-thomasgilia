@@ -70,17 +70,20 @@ const User = require("../db").User;
 
 
 //Many(Notes)-To-Many(Docs)// working
-
+//routed for insomnia only right now
 exports.associateDocsToNote = async (req, res) => {
   try {
-    const { assoc1Type, assoc1Id, assoc2Type, assoc2Id } = req.body;
-    let noteId = assoc1Id;
+    // const { assoc1Type, assoc1Id, assoc2Type, assoc2Id } = req.body;
+    // let noteId = assoc1Id;
     // let docId = assoc1Id;
-    let docIdArray = assoc2Id;
+    let noteId = req.body.noteId;
+    let docIdArray = req.body.docId;
+    // let docIdArray = assoc2Id;
     const existingNote = await Note.findByPk(noteId);
     await existingNote.addDocs(docIdArray);
     const resources = await Note.findByPk(noteId, { include: [Doc] });
-    res.render("/viewNoteOrDoc", { resources, success: "Association processed" });
+    // res.render("/viewNoteOrDoc", { resources, success: "Association processed" });
+    res.send(resources);
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
