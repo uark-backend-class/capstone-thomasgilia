@@ -130,8 +130,8 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
     let existingDocsForThisNote = await note.getDocs();
     let tempDocIdArray = [docId]; // let docIdArray = docsForThisNote.id;  //getting ids already on note
     for (let doc of existingDocsForThisNote) {
-        let tempDocId = doc.id;
-        tempDocIdArray.push(tempDocId);
+      let tempDocId = doc.id;
+      tempDocIdArray.push(tempDocId);
     }
     let docIdArray = [...new Set(tempDocIdArray)];   //getting rid of duplicates
     console.log(docIdArray);
@@ -168,7 +168,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
     //   } else { allDocsThisClient.push(doc); }
     // }
     //re-render with new resources (updated note)
-    res.render("finalView", {
+    res.render("viewNoteOrDoc", {
       resources, resourceType: "Note", success: "Association processed", allDocsThisClient,
       thisClient, docsThisNote
     });
@@ -318,16 +318,20 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
 
 exports.deleteNote = async (req, res) => {
   try {
-    const id = req.params.id;
-    const obsoleteNote = await Note.findByPk(id);
+    console.log(req.params);
+    const noteId = req.params.id;
+    const obsoleteNote = await Note.findByPk(noteId);
+    let title = obsoleteNote.title;
     if (!obsoleteNote) {
       res.status(404).send();
       return;
     }
     await obsoleteNote.destroy();
-    res.json(obsoleteNote);
+    console.log(title + " was deleted");
+    // res.render('listNotesOrDocs', { resourceType: "Note" });
+    res.redirect('/listAllResources');
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR" + error);
   }
 };
 
@@ -355,17 +359,19 @@ exports.deleteNote = async (req, res) => {
 
 // // await foo.addBars([bars1,bars2])
 
-exports.updateNote = async (req, res) => {
+exports.editNote = async (req, res) => {
   try {
     let id = req.params.id;
-    let note = req.body;
-    let existingNote = await Note.findByPk(id);
-    if (!existingNote) {
+    let resources = await Note.findByPk(id);
+    if (!resources) {
       res.status(404).send();
       return;
     }
-    let updatedNote = await existingNote.update(note);
-    res.json(updatedNote);
+  //   let updatedNote = await existingNote.update(note); have to send it to form
+  res.render('createNotesOrDocs', { resourceType: "Note" , resources, existingResource: true});
+  // res.redirect('/notes/note:id');
+ 
+  
   } catch (error) {
     console.log(error);
   }

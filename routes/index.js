@@ -4,8 +4,8 @@ const docController = require("../controllers/doc-controller");
 const clientController = require("../controllers/client-controller");
 const assocController = require("../controllers/assoc-controller");
 const NoteDocController = require("../controllers/NoteDoc-controller");
-const NoteClientController = require("../controllers/NoteClient-controller");
-const UserClientController = require("../controllers/UserClient-controller");
+// const NoteClientController = require("../controllers/NoteClient-controller");
+// const UserClientController = require("../controllers/UserClient-controller");
 const userController = require("../controllers/user-controller");
 // const authController = require('../controllers/auth-controller');
 
@@ -15,19 +15,27 @@ const userController = require("../controllers/user-controller");
 router
   .route("/notes")
   .get(noteController.newResource)      //working in browser         deprecated?
-  .post(noteController.newNote);
+  .post(noteController.newNote)
+
+router
+  .route("/delete/:id")
+  .get(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
+router
+  .route("/edit/Note:id")
+  .get(noteController.editNote);
+
 router.route("/notes/note:noteId").post(noteController.addNoteToClient);
 router.route("/notes/note:noteId/client:clientId")
   .post(noteController.addDocToNote);
-  // .post(noteController.finalView);
+// .post(noteController.finalView);
 // router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
 
 // router.route("/addDocToNote/note:noteId").put(noteController.addDocToNote); //deprecated?
 
-router
-  .route("/notes/:id")
-  .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
-  .put(noteController.updateNote)       //working in insomnia. working to improve
+// router
+//   .route("/notes/note:id");
+// .delete(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
+// .put(noteController.updateNote);       //working in insomnia. working to improve
 
 router
   .route("/docs")
@@ -71,7 +79,7 @@ router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  
 // router.route("/listClientDocs/:id").get(clientController.listResourceThisClient);  //route  deprecated but may need to change route
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-// router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
+router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
 //but still manual entry some values
 // router.route("/createResource").post(NoteDocController.createResource);
 

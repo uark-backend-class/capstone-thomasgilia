@@ -3,40 +3,11 @@
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
-
-<!-- from addNoteToClient including
-noteId on params or as resources.id
-      resourceType: "Note", existingResource: true, resources (is the note), allClients, docsThisNote, allDocsThisClient,
-      thisClient, allNotesThisClient
--->
-
-<!-- next render, from addDocToNote including
- resources (updated note), resourceType: "Note", success: "Association processed" , thisClient, allDocsThisClient, 
- docsThisNote
--->
-
-<div>
-    <table class="table">
-        <tr>
-            <th>title</th>
-            <th>id</th>
-        </tr>
-        <tr>
-            {{#each allDocsThisClient}}
-            <td>{{this.title}}</td>
-            <td>{{this.id}}</td>
-        </tr>
-        {{/each}}
-    </table>
-</div>
-
+<a class="btn btn-primary" href='/notes/'>New {{resourceType}}</a>
+<a class="btn btn-primary" href='/edit/{{resources.id}}'>Edit {{resourceType}}</a>
+<a class="btn btn-primary" href='/delete/{{resources.id}}'>Delete {{resourceType}}</a></td>
 <!-- Display current note -->
 
-<a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
-<!-- Deprecated
-        <a class="btn btn-primary" href='/associations/' value="current">Add association to this {{resourceType}}</a>-->
-<a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit {{resourceType}}</a>
-<a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete {{resourceType}}</a></td>
 <div>
     <table class="table">
         <tr>
@@ -81,12 +52,12 @@ noteId on params or as resources.id
     </tr>
 </table>
 </div>
-
+<!--
 <h2>This note belongs to client:</h2>
-{{thisClient.clientName}}, client Id {{thisClient.id}}
-
+{{thisClient.clientName}}, client Id {{thisClient.id}}-->
+<br>
 <!--   display current docs associated to the note -->
-<h2>Documents associated with this Note:</h2>
+<h3>Documents associated with this Note:</h3>
 <table class="table">
     <tr>
         <th>Document Title</th>
@@ -99,20 +70,22 @@ noteId on params or as resources.id
     </tr>
     {{/each}}
 </table>
+<br>
 <div>
+
     <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
-    <div>
-        <label for="docId">Add docs for this Note</label>
-            <select name="docId" id="docId">
+        <label for="docId">Add doc for this Note</label>
+        <select name="docId" id="docId">
             <option>--None--</option>
             {{#each allDocsThisClient}}
-            <option>{{this.id}}</option>
+            <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
             {{/each}}
         </select>
-    </div>
-    <input type="hidden" name="noteId" value="{{resources.id}}" />
-    <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-    <input type="hidden" name="docAssociated" value="true" />
-    <button type="submit">Add Doc</button>
+        <input type="hidden" name="noteId" value="{{resources.id}}" />
+        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+        <input type="hidden" name="docAssociated" value="true" />
+        <button type="submit">Add Doc</button>
+        <br>
+
     </form>
 </div>

@@ -17,7 +17,7 @@
       <tr>
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
-        <td><a class="btn btn-secondary btn-sm" href="/createResource/{{ this.id }}">Edit</a>
+        <td><a class="btn btn-secondary btn-sm" href="/edit/{{resourceType}}{{ this.id }}">Edit</a>
           <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete</a></td>
       </tr>
       {{/each}}
