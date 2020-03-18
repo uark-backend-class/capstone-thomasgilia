@@ -11,12 +11,12 @@ module.exports = (sequelize, Sequelize) => {
     linkOwnPriceList: Sequelize.STRING,
     hasOwnManual: Sequelize.BOOLEAN,
     linkOwnManual: Sequelize.STRING,
-    hasOwnSOP: Sequelize.BOOLEAN,
-    linkOwnSOP: Sequelize.STRING,
-    hasFlag: Sequelize.BOOLEAN,
-    linkFlag: Sequelize.STRING,
+    // hasOwnSOP: Sequelize.BOOLEAN,
+    // linkOwnSOP: Sequelize.STRING,
+    // hasFlag: Sequelize.BOOLEAN,
+    // linkFlag: Sequelize.STRING,
     // revisionLog: Sequelize.STRING(1234),
-    lastUpdateUser: Sequelize.STRING,
+    // lastUpdateUser: Sequelize.STRING,
     // lastUpdate: Sequelize.DATETIME
   });
 };

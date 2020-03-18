@@ -24,7 +24,8 @@ router
   .route("/edit/Note:id")
   .get(noteController.editNote);
 
-router.route("/notes/note:noteId").post(noteController.addNoteToClient);
+// deprecated
+//router.route("/notes/note:noteId").post(noteController.addNoteToClient);
 router.route("/notes/note:noteId/client:clientId")
   .post(noteController.addDocToNote);
 // .post(noteController.finalView);

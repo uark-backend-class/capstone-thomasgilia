@@ -1,0 +1,99 @@
+<h1>
+    {{#if existingClient }}Edit {{else}}Create {{/if}}{{resourceType}}
+</h1>
+
+<form action="/{{ action }}" method="post">
+    {{resourceType}} Name: <input type="text" name="clientName" value="{{resources.clientName}}" />
+    <br>
+    <br />
+    ownedByUser: false, hasOwnPriceList: false, linkOwnPriceList: "Not Applicable",
+    hasOwnManual: false, linkOwnManual: "Not applicable", 
+    revisionLog: "Last revised:"
+    {{#if existingClient }} <div>
+        <label for="ownedByUser">Has owner?</label>
+        <select name="ownedByUser" id="ownedByUser">
+            {{#if resources.ownedByUser}}
+            <option selected>Yes</option>
+            {{else}}
+            <option selected>No</option>
+            {{/if}}
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <label for="ownedByUser">Has owner?</label>
+        <select name="ownedByUser" id="ownedByUser">
+            {{#if resources.ownedByUser}}
+            <option selected>Yes</option>
+            {{else}}
+            <option selected>No</option>
+            {{/if}}
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    {{else}}
+    <div>
+        <label for="ownedByUser">Has owner?</label>
+        <select name="ownedByUser" id="ownedByUser">
+            <option selected>--Please choose an option--</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    {{/if}}
+
+    <!--deprecated unless/until can preselect with previous answer  
+  <div>
+    <br>
+    Flag Urgent?:
+    <input type="radio" id="true" name="setUrgent" value="{{resources.setUrgent}}">
+  <label for="true">Yes</label>
+  <input type="radio" id="false" name="setUrgent" value="{{resources.setUrgent}}">
+  <label for="false">No</label><br>
+  </div>
+-->
+
+    <br />
+    <div>
+        <label for="flagExpires">Flag expiration date:</label>
+        <input type="date" id="flagExpires" name="flagExpires" value="{{resources.flagExpires}}">
+    </div>
+    <br />
+    <div>
+        <label for="category">Choose a category:</label>
+        <select name="category" id="category">
+            <option selected>{{resources.category}}</option>
+            <option value="Financial">Financial</option>
+            <option value="Report format">Report format</option>
+        </select>
+    </div>
+    <br />
+    Note: <input type="blob" name="note" value="{{resources.note}}" />
+    <br>
+    <br />
+    Revision log: <input type="textbox" name="revisionLog" value="{{resources.revisionLog}}" />
+    <br>
+    <br />
+
+    <h2>This note belongs to client:</h2>
+    <!--associate note to client-->
+    <select name="clientId" id="clientId">
+        <option value=0 selected>All Clients</option>
+        {{#each allClients}}
+        <option value={{this.id}}>{{this.clientName}}</option>
+        {{/each}}
+    </select>
+
+    {{#if existingResource}}
+    <input type="hidden" name="docAssociated" value="{{resources.docAssociated}}" />
+    <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
+    {{else}}
+    <input type="hidden" name="docAssociated" value="false" />
+    <input type="hidden" name="lastUpdateUser" value="" />
+    {{/if}}
+    <!--dont think i need-->
+    <input type="hidden" name="id" value="{{resources.id}}" />
+    <input type="hidden" name="noteId" value="{{resources.id}}" />
+
+    <button type="submit">Create {{resourceType}}</button>
+</form>
