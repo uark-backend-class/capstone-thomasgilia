@@ -56,7 +56,6 @@
 <h2>This note belongs to client:</h2>
 <!--associate note to client-->
 <form action="/notes/note{{resources.id}}" method="post">
-<!--</form><form action="/addNoteToClient/note{{resources.id}}" method="put"></form>-->
 <select name="clientId" id="clientId">
     <option value="" selected>--Choose Client--</option>
     {{#each allClients}}

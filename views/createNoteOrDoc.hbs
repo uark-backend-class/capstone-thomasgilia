@@ -62,25 +62,31 @@
   <br>
   <br />
 
-  <h2>This note belongs to client:</h2>
+  <h4>This note belongs to client:</h4>
   <!--associate note to client-->
-    <select name="clientId" id="clientId">
-      <option selected>All Clients</option>
-      {{#each allClients}}
-      <option value={{this.id}}>{{this.clientName}}</option>
-      {{/each}}
-    </select>
 
-    {{#if existingResource}}
-    <input type="hidden" name="docAssociated" value="{{resources.docAssociated}}" />
-    <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
-    {{else}}
-    <input type="hidden" name="docAssociated" value="false" />
-    <input type="hidden" name="lastUpdateUser" value="" />
-    {{/if}}
-<!--dont think i need-->
-    <input type="hidden" name="id" value="{{resources.id}}" />
-    <input type="hidden" name="noteId" value="{{resources.id}}" />
-
-    <button type="submit">Create {{resourceType}}</button>
-  </form>
+  {{#if existingResource}}
+  {{thisClient.clientName}}
+  {{else}}
+  <select name="clientId" id="clientId"></select>
+  <option selected>Choose a Client</option>
+  {{#each allClients}}
+  <option value={{this.id}}>{{this.clientName}}</option>
+  {{/each}}
+  </select>
+  {{/if}}
+<br></br>
+  <!--dont think i need these two lines-->
+  <input type="hidden" name="id" value="{{resources.id}}" />
+  <input type="hidden" name="noteId" value="{{resources.id}}" />
+  {{#if existingResource}}
+  <input type="hidden" name="docAssociated" value="{{resources.docAssociated}}" />
+  <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
+  <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+  <button type="submit">Update {{resourceType}} </button>
+  {{else}}
+  <input type="hidden" name="docAssociated" value="false" />
+  <input type="hidden" name="lastUpdateUser" value="" />
+  <button type="submit">Create {{resourceType}} </button>
+  {{/if}}
+</form>
