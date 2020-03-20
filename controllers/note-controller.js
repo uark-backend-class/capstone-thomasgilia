@@ -17,9 +17,9 @@ const Client = require("../db").Client;
 
 //can combine/but on notedoc page later if want
 //works - just brings up the form with a get. then the next function will populate and post to same route
-exports.newResource = (req, res) => {
-  let allClients = Client.findAll();
-  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients });
+exports.newResource = async (req, res) => {
+  let allClients = await Client.findAll();
+  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients, existingResource: false });
 };
 // exports.CreateResource = async (req, res) => {
 //   // let resourceType = req.param.resourceType; //have to add to param...
@@ -51,7 +51,7 @@ exports.newNote = async (req, res) => {
 
     //----------begin add client functionality
     const clientId = req.body.clientId;
-        //--find existing client and notes attached to that client
+    //--find existing client and notes attached to that client
     const thisClient = await Client.findByPk(clientId);   //this particular client
     const clientNotes = await thisClient.getNotes();   //this particular client
     //--get/create array of noteIds for client including current note
@@ -387,12 +387,14 @@ exports.editNote = async (req, res) => {
   try {
     let id = req.params.id;
     let resources = await Note.findByPk(id);
+    let thisClientId = resources.clientId;
+    let thisClient = await Client.findByPk(thisClientId);
     if (!resources) {
       res.status(404).send();
       return;
     }
     //   let updatedNote = await existingNote.update(note); have to send it to form
-    res.render('createNoteOrDoc', { resourceType: "Note", resources, existingResource: true });
+    res.render('createNoteOrDoc', { resourceType: "Note", resources, existingResource: true, thisClient });
     // res.redirect('/notes/note:id');
   } catch (error) {
     console.log(error);

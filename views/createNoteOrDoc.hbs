@@ -65,7 +65,7 @@
   <h2>This note belongs to client:</h2>
   <!--associate note to client-->
     <select name="clientId" id="clientId">
-      <option value=0 selected>All Clients</option>
+      <option selected>All Clients</option>
       {{#each allClients}}
       <option value={{this.id}}>{{this.clientName}}</option>
       {{/each}}
