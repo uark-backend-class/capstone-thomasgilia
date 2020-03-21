@@ -86,10 +86,26 @@
         <input type="hidden" name="docAssociated" value="true" />
         <button type="submit">Add Doc</button>
         <br>
-
     </form>
 </div>
+<h4>Or</h4>
 <div>
+    <form action="/docs/note{{resources.id}}/client{{thisClient.id}}" method="post">
+        <label for="obsoleteDocId">Choose document to remove</label>
+        <select name="obsoleteDocId" id="obsoleteDocId">
+            <option>--Choose document to delete--</option>
+            {{#each docsThisNote}}
+            <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
+            {{/each}}
+        </select>
+        <input type="hidden" name="noteId" value="{{resources.id}}" />
+        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+        <input type="hidden" name="docAssociated" value="true" />
+        <button type="submit">Delete Doc</button>
+        <br>
+    </form>
+</div>
+<!--<div>
 
     <form action="/delete/docs" method="get">
         <input type="hidden" name="noteId" value="{{resources.id}}" />
@@ -97,7 +113,7 @@
         <input type="hidden" name="docAssociated" value="true" />
         <input type="hidden" name="docsThisNote" value="{{docsThisNote}}" />
         <!--what is form of docsThisNote?-->
-        <button type="submit">Remove Document(s)</button>
+       <!-- <button type="submit">Remove Document(s)</button>
         <br>
     </form>
-</div>
+</div>-->

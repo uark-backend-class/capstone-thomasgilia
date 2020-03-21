@@ -35,6 +35,8 @@ router
 //router.route("/notes/note:noteId").post(noteController.addNoteToClient);
 router.route("/notes/note:noteId/client:clientId")
   .post(noteController.addDocToNote);
+router.route("/docs/note:noteId/client:clientId")
+  .post(docController.deleteDoc);
 // .post(noteController.finalView);
 // router.route("/addNoteToClient/note:noteId").put(noteController.addNoteToClient); 
 
@@ -50,11 +52,11 @@ router
   .post(docController.newDoc)         //working in insomnia. 
   .get(docController.getAllDocs);        //working in insomnia. //obsolete/replace with listResources?
 //(not tested after switched order of newDoc and getAllDocs)
-router
-  .route("/delete/docs")
-  .get(docController.deleteDocPage)
-router.route("/delete/doc:id")
-  .post(docController.deleteDoc)
+// router
+//   .route("/delete/docs")
+//   .get(docController.deleteDocPage)
+// router.route("/delete/doc:id")
+//   .post(docController.deleteDoc)
 // .put(docController.replaceDoc);       //needs work
 
 router
