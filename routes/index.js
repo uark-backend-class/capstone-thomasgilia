@@ -15,14 +15,15 @@ const userController = require("../controllers/user-controller");
 router
   .route("/notes")
   .get(noteController.newResource)      //working in browser         deprecated?
-  .post(noteController.newNote)
+  .post(noteController.newNote);
 
 router
   .route("/delete/:id")
   .get(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
 router
   .route("/edit/Note:id")
-  .get(noteController.editNote);
+  .get(noteController.editNote)
+  .post(noteController.updateNote);
 
 // deprecated
 //router.route("/notes/note:noteId").post(noteController.addNoteToClient);

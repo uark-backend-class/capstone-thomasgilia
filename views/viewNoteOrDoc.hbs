@@ -74,9 +74,9 @@
 <div>
 
     <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
-        <label for="docId">Add doc for this Note</label>
+        <label for="docId">Choose additional document for this Note</label>
         <select name="docId" id="docId">
-            <option>--None--</option>
+            <option>--Choose additional document--</option>
             {{#each allDocsThisClient}}
             <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
             {{/each}}

@@ -92,6 +92,48 @@ exports.newNote = async (req, res) => {
   }
 };
 
+//coming from create note form in edit mode -createNoteOrDoc.hbs /post request
+exports.updateNote = async (req, res) => {
+  try {
+    let noteId = req.body.id;
+    await Note.upsert(req.body);          //returns false if updated, true if created
+    let resources = await Note.findByPk(noteId);  //grabbing updated note
+    let allClients = await Client.findAll();
+    let clientId = resources.clientId;
+    let thisClient = await Client.findByPk(clientId);
+    
+    //--get/create array of noteIds for client including current note
+    let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
+    //--grab all notes for that client after added the note
+    const updatedClientNotes = await thisClient.getNotes();
+    //--get find each note including docs then pull docs, adding all to an array
+    let allDocsThisClient = [];
+    let tempDocIds = [];
+    for (let note of updatedClientNotes) {
+      thisNoteId = note.id;       //this note's id
+      thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
+      docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
+      for (let doc of docsForThisNote) {
+        let docId = doc.id;
+        tempDocIds.push(docId);
+      }
+    }
+    let finalDocIds = [...new Set(tempDocIds)];   //getting rid of duplicates
+    for (let docId of finalDocIds) {              //getting the whole docs not ids
+      let doc = await Doc.findByPk(docId);
+      allDocsThisClient.push(doc);
+    }
+    res.render("viewNoteOrDoc", {
+      resourceType: "Note", existingResource: true, resources, allClients, buttonText: "Update Note", thisClient,
+      allDocsThisClient, docsThisNote
+    });//need noteId here?
+
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
+
+
 //function deprecated - combined with main note creation (newNote)
 // exports.addNoteToClient = async (req, res) => {
 //   //--from viewNewNote.hbs with noteId (via params and hidden noteId for now), clientId
@@ -152,7 +194,10 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
     docId = Number.parseInt(docId);
     let note = await Note.findByPk(noteId, { include: [Doc] });  //updated note
     let existingDocsForThisNote = await note.getDocs();
-    let tempDocIdArray = [docId]; // let docIdArray = docsForThisNote.id;  //getting ids already on note
+    let tempDocIdArray = [];
+    if (docId) {                //if req comes in with docId, add to array. otherwise leave alone.
+      tempDocIdArray = [docId]; // prevents error if try to re-add same doc
+    }
     for (let doc of existingDocsForThisNote) {
       let tempDocId = doc.id;
       tempDocIdArray.push(tempDocId);
@@ -381,8 +426,7 @@ exports.deleteNote = async (req, res) => {
 //     }
 // };
 
-// // await foo.addBars([bars1,bars2])
-
+//render create page in edit mode
 exports.editNote = async (req, res) => {
   try {
     let id = req.params.id;
@@ -401,19 +445,3 @@ exports.editNote = async (req, res) => {
   }
 };
 
-exports.updateNote = async (req, res) => {
-  // coming from createNoteOrDoc.hbs /post request
-  try {
-    //unless we move client selection to create from view will have problem with client association
-    // let note = req.body;
-
-    let updatedNote = await Note.upsert(req.body);
-    let resources = updatedNote;
-    let allClients = await Client.findAll();
-    res.render("viewNoteOrDoc", {
-      resourceType: "Note", existingResource: true, resources, allClients, buttonText: "Update Note"
-    });//need noteId here?
-  } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
-  }
-};
