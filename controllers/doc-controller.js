@@ -15,22 +15,44 @@ exports.newDoc = async (req, res) => {
     res.json(newDoc);
     console.log(newDoc);
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR: " + error);
+  }
+};
+
+exports.deleteDocPage = async (req, res) => {
+  try {
+    console.log(req.params)
+    // const id = req.params.id;
+    // const obsoleteDoc = await Doc.findByPk(id);
+    // if (!obsoleteDoc) {
+    //   res.status(404).send();
+    //   return;
+    // }
+    // await obsoleteDoc.destroy();
+    // res.json(obsoleteDoc);
+    res.render("removeDocs");
+  } catch (error) {
+    console.log("HERE'S THE ERROR: " + error);
   }
 };
 
 exports.deleteDoc = async (req, res) => {
   try {
-    const id = req.params.id;
-    const obsoleteDoc = await Doc.findByPk(id);
-    if (!obsoleteDoc) {
-      res.status(404).send();
-      return;
-    }
-    await obsoleteDoc.destroy();
-    res.json(obsoleteDoc);
+    console.log(req.params)
+    // const id = req.params.id;
+    // const obsoleteDoc = await Doc.findByPk(id);
+    // if (!obsoleteDoc) {
+    //   res.status(404).send();
+    //   return;
+    // }
+    // await obsoleteDoc.destroy();
+    // res.json(obsoleteDoc);
+    res.render("viewNoteOrDoc", {
+      resourceType: "Note", existingResource: false, resources, allClients, thisClient, docsThisNote, allDocsThisClient
+    });
+
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR: " + error);
   }
 };
 

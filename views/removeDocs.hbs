@@ -1,11 +1,6 @@
-<h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
-    {{else}}
-    {{resourceType}} with no associated Client
-    {{/if}}
+<h1>Remove documents for this note
 </h1>
-<a class="btn btn-primary" href='/notes/'>New {{resourceType}}</a>
-<a class="btn btn-primary" href='/edit/note{{resources.id}}'>Edit {{resourceType}}</a>
-<a class="btn btn-primary" href='/delete/note{{resources.id}}'>Delete {{resourceType}}</a></td>
+<a class="btn btn-primary" href='/notes/note{{resources.id}}'>Return to Note</a>
 <!-- Display current note -->
 
 <div>
@@ -67,7 +62,7 @@
         {{#each docsThisNote}}
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
-    </tr>
+        </tr>
     {{/each}}
 </table>
 <br>
@@ -91,13 +86,19 @@
 </div>
 <div>
 
-    <form action="/delete/docs" method="get">
+    <form action="/delete/{{docId}}" method="delete">
+        <label for="docId">Remove document</label>
+        <select name="docId" id="docId">
+            <option>--Choose document--</option>
+            {{#each docsThisNote}}
+            <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
+            {{/each}}
+        </select>
         <input type="hidden" name="noteId" value="{{resources.id}}" />
         <input type="hidden" name="clientId" value="{{thisClient.id}}" />
         <input type="hidden" name="docAssociated" value="true" />
-        <input type="hidden" name="docsThisNote" value="{{docsThisNote}}" />
-        <!--what is form of docsThisNote?-->
-        <button type="submit">Remove Document(s)</button>
+        <button type="submit">Delete Doc</button>
         <br>
+
     </form>
 </div>

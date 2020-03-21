@@ -92,6 +92,41 @@ exports.newNote = async (req, res) => {
   }
 };
 
+exports.viewNote = async (req, res) => {
+  try {
+    let noteId = req.params.id;     //first access to the noteId
+    let resources = await Note.findByPk(noteId);    //this particular note after client associated
+    let allClients = await Client.findAll();
+    let clientId = resources.clientId;
+    const thisClient = await Client.findByPk(clientId);   //this particular client
+    const clientNotes = await thisClient.getNotes();   //this particular client
+    //--get/create array of noteIds for client including current note
+    let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
+    let allDocsThisClient = [];
+    let tempDocIds = [];
+    for (let note of clientNotes) {
+      thisNoteId = note.id;       //this note's id
+      thisNote = await Note.findByPk(thisNoteId, { include: [Doc] });      //finds individual note but including docs
+      docsForThisNote = await thisNote.getDocs();       //gets docs associated to that individual note
+      for (let doc of docsForThisNote) {
+        let docId = doc.id;
+        tempDocIds.push(docId);
+      }
+    }
+    let finalDocIds = [...new Set(tempDocIds)];   //getting rid of duplicates
+    for (let docId of finalDocIds) {              //getting the whole docs not ids
+      let doc = await Doc.findByPk(docId);
+      allDocsThisClient.push(doc);
+    }
+    res.render("viewNoteOrDoc", {
+      resourceType: "Note", existingResource: true, resources, allClients, thisClient, docsThisNote, allDocsThisClient
+    });
+    // res.redirect('/');
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+}
+
 //coming from create note form in edit mode -createNoteOrDoc.hbs /post request
 exports.updateNote = async (req, res) => {
   try {
@@ -101,7 +136,7 @@ exports.updateNote = async (req, res) => {
     let allClients = await Client.findAll();
     let clientId = resources.clientId;
     let thisClient = await Client.findByPk(clientId);
-    
+
     //--get/create array of noteIds for client including current note
     let docsThisNote = await resources.getDocs();       //gets docs associated to that individual note
     //--grab all notes for that client after added the note

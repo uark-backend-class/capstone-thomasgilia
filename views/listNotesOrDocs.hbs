@@ -11,15 +11,16 @@
       <tr>  
         <th>{{resourceType}} Title</th>
         <th>{{resourceType}} Id</th>
+        <th>Associated Client</th>
         <th></th>
       </tr>
       {{#each resources }}
       <tr>
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
-        <td><a class="btn btn-secondary btn-sm" href="/edit/{{resourceType}}{{ this.id }}">Edit</a>
-          <a class="btn btn-warning btn-sm" href="/delete/{{ this.id }}">Delete</a></td>
-      </tr>
+          <td>{{this.clientId}}</td>
+        <td><a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View Note</a>
+          </tr>
       {{/each}}
     </table>
   </div>

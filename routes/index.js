@@ -18,7 +18,13 @@ router
   .post(noteController.newNote);
 
 router
-  .route("/delete/:id")
+  .route("/notes/note:id")
+  .get(noteController.viewNote);
+
+
+
+router
+  .route("/delete/note:id")
   .get(noteController.deleteNote)    //working in insomnia. ready to connect to view. think already have delete button in listnotesordocs.hbs
 router
   .route("/edit/Note:id")
@@ -45,9 +51,11 @@ router
   .get(docController.getAllDocs);        //working in insomnia. //obsolete/replace with listResources?
 //(not tested after switched order of newDoc and getAllDocs)
 router
-  .route("/docs/:id")
-  .delete(docController.deleteDoc)      //think should work - just like note delete
-  .put(docController.replaceDoc);       //needs work
+  .route("/delete/docs")
+  .get(docController.deleteDocPage)
+router.route("/delete/doc:id")
+  .post(docController.deleteDoc)
+// .put(docController.replaceDoc);       //needs work
 
 router
   .route("/clients")
