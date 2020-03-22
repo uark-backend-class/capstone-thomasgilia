@@ -56,7 +56,7 @@ exports.deleteUser = async (req, res) => {      //destroys user and attached wor
             return;
         }
         await obsoleteUser.destroy();
-        await obsoleteWorkspace.destroy();        
+        await obsoleteWorkspace.destroy();
         res.json("User " + obsoleteUser.id + " and Workspace " + obsoleteWorkspace.id + " were deleted");  //working
     } catch (error) {
         console.log("HERE'S THE ERROR" + error);
@@ -76,14 +76,16 @@ exports.root = async (req, res) => {
 //User-CLient join table IDs:  oClientId  ownerId
 exports.homepage = async (req, res) => {
     try {
-        const { oClientId, ownerId } = req.body;
+        // const { oClientId, ownerId } = req.body;
         // let users = await User.findAll({where: {oClientId: oClientId}});
         // let clientsOwnedId = user.clientsOwned; //deprecated probably
-        let clientsOwned = await Client.findAll(ownerId);
+        // let clientsOwned = await Client.findAll(ownerId);
         // let clientsOwned = await Client.findAll({where: {userId: clientsOwned}}) //dont think this worked
         // let newNote = await existingClient.getNotes(clientId); //example only
-        res.render("homepage", { user, clientsOwned });
+        // res.render("homepage", { user, clientsOwned });
+        //simple for now
+        res.render("homepage");
     } catch (error) {
         console.log("HERE'S THE ERROR" + error);
     }
-}       //see association controller...
+}

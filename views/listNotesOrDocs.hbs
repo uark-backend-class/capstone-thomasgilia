@@ -1,26 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
 <h1>{{#if hasClient}}List of all {{resourceType}}s for client {{thisClient.clientName}}
   {{else}}
   List of all {{resourceType}}s
   {{/if}}
 </h1>
 
-<div>
-  <a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
-  <div>
-    <table class="table">
-      <tr>  
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<a class="btn btn-primary" href='/{{resourceType}}s/'>New {{resourceType}}</a>
+<div class="container">
+
+  <h2>{{resourceType}}s</h2>
+  <p>Search the table:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
         <th>{{resourceType}} Title</th>
         <th>{{resourceType}} Id</th>
-        <th>Associated Client</th>
-        <th></th>
       </tr>
+    </thead>
+    <tbody id="myTable">
       {{#each resources }}
       <tr>
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
-          <td>{{this.clientId}}</td>
-        <td><a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View Note</a>
-          </tr>
+        <td>
+          {{#if isNote}}
+          <a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View Note</a>
+          {{else}}
+          <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View Document</a>
+          {{/if}}
+        </td>
+      </tr>
       {{/each}}
-    </table>
-  </div>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
+</body>
+
+</html>

@@ -91,11 +91,11 @@ router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  
 // router.route("/listClientDocs/:id").get(clientController.listResourceThisClient);  //route  deprecated but may need to change route
 
 // router.route("/creationControl").get(NoteDocController.creationControl);
-router.route("/listAllResources").get(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
+router.route("/listAllResources").post(NoteDocController.listAllResources);    //working n browser/listnotesordocs view 
 //but still manual entry some values
 // router.route("/createResource").post(NoteDocController.createResource);
 
-// router.route("/homepageUser:id").get(userController.homepage);
+router.route("/homepage").get(userController.homepage); //later specialize with User:id
 
 router.route("/").get(userController.root);     //placeholder for redirects
 
