@@ -2,7 +2,7 @@
     {{#if existingResource }}Edit {{else}}Create {{/if}}{{resourceType}}
 </h1>
 
-<form {{#if existingResource}} action="/edit/{{resourceType}}{{resources.id}}" {{else}} action="/docs" {{/if}}
+<form {{#if existingResource}} action="/edit/doc{{resources.id}}" {{else}} action="/docs" {{/if}}
     method="post">
     {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
     <br>

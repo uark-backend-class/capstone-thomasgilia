@@ -10,7 +10,7 @@ const userController = require("../controllers/user-controller");
 
 router
   .route("/notes")
-  .get(noteController.newResource)      
+  .get(noteController.newResource)
   .post(noteController.newNote);
 
 router
@@ -25,6 +25,11 @@ router
   .get(noteController.editNote)
   .post(noteController.updateNote);
 
+router
+  .route("/edit/Doc:id")
+  .get(docController.editDoc)
+  .post(docController.updateDoc);
+
 router.route("/notes/note:noteId/client:clientId")
   .post(noteController.addDocToNote);
 router.route("/docs/note:noteId/client:clientId")
@@ -38,7 +43,7 @@ router
   .route("/docs/note:id")             //can change back to get?
   .get(docController.newResource)    //have to do post instead of get because need noteId available in create view
 
-  router               //not active yet
+router               //not active yet
   .route("/docs/doc:id")
   .get(docController.viewDoc);
 
@@ -75,7 +80,7 @@ router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  
 // router.route("/listClientResources/:id").get(clientController.listResourceThisClient);  //works (with temp inputs) with view
 // router.route("/listClientDocs/:id").get(clientController.listResourceThisClient);  //route  deprecated but may need to change route
 
-router.route("/listAllResources").post(NoteDocController.listAllResources);    
+router.route("/listAllResources").post(NoteDocController.listAllResources);
 
 router.route("/homepage").get(userController.homepage); //later specialize with User:id
 

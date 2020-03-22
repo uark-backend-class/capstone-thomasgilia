@@ -112,19 +112,53 @@ exports.deleteDoc = async (req, res) => {
   }
 };
 
-//need to update this code
-exports.replaceDoc = async (req, res) => {
+exports.editDoc = async (req, res) => {
   try {
-    const id = req.params.id;
-    const doc = req.body;
-    const existingDoc = await Note.findByPk(id);
-    if (!existingDoc) {
+    let docId = req.params.id;
+    let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
+    let docNotes = await resources.getNotes();
+    let thisNote;
+    let clientId;
+    if (docNotes.length > 1) {
+      console.log("additional notes associated to the doc")
+    } else { thisNote = docNotes[0] }
+    for (let note of docNotes) {
+      clientId = note.clientId;
+    }
+    let thisClient = await Client.findByPk(clientId);
+    if (!resources) {
       res.status(404).send();
       return;
     }
-    const replacementDoc = await existingDoc.update(doc);
-    res.json(replacementDoc);
+    res.render('createDoc', { resourceType: "Document", resources, existingResource: true, thisClient });
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log(error);
+  }
+};
+
+//coming from create note form in edit mode -createNote.hbs /post request
+exports.updateDoc = async (req, res) => {
+  try {
+    let docId = req.body.id;
+    await Doc.upsert(req.body);          //returns false if updated, true if created
+    let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
+    let docNotes = await resources.getNotes();
+    let thisNote;
+    let clientId;
+    if (docNotes.length > 1) {
+      console.log("additional notes associated to the doc")
+    } else { thisNote = docNotes[0] }
+    for (let note of docNotes) {
+      clientId = note.clientId;
+    }
+    let thisClient = await Client.findByPk(clientId);
+    let allClients = await Client.findAll();
+
+    res.render("viewDoc", {
+      resourceType: "Document", existingResource: true, resources, allClients, thisClient, thisNote
+    });
+
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
   }
 };
