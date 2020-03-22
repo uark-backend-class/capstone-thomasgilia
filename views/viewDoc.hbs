@@ -1,11 +1,10 @@
-<h1>{{#if thisClient}}{{resourceType}} for client {{thisClient.clientName}}
+<h1>{{#if thisClient}}{{resourceType}} for client: {{thisClient.clientName}}
     {{else}}
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
 <a class="btn btn-primary" href='/docs/'>New {{resourceType}}</a>
 <a class="btn btn-primary" href='/edit/doc{{resources.id}}'>Edit {{resourceType}}</a>
-<a class="btn btn-primary" href='/delete/doc{{resources.id}}'>Delete {{resourceType}}</a></td>
 
 <div>
     <table class="table">
@@ -36,10 +35,7 @@
         <td>{{resources.lastUpdateUser}}</td>
     </tr>
 </table>
-<h2>This document belongs to client:</h2>
-{{thisClient.clientName}}, client Id {{thisClient.id}}
-<br>
-<h3>This document belongs to note:</h3>
+<h4>This document belongs to note:</h4>
 <table class="table">
     <tr>
         <th>Note Title</th>
@@ -48,21 +44,19 @@
     <tr>
         <td>{{thisNote.title}}</td>
         <td>{{thisNote.id}}</td>
+        <td><a class="btn btn-secondary btn-sm" href="/notes/note{{ thisNote.id }}">View Note</a></td>
     </tr>
 </table>
 <br>
 
-    <form action="/docs/note{{resources.id}}/client{{thisClient.id}}" method="post">
-        <label for="obsoleteDocId">Delete this Document</label>
-        <select name="obsoleteDocId" id="obsoleteDocId">
-            <option>--Choose document to delete--</option>
-            {{#each docsThisNote}}
-            <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
-            {{/each}}
-        </select>
-        <input type="hidden" name="noteId" value="{{resources.id}}" />
-        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Delete Doc</button>
-        <br>
-    </form>
+<form action="/docs/note{{thisNote.id}}/client{{thisClient.id}}" method="post">
+    <label for="obsoleteDocId">Delete this Document</label>
+    <select name="obsoleteDocId" id="obsoleteDocId">
+        <option value={{resources.id}}>{{resources.title}} (Doc Id {{resources.id}})</option>
+    </select>
+    <input type="hidden" name="noteId" value="{{resources.id}}" />
+    <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+    <button type="submit">Delete Document</button>
+    <br>
+</form>
 </div>
