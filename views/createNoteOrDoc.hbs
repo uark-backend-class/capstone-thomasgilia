@@ -3,53 +3,16 @@
 </h1>
 
 {{#if existingResource}}
-<form action="/edit/Note{{resources.id}}" method="post">
+<form action="/edit/{{resourceType}}{{resources.id}}" method="post">
   {{else}}
   <form action="/{{ action }}" method="post">
     {{/if}}
+
     {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
     <br>
     <br />
-    {{#if existingResource }} <div>
-      <label for="setUrgent">Flag Urgent?</label>
-      <select name="setUrgent" id="setUrgent">
-        {{#if resources.setUrgent}}
-        <option selected>Yes</option>
-        <option value="false">No</option>
-        {{else}}
-        <option selected>No</option>
-        <option value="true">Yes</option>
-        {{/if}}
-      </select>
-    </div>
-    {{else}}
-    <div>
-      <label for="setUrgent">Flag Urgent?</label>
-      <select name="setUrgent" id="setUrgent">
-        <option selected>--Please choose an option--</option>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-    </div>
-    {{/if}}
-
-    <!--deprecated unless/until can preselect with previous answer  
-  <div>
-    <br>
-    Flag Urgent?:
-    <input type="radio" id="true" name="setUrgent" value="{{resources.setUrgent}}">
-  <label for="true">Yes</label>
-  <input type="radio" id="false" name="setUrgent" value="{{resources.setUrgent}}">
-  <label for="false">No</label><br>
-  </div>
--->
-
-    <br />
-    <div>
-      <label for="flagExpires">Flag expiration date:</label>
-      <input type="date" id="flagExpires" name="flagExpires" value="{{resources.flagExpires}}">
-    </div>
-    <br />
+    {{#if isNote}}
+    <!--note categories-->
     <div>
       <label for="category">Choose a category:</label>
       <select name="category" id="category">
@@ -66,12 +29,36 @@
     <br>
     <br />
 
-    <h4>This note belongs to client:</h4>
-    <!--associate note to client-->
-
-    {{#if existingResource}}
-    {{thisClient.clientName}}
     {{else}}
+    <!--doc categories-->
+    <div>
+      <label for="category">Choose a category:</label>
+      <select name="category" id="category">
+        <option selected>{{resources.category}}</option>
+        <option value="Financial">Financial</option>
+        <option value="Report Format">Report format</option>
+        <option value="reportDistro">Report distribution</option>
+        <option value="temporaryProject">Temporary-Project instructions</option>
+        <option value="ClientSOP">Client SOP</option>
+        <option value="internalSOP">Internal SOP</option>
+        <option value="clientManual">Client Manual</option>
+        <option value="clientPriceList">Client's Price List</option>
+      </select>
+    </div>
+    <br />
+    Origin: <input type="text" name="origin" value="{{resources.origin}}" />
+    <br>
+    <br />
+    Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
+    <br>
+    <br />
+    {{/if}}
+
+    <h4>This {{resourceType}} belongs to client:</h4>
+    <!--associate note to client-->
+    
+    {{#if isNote}}
+    {{thisClient.clientName}}
     <select name="clientId" id="clientId">
       <option selected>Choose a Client</option>
       {{#each allClients}}
@@ -79,17 +66,16 @@
       {{/each}}
     </select>
     {{/if}}
+
     <br></br>
     <!--dont think i need these two lines-->
     <input type="hidden" name="id" value="{{resources.id}}" />
-    <input type="hidden" name="noteId" value="{{resources.id}}" />
     {{#if existingResource}}
-    <input type="hidden" name="docAssociated" value="{{resources.docAssociated}}" />
     <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
     <input type="hidden" name="clientId" value={{thisClient.id}} />
+    <input type="hidden" name="noteId" value={{thisNote.id}} />
     <button type="submit">Update {{resourceType}} </button>
     {{else}}
-    <input type="hidden" name="docAssociated" value="false" />
     <input type="hidden" name="lastUpdateUser" value="" />
     <button type="submit">Create {{resourceType}} </button>
     {{/if}}

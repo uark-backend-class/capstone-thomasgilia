@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     note: DataTypes.TEXT,
     setUrgent: DataTypes.BOOLEAN,
     flagExpires: DataTypes.STRING,
-    docAssociated: DataTypes.BOOLEAN,
     revisionLog: DataTypes.TEXT,
     lastUpdateUser: DataTypes.STRING,
     // lastUpdate: DataTypes.DATE,

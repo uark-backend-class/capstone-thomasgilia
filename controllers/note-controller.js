@@ -84,7 +84,8 @@ exports.newNote = async (req, res) => {
       allDocsThisClient.push(doc);
     }
     res.render("viewNoteOrDoc", {
-      resourceType: "Note", existingResource: false, resources, allClients, thisClient, docsThisNote, allDocsThisClient
+      resourceType: "Note", existingResource: false, resources, allClients, thisClient, docsThisNote, allDocsThisClient, 
+      isNote: true
     });
     // res.redirect('/');
   } catch (error) {
@@ -160,7 +161,7 @@ exports.updateNote = async (req, res) => {
     }
     res.render("viewNoteOrDoc", {
       resourceType: "Note", existingResource: true, resources, allClients, buttonText: "Update Note", thisClient,
-      allDocsThisClient, docsThisNote
+      allDocsThisClient, docsThisNote, isNote: true
     });//need noteId here?
 
   } catch (error) {

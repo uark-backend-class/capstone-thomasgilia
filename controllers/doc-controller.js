@@ -11,15 +11,42 @@ exports.getAllDocs = async (req, res) => {
   }
 };
 
+//render createNoteOrDoc to create doc
+exports.newResource = async (req, res) => {
+  let { noteId, clientId } = req.body;      //from viewNote
+  let thisNote = Note.findByPk(noteId);
+  let thisClient = await Client.findByPk(clientId);
+  let allClients = await Client.findAll();
+  res.render('createNoteOrDoc', {
+    action: 'docs', buttonText: 'Create Document', resourceType: "Document", allClients,
+    existingResource: false, thisClient, noteId, thisNote
+  });
+};
+
+//create doc after click button from viewNoteOrDoc
 exports.newDoc = async (req, res) => {
   try {
-    let newDoc = await Doc.create(req.body);
-    res.json(newDoc);
-    console.log(newDoc);
+    let resources = await Doc.create(req.body);
+    let docId = resources.id;
+    let noteId = req.body.noteId;   //passed in as noteId from viewNoteOrDoc
+    let thisNote = await Note.findByPk(noteId);
+    let thisNoteDocs = await thisNote.getDocs();
+    let docIdArray = [docId];   //array of doc ids for the note including new doc
+    for (let doc of thisNoteDocs) {
+      docIdArray.push(doc.id);
+    };
+    //--set/reset all docs to that note
+    await thisNote.setDocs(docIdArray);
+
+    // res.redirect("/");
+    res.render("viewDoc", {
+      resourceType: "Document", existingResource: false, resources, thisClient, thisNote
+    });
   } catch (error) {
     console.log("HERE'S THE ERROR: " + error);
   }
 };
+
 
 // //prob dep
 // exports.deleteDocPage = async (req, res) => {
