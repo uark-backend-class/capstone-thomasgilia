@@ -1,15 +1,6 @@
 const Note = require("../db").Note;
-const Doc = require("../db").Doc; //just for associating docs - take out if doesn't work
+const Doc = require("../db").Doc; 
 const Client = require("../db").Client;
-
-exports.getAllDocs = async (req, res) => {
-  try {
-    let docs = await Doc.findAll();
-    res.json(docs);
-  } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
-  }
-};
 
 //render createNoteOrDoc to create doc
 exports.newResource = async (req, res) => {
@@ -46,25 +37,6 @@ exports.newDoc = async (req, res) => {
     console.log("HERE'S THE ERROR: " + error);
   }
 };
-
-
-// //prob dep
-// exports.deleteDocPage = async (req, res) => {
-//   try {
-//     console.log(req.params)
-//     // const id = req.params.id;
-//     // const obsoleteDoc = await Doc.findByPk(id);
-//     // if (!obsoleteDoc) {
-//     //   res.status(404).send();
-//     //   return;
-//     // }
-//     // await obsoleteDoc.destroy();
-//     // res.json(obsoleteDoc);
-//     res.render("removeDocs");
-//   } catch (error) {
-//     console.log("HERE'S THE ERROR: " + error);
-//   }
-// };
 
 exports.deleteDoc = async (req, res) => {
   try {

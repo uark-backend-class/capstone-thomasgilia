@@ -37,48 +37,6 @@ exports.getAllClients = async (req, res) => {
   }
 };
 
-//...........................................
-// //works for note only - replaced by below
-// exports.allNotesThisClient = async (req, res) => {
-//   try {
-//     const clientId = 2;
-//     // const clientId = req.params.clientId;
-//     // console.log(clientId);
-//     let thisClient = await Client.findByPk(clientId);
-//     let resources = await thisClient.getNotes(clientId);
-//     let hasClient = true;
-//     // res.json(noteList);
-//     res.render("listNotesOrDocs", { resourceType: "Note", hasClient, thisClient, resources });
-//   } catch (error) {
-//     console.log("HERE'S THE ERROR: " + error);
-//   }
-// };
-
-//...........................................
-// //also works for note only - replaced by below
-// exports.listResourceThisClient = async (req, res) => {
-//   try {
-//     const clientId = 2; //temporary
-//     let resourceType = "Note"; //temporary
-//     let hasClient = true;
-//       const resources = await Note.findAll({ where: { clientId: clientId } }); //gives whole note
-//       // let resources = await thisClient.getNotes();  //works at least to give whole note in conjuct w/ previous findbypk
-//       //console.log(resources[0].id);//have to iterate to get all. handlebars #each is iterating!
-//     let thisClient = await Client.findByPk(clientId);
-//     let typeNote;
-//     res.render("listNotesOrDocs", {
-//       resourceType,
-//       hasClient,
-//       thisClient,
-//       resources,
-//       typeNote,
-//     });
-//   } catch (error) {
-//     console.log("HERE'S THE ERROR: " + error);
-//   }
-// };
-
-
 //works and works with listDocorNote.hbs
 exports.listResourceThisClient = async (req, res) => {
   try {
