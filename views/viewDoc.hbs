@@ -52,20 +52,8 @@
 </table>
 <br>
 
-<h4>Or</h4>
-<div>
-    <form action="/docs/note{{thisNote.id}}" method="post">
-        <label for="newDoc">Upload a new Document to the sma</label>
-        <input type="hidden" name="noteId" value="{{thisNote.id}}" />
-        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Upload Doc</button>
-        <br>
-    </form>
-</div>
-<h4>Or</h4>
-<div>
     <form action="/docs/note{{resources.id}}/client{{thisClient.id}}" method="post">
-        <label for="obsoleteDocId">Choose document to remove</label>
+        <label for="obsoleteDocId">Delete this Document</label>
         <select name="obsoleteDocId" id="obsoleteDocId">
             <option>--Choose document to delete--</option>
             {{#each docsThisNote}}

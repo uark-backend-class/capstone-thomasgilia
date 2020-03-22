@@ -1,26 +1,32 @@
 const Note = require("../db").Note;
-const Doc = require("../db").Doc; 
+const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 
-//render createNoteOrDoc to create doc
+//render createDoc to create doc
 exports.newResource = async (req, res) => {
-  let { noteId, clientId } = req.body;      //from viewNote
-  let thisNote = Note.findByPk(noteId);
+  let noteId = req.params.id;
+  let thisNote = await Note.findByPk(noteId);
+  let clientId = thisNote.clientId;
   let thisClient = await Client.findByPk(clientId);
   let allClients = await Client.findAll();
-  res.render('createNoteOrDoc', {
+  res.render('createDoc', {
     action: 'docs', buttonText: 'Create Document', resourceType: "Document", allClients,
     existingResource: false, thisClient, noteId, thisNote
   });
 };
 
-//create doc after click button from viewNoteOrDoc
+//create doc after click button from viewDoc
 exports.newDoc = async (req, res) => {
   try {
+    // console.log(req.body);
+
     let resources = await Doc.create(req.body);
     let docId = resources.id;
-    let noteId = req.body.noteId;   //passed in as noteId from viewNoteOrDoc
+    let noteId = req.body.noteId;   //passed in as noteId from viewNoteOrDoc(?)
     let thisNote = await Note.findByPk(noteId);
+    let clientId = thisNote.clientId;
+    let thisClient = await Client.findByPk(clientId);
+    console.log(thisClient);
     let thisNoteDocs = await thisNote.getDocs();
     let docIdArray = [docId];   //array of doc ids for the note including new doc
     for (let doc of thisNoteDocs) {
@@ -41,7 +47,9 @@ exports.newDoc = async (req, res) => {
 exports.deleteDoc = async (req, res) => {
   try {
     // processing with original note
+    let allClients = Client.findAll();
     let obsoleteDocId = req.body.obsoleteDocId;
+    console.log(obsoleteDocId);
     const obsoleteDoc = await Doc.findByPk(obsoleteDocId);
     await obsoleteDoc.destroy();
 
@@ -70,7 +78,7 @@ exports.deleteDoc = async (req, res) => {
       let doc = await Doc.findByPk(thisDocId);
       allDocsThisClient.push(doc);
     }
-    res.render("viewNoteOrDoc", {
+    res.render("viewNote", {
       resourceType: "Note", existingResource: true, resources, allClients, thisClient, docsThisNote, allDocsThisClient
     });
   } catch (error) {

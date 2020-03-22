@@ -70,7 +70,6 @@
 </table>
 <br>
 <div>
-
     <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
         <label for="docId">Choose additional document for this Note</label>
         <select name="docId" id="docId">
@@ -87,7 +86,8 @@
 </div>
 <h4>Or</h4>
 <div>
-    <form action="/docs/note{{resources.id}}" method="post">
+    <a class="btn btn-primary" href='/docs/note{{resources.id}}'>Upload Doc</a>
+    <form action="/docs/note{{resources.id}}" method="get">
         <label for="newDoc">Upload a new Document</label>
         <input type="hidden" name="noteId" value="{{resources.id}}" />
         <input type="hidden" name="clientId" value="{{thisClient.id}}" />

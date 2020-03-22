@@ -36,7 +36,7 @@ sequelize.sync().then(() => console.log("Tables are created!"));
 // sequelize.sync({force:true}).then(() => console.log("Table data has been cleared!"));
 // DROP TABLE DATA
 
-//DROP ALL TABLES - CAUTION
+// DROP ALL TABLES - CAUTION
 // sequelize.sync().then(() => sequelize.drop());
 
 module.exports = {

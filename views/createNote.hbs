@@ -2,14 +2,11 @@
   {{#if existingResource }}Edit {{else}}Create {{/if}}{{resourceType}}
 </h1>
 
-
 <form {{#if existingResource}} action="/edit/{{resourceType}}{{resources.id}}" {{else}} action="/{{ action }}" {{/if}}
   method="post">
   {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
   <br>
   <br />
-  {{#if isNote}}
-  <!--note categories-->
   <div>
     <label for="category">Choose a category:</label>
     <select name="category" id="category">
@@ -26,35 +23,7 @@
   <br>
   <br />
 
-  {{else}}
-  <!--doc categories-->
-  <div>
-    <label for="category">Choose a category:</label>
-    <select name="category" id="category">
-      <option selected>{{resources.category}}</option>
-      <option value="Financial">Financial</option>
-      <option value="Report Format">Report format</option>
-      <option value="reportDistro">Report distribution</option>
-      <option value="temporaryProject">Temporary-Project instructions</option>
-      <option value="ClientSOP">Client SOP</option>
-      <option value="internalSOP">Internal SOP</option>
-      <option value="clientManual">Client Manual</option>
-      <option value="clientPriceList">Client's Price List</option>
-    </select>
-  </div>
-  <br />
-  Origin: <input type="text" name="origin" value="{{resources.origin}}" />
-  <br>
-  <br />
-  Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
-  <br>
-  <br />
-  {{/if}}
-
   <h4>This {{resourceType}} belongs to client:</h4>
-  <!--associate note to client-->
-
-  <!--{{#if isNote}}-->
   {{thisClient.clientName}}
   <select name="clientId" id="clientId">
     <option selected>Choose a Client</option>
@@ -62,7 +31,6 @@
     <option value={{this.id}}>{{this.clientName}}</option>
     {{/each}}
   </select>
-  <!--{{/if}}-->
 
   <br></br>
   <!--dont think i need these two lines-->

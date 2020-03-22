@@ -1,18 +1,21 @@
 const Note = require("../db").Note;
-const Doc = require("../db").Doc; 
+const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 
 //can combine/but on notedoc page later if want
 //works - just brings up the form with a get. then the next function will populate and post to same route
 exports.newResource = async (req, res) => {
+  console.log(req.params);
   let allClients = await Client.findAll();
   console.log(allClients);
-  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients, 
-  isNote: true, existingResource: false });
+  res.render('createNote', {
+    action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients,
+    isNote: true, existingResource: false
+  });
 };
 
 exports.newNote = async (req, res) => {
-  // coming from createNoteOrDoc.hbs /post request
+  // coming from createNote.hbs /post request
   try {
     let reqBodyObj = req.body;
     // if (req.body.id) { delete reqBodyObj["id"]; }
@@ -55,8 +58,8 @@ exports.newNote = async (req, res) => {
       let doc = await Doc.findByPk(docId);
       allDocsThisClient.push(doc);
     }
-    res.render("viewNoteOrDoc", {
-      resourceType: "Note", existingResource: false, resources, allClients, thisClient, docsThisNote, allDocsThisClient, 
+    res.render("viewNote", {
+      resourceType: "Note", existingResource: false, resources, allClients, thisClient, docsThisNote, allDocsThisClient,
       isNote: true
     });
     // res.redirect('/');
@@ -91,7 +94,7 @@ exports.viewNote = async (req, res) => {
       let doc = await Doc.findByPk(docId);
       allDocsThisClient.push(doc);
     }
-    res.render("viewNoteOrDoc", {
+    res.render("viewNote", {
       resourceType: "Note", existingResource: true, resources, allClients, thisClient, docsThisNote, allDocsThisClient
     });
     // res.redirect('/');
@@ -100,7 +103,7 @@ exports.viewNote = async (req, res) => {
   }
 }
 
-//coming from create note form in edit mode -createNoteOrDoc.hbs /post request
+//coming from create note form in edit mode -createNote.hbs /post request
 exports.updateNote = async (req, res) => {
   try {
     let noteId = req.body.id;
@@ -131,7 +134,7 @@ exports.updateNote = async (req, res) => {
       let doc = await Doc.findByPk(docId);
       allDocsThisClient.push(doc);
     }
-    res.render("viewNoteOrDoc", {
+    res.render("viewNote", {
       resourceType: "Note", existingResource: true, resources, allClients, buttonText: "Update Note", thisClient,
       allDocsThisClient, docsThisNote, isNote: true
     });//need noteId here?
@@ -144,7 +147,7 @@ exports.updateNote = async (req, res) => {
 
 
 exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a time
-  //coming from viewNoteOrDoc with docId, noteId (and on params), docAssociated hidden
+  //coming from  with docId, noteId (and on params), docAssociated hidden
   try {
     // processing with original note
     const clientId = req.body.clientId;
@@ -189,7 +192,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       let doc = await Doc.findByPk(thisDocId);
       allDocsThisClient.push(doc);
     }
-    res.render("viewNoteOrDoc", {
+    res.render("viewNote", {
       resources, resourceType: "Note", success: "Association processed", allDocsThisClient,
       thisClient, docsThisNote
     });
@@ -228,7 +231,7 @@ exports.editNote = async (req, res) => {
       return;
     }
     //   let updatedNote = await existingNote.update(note); have to send it to form
-    res.render('createNoteOrDoc', { resourceType: "Note", resources, existingResource: true, thisClient });
+    res.render('createNote', { resourceType: "Note", resources, existingResource: true, thisClient });
     // res.redirect('/notes/note:id');
   } catch (error) {
     console.log(error);

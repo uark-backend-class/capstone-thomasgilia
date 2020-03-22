@@ -1,0 +1,49 @@
+<h1>
+    {{#if existingResource }}Edit {{else}}Create {{/if}}{{resourceType}}
+</h1>
+
+<form {{#if existingResource}} action="/edit/{{resourceType}}{{resources.id}}" {{else}} action="/docs" {{/if}}
+    method="post">
+    {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
+    <br>
+    <br />
+    <div>
+        <label for="category">Choose a category:</label>
+        <select name="category" id="category">
+            <option selected>{{#if existingResource}}{{resources.category}}{{else}}--Choose a category --{{/if}}</option>
+            <option value="Financial">Financial</option>
+            <option value="Report format">Report format</option>
+            <option value="Report distribution">Report distribution</option>
+            <option value="Temporary-Project instructions">Temporary-Project instructions</option>
+            <option value="Client SOP">Client SOP</option>
+            <option value="Internal SOP">Internal SOP</option>
+            <option value="Client Manual">Client Manual</option>
+            <option value="Client's Price List">Client's Price List</option>
+        </select>
+ 
+    </div>
+    <br />
+    Origin: <input type="text" name="origin" value="{{resources.origin}}" />
+    <br>
+    <br />
+    Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
+    <br>
+    <br />
+
+    <h4>This {{resourceType}} belongs to client:</h4>
+    {{thisClient.clientName}}
+    <br></br>
+    <!--dont think i need these two lines-->
+    <input type="hidden" name="id" value="{{resources.id}}" />
+    {{#if existingResource}}
+    <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
+    <input type="hidden" name="clientId" value={{thisClient.id}} />
+    <input type="hidden" name="noteId" value={{thisNote.id}} />
+    <button type="submit">Update {{resourceType}} </button>
+    {{else}}
+    <input type="hidden" name="clientId" value={{thisClient.id}} />
+    <input type="hidden" name="noteId" value={{thisNote.id}} />
+    <input type="hidden" name="lastUpdateUser" value="" />
+    <button type="submit">Create {{resourceType}} </button>
+    {{/if}}
+</form>
