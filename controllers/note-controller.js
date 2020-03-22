@@ -19,7 +19,9 @@ const Client = require("../db").Client;
 //works - just brings up the form with a get. then the next function will populate and post to same route
 exports.newResource = async (req, res) => {
   let allClients = await Client.findAll();
-  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients, existingResource: false });
+  console.log(allClients);
+  res.render('createNoteOrDoc', { action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients, 
+  isNote: true, existingResource: false });
 };
 // exports.CreateResource = async (req, res) => {
 //   // let resourceType = req.param.resourceType; //have to add to param...

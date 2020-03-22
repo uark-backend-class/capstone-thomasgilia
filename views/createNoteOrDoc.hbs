@@ -2,81 +2,78 @@
   {{#if existingResource }}Edit {{else}}Create {{/if}}{{resourceType}}
 </h1>
 
-{{#if existingResource}}
-<form action="/edit/{{resourceType}}{{resources.id}}" method="post">
-  {{else}}
-  <form action="/{{ action }}" method="post">
-    {{/if}}
 
-    {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
-    <br>
-    <br />
-    {{#if isNote}}
-    <!--note categories-->
-    <div>
-      <label for="category">Choose a category:</label>
-      <select name="category" id="category">
-        <option selected>{{resources.category}}</option>
-        <option value="Financial">Financial</option>
-        <option value="Report format">Report format</option>
-      </select>
-    </div>
-    <br />
-    Note: <input type="blob" name="note" value="{{resources.note}}" />
-    <br>
-    <br />
-    Revision log: <input type="textbox" name="revisionLog" value="{{resources.revisionLog}}" />
-    <br>
-    <br />
-
-    {{else}}
-    <!--doc categories-->
-    <div>
-      <label for="category">Choose a category:</label>
-      <select name="category" id="category">
-        <option selected>{{resources.category}}</option>
-        <option value="Financial">Financial</option>
-        <option value="Report Format">Report format</option>
-        <option value="reportDistro">Report distribution</option>
-        <option value="temporaryProject">Temporary-Project instructions</option>
-        <option value="ClientSOP">Client SOP</option>
-        <option value="internalSOP">Internal SOP</option>
-        <option value="clientManual">Client Manual</option>
-        <option value="clientPriceList">Client's Price List</option>
-      </select>
-    </div>
-    <br />
-    Origin: <input type="text" name="origin" value="{{resources.origin}}" />
-    <br>
-    <br />
-    Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
-    <br>
-    <br />
-    {{/if}}
-
-    <h4>This {{resourceType}} belongs to client:</h4>
-    <!--associate note to client-->
-    
-    {{#if isNote}}
-    {{thisClient.clientName}}
-    <select name="clientId" id="clientId">
-      <option selected>Choose a Client</option>
-      {{#each allClients}}
-      <option value={{this.id}}>{{this.clientName}}</option>
-      {{/each}}
+<form {{#if existingResource}} action="/edit/{{resourceType}}{{resources.id}}" {{else}} action="/{{ action }}" {{/if}}
+  method="post">
+  {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
+  <br>
+  <br />
+  {{#if isNote}}
+  <!--note categories-->
+  <div>
+    <label for="category">Choose a category:</label>
+    <select name="category" id="category">
+      <option selected>{{resources.category}}</option>
+      <option value="Financial">Financial</option>
+      <option value="Report format">Report format</option>
     </select>
-    {{/if}}
+  </div>
+  <br />
+  Note: <input type="blob" name="note" value="{{resources.note}}" />
+  <br>
+  <br />
+  Revision log: <input type="textbox" name="revisionLog" value="{{resources.revisionLog}}" />
+  <br>
+  <br />
 
-    <br></br>
-    <!--dont think i need these two lines-->
-    <input type="hidden" name="id" value="{{resources.id}}" />
-    {{#if existingResource}}
-    <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
-    <input type="hidden" name="clientId" value={{thisClient.id}} />
-    <input type="hidden" name="noteId" value={{thisNote.id}} />
-    <button type="submit">Update {{resourceType}} </button>
-    {{else}}
-    <input type="hidden" name="lastUpdateUser" value="" />
-    <button type="submit">Create {{resourceType}} </button>
-    {{/if}}
-  </form>
+  {{else}}
+  <!--doc categories-->
+  <div>
+    <label for="category">Choose a category:</label>
+    <select name="category" id="category">
+      <option selected>{{resources.category}}</option>
+      <option value="Financial">Financial</option>
+      <option value="Report Format">Report format</option>
+      <option value="reportDistro">Report distribution</option>
+      <option value="temporaryProject">Temporary-Project instructions</option>
+      <option value="ClientSOP">Client SOP</option>
+      <option value="internalSOP">Internal SOP</option>
+      <option value="clientManual">Client Manual</option>
+      <option value="clientPriceList">Client's Price List</option>
+    </select>
+  </div>
+  <br />
+  Origin: <input type="text" name="origin" value="{{resources.origin}}" />
+  <br>
+  <br />
+  Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
+  <br>
+  <br />
+  {{/if}}
+
+  <h4>This {{resourceType}} belongs to client:</h4>
+  <!--associate note to client-->
+
+  <!--{{#if isNote}}-->
+  {{thisClient.clientName}}
+  <select name="clientId" id="clientId">
+    <option selected>Choose a Client</option>
+    {{#each allClients}}
+    <option value={{this.id}}>{{this.clientName}}</option>
+    {{/each}}
+  </select>
+  <!--{{/if}}-->
+
+  <br></br>
+  <!--dont think i need these two lines-->
+  <input type="hidden" name="id" value="{{resources.id}}" />
+  {{#if existingResource}}
+  <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
+  <input type="hidden" name="clientId" value={{thisClient.id}} />
+  <input type="hidden" name="noteId" value={{thisNote.id}} />
+  <button type="submit">Update {{resourceType}} </button>
+  {{else}}
+  <input type="hidden" name="lastUpdateUser" value="" />
+  <button type="submit">Create {{resourceType}} </button>
+  {{/if}}
+</form>

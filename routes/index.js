@@ -14,7 +14,7 @@ const userController = require("../controllers/user-controller");
 // .get(noteController.getAllNotes)      //working in insomnia. ready to connect to view
 router
   .route("/notes")
-  .get(noteController.newResource)      //working in browser         deprecated?
+  .get(noteController.newResource)      
   .post(noteController.newNote);
 
 router

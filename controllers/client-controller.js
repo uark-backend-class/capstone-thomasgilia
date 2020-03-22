@@ -10,18 +10,18 @@ exports.newClientPage = (req, res) => {
 exports.newClient = async (req, res) => {
   try {
     //always create 'all clients' as client with id 1 if not already created
-    let allClientsClient1 = {
-      id: 1, clientName: "All Clients", ownedByUser: false, hasOwnPriceList: false, linkOwnPriceList: "Not Applicable",
-      hasOwnManual: false, linkOwnManual: "Not applicable", revisionLog: ""
-    };
+    // let allClientsClient1 = {
+    //   id: 1, clientName: "All Clients", ownedByUser: false, hasOwnPriceList: false, linkOwnPriceList: "Not Applicable",
+    //   hasOwnManual: false, linkOwnManual: "Not applicable", revisionLog: ""
+    // };
     let clientList = Client.findAll();
     let newClient;
-    if (clientList.length > 1) {
+    // if (clientList.length > 1) {
       newClient = await Client.create(req.body); //later is replaced with html form i think
-    } else {
-      await Client.create(allClientsClient1);
-    }
-    console.log(newClient);
+    // } else {
+    //   await Client.create(allClientsClient1);
+    // }
+    // console.log(newClient);
     res.redirect('/');
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
