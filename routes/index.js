@@ -38,9 +38,9 @@ router
   .route("/docs/note:id")             //can change back to get?
   .get(docController.newResource)    //have to do post instead of get because need noteId available in create view
 
-  // router               //not active yet
-  // .route("/docs/doc:id")
-  // .get(docController.viewDoc);
+  router               //not active yet
+  .route("/docs/doc:id")
+  .get(docController.viewDoc);
 
 // router
 //   .route("/delete/docs")

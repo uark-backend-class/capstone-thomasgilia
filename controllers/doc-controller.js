@@ -44,6 +44,32 @@ exports.newDoc = async (req, res) => {
   }
 };
 
+exports.viewDoc = async (req, res) => {
+  try {
+    //we're going to assume for now that a doc will only have one note
+    let docId = req.params.id;
+    let resources = await Doc.findByPk(docId, { include: [Note] });
+    let docNotes = await resources.getNotes();
+    let thisNote;
+    let clientId;
+    if (docNotes.length > 1) {
+      console.log("additional notes associated to the doc")
+    } else { thisNote = docNotes[0] }
+    for (let note of docNotes) {
+      clientId = note.clientId;
+    }
+    let thisClient = await Client.findByPk(clientId);
+    let allClients = await Client.findAll();
+    res.render("viewDoc", {
+      resourceType: "Document", existingResource: true, resources, allClients, thisClient, thisNote
+    });
+    // res.redirect('/');
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+}
+
+
 exports.deleteDoc = async (req, res) => {
   try {
     // processing with original note

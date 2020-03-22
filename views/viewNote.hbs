@@ -65,6 +65,8 @@
         {{#each docsThisNote}}
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
+        <td> <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View Doc</a>
+        </td>
     </tr>
     {{/each}}
 </table>
