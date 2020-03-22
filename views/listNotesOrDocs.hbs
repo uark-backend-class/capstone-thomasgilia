@@ -7,7 +7,7 @@
 </h1>
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>List Resources</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -29,19 +29,27 @@
       </tr>
     </thead>
     <tbody id="myTable">
+      {{#if isNote}}
       {{#each resources }}
       <tr>
         <td>{{this.title}}</td>
         <td>{{this.id}}</td>
         <td>
-          {{#if isNote}}
-          <a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View Note</a>
-          {{else}}
-          <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View Document</a>
-          {{/if}}
+          <a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View {{resourceType}}</a>        
         </td>
       </tr>
       {{/each}}
+      {{else}}
+      {{#each resources }}
+      <tr>
+        <td>{{this.title}}</td>
+        <td>{{this.id}}</td>
+        <td>
+          <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View {{resourceType}}</a>
+          </td>
+      </tr>
+      {{/each}}
+      {{/if}}
     </tbody>
   </table>
 </div>
