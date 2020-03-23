@@ -39,11 +39,11 @@
     <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
     <input type="hidden" name="clientId" value={{thisClient.id}} />
     <input type="hidden" name="noteId" value={{thisNote.id}} />
-    <button type="submit">Update {{resourceType}} </button>
+    <button class="btn btn-primary" type="submit">Update {{resourceType}} </button>
     {{else}}
     <input type="hidden" name="clientId" value={{thisClient.id}} />
     <input type="hidden" name="noteId" value={{thisNote.id}} />
     <input type="hidden" name="lastUpdateUser" value="" />
-    <button type="submit">Create {{resourceType}} </button>
+    <button class="btn btn-primary" type="submit">Create {{resourceType}} </button>
     {{/if}}
 </form>

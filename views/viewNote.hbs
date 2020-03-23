@@ -50,11 +50,13 @@
     </tr>
 </table>
 </div>
+
 <!--
 <h2>This note belongs to client:</h2>
 {{thisClient.clientName}}, client Id {{thisClient.id}}-->
 <br>
 <!--   display current docs associated to the note -->
+<div class=container>
 <h3>Documents associated with this Note:</h3>
 <table class="table">
     <tr>
@@ -71,56 +73,40 @@
     {{/each}}
 </table>
 <br>
-<div>
+</div>
+<div class=container>
     <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
         <label for="docId">Choose additional document for this Note</label>
         <select name="docId" id="docId">
-            <option>--Choose additional document--</option>
+            <option>--Choose document--</option>
             {{#each allDocsThisClient}}
             <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
             {{/each}}
         </select>
         <input type="hidden" name="noteId" value="{{resources.id}}" />
         <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Add Doc</button>
-        <br>
+        <button class="btn btn-primary" type="submit">Add Doc</button>
     </form>
 </div>
-<h4>Or</h4>
-<div>
-    <a class="btn btn-primary" href='/docs/note{{resources.id}}'>Upload Doc</a>
+<br>
+<div class=container>
     <form action="/docs/note{{resources.id}}" method="get">
         <label for="newDoc">Upload a new Document</label>
         <input type="hidden" name="noteId" value="{{resources.id}}" />
         <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Upload Doc</button>
-        <br>
+        <button class="btn btn-primary" type="submit">Upload Doc</button>
     </form>
-</div>
-<h4>Or</h4>
-<div>
+    <br>
     <form action="/docs/note{{resources.id}}/client{{thisClient.id}}" method="post">
-        <label for="obsoleteDocId">Choose document to remove</label>
+        <label for="obsoleteDocId">Choose document to delete</label>
         <select name="obsoleteDocId" id="obsoleteDocId">
-            <option>--Choose document to delete--</option>
+            <option>--Choose document--</option>
             {{#each docsThisNote}}
             <option value={{this.id}}>{{this.title}} (Doc Id {{this.id}})</option>
             {{/each}}
         </select>
         <input type="hidden" name="noteId" value="{{resources.id}}" />
         <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Delete Doc</button>
-        <br>
+        <button class="btn btn-primary" type="submit">Delete Doc</button>
     </form>
 </div>
-<!--<div>
-
-    <form action="/delete/docs" method="get">
-        <input type="hidden" name="noteId" value="{{resources.id}}" />
-        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-                <input type="hidden" name="docsThisNote" value="{{docsThisNote}}" />
-        <!--what is form of docsThisNote?-->
-<!-- <button type="submit">Remove Document(s)</button>
-        <br>
-    </form>
-</div>-->
