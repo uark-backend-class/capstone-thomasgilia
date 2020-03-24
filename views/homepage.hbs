@@ -13,23 +13,25 @@
 </head>
 
 <body>
-  <!--
+<!--
   <div class="container">
     <h1>{{user.firstName}}'s Homepage</h1>
     <p>These are my clients: {{clientsOwned}}</p>
   </div>
-
+-->
 
   <div class="container">
--->
+    <h1>Anna's Homepage</h1>
+    <p>My clients: Acme Inc., Lucinda's Beauty</p>
+  </div>
+
 <div class=container>
+  <h3>Access Resources</h3>
   <form action="/listAllResources" method="post">
-    Select Resource type:
-    <br>
-    <input type="radio" id="Note" name="resourceType" value="Note">
+        <input type="radio" id="Note" name="resourceType" value="Note">
     <label for="Note">Note</label>
     <input type="radio" id="Document" name="resourceType" value="Document">
-    <label for="Document">Document</label><br>
+    <label for="Document">Document</label>
     <button class="btn btn-primary" type="submit">List all</button>
   </form>
   <br>
