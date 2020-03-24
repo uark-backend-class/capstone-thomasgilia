@@ -1,16 +1,16 @@
 <h1>
     {{#if existingResource }}Edit {{else}}Create {{/if}}{{resourceType}}
 </h1>
-
-<form {{#if existingResource}} action="/edit/doc{{resources.id}}" {{else}} action="/docs" {{/if}}
-    method="post">
+<a class="btn btn-warning" href='/homepage/'>My homepage</a>
+<br></br>
+<form {{#if existingResource}} action="/edit/doc{{resources.id}}" {{else}} action="/docs" {{/if}} method="post">
     {{resourceType}} Title: <input type="text" name="title" value="{{resources.title}}" />
     <br>
     <br />
     <div>
         <label for="category">Choose a category:</label>
         <select name="category" id="category">
-            <option selected>{{#if existingResource}}{{resources.category}}{{else}}--Choose a category --{{/if}}</option>
+            <option selected>{{#if existingResource}}{{resources.category}}{{else}}--Choose a category--{{/if}}</option>
             <option value="Financial">Financial</option>
             <option value="Report format">Report format</option>
             <option value="Report distribution">Report distribution</option>
@@ -20,13 +20,12 @@
             <option value="Client Manual">Client Manual</option>
             <option value="Client's Price List">Client's Price List</option>
         </select>
- 
     </div>
     <br />
     Origin: <input type="text" name="origin" value="{{resources.origin}}" />
     <br>
     <br />
-    Document path: <input type="textbox" name="docPath" value="{{resources.docPath}}" />
+    Document path (add full URL): <input type="textbox" name="docPath" value="{{resources.docPath}}" />
     <br>
     <br />
 

@@ -3,12 +3,13 @@
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
+<a class="btn btn-warning" href='/homepage/'>My homepage</a>
 <a class="btn btn-primary" href='/notes/'>New {{resourceType}}</a>
 <a class="btn btn-primary" href='/edit/note{{resources.id}}'>Edit {{resourceType}}</a>
 <a class="btn btn-primary" href='/delete/note{{resources.id}}'>Delete {{resourceType}}</a></td>
 <!-- Display current note -->
 
-<div>
+<div class=container>
     <table class="table">
         <tr>
             <th>{{resourceType}}: {{resources.title}}</th>
@@ -21,34 +22,33 @@
     </table>
 </div>
 <br>
-<table class="table">
-    <tr>
-        <th>{{resourceType}} Id</th>
-        <th>Flag Urgent?:</th>
-        <th>Flag expiration date:</th>
-        <th>Category:</th>
-        <th>Last Update:</th>
-        <th>Last updated by:</th>
-    </tr>
-    <tr>
-        <td>{{resources.id}}</td>
-        <td>{{resources.setUrgent}}</td>
-        <td>{{resources.flagExpires}}</td>
-        <td>{{resources.category}}</td>
-        <td>{{resources.revisionLog}}</td>
-        <td>{{resources.lastUpdateUser}}</td>
-    </tr>
-</table>
-<table class="table">
-    <tr>
-        <th>Revision Log:</th>
-        <br>
-    </tr>
-    <tr>
-        <td>{{resources.revisionLog}}</td>
-        <br>
-    </tr>
-</table>
+<div class=container>
+    <table class="table">
+        <tr>
+            <th>{{resourceType}} Id</th>
+            <th>Flag Urgent?:</th>
+            <th>Flag expiration date:</th>
+            <th>Category:</th>
+        </tr>
+        <tr>
+            <td>{{resources.id}}</td>
+            <td>{{resources.setUrgent}}</td>
+            <td>{{resources.flagExpires}}</td>
+            <td>{{resources.category}}</td>
+        </tr>
+    </table>
+</div>
+<div class=container>
+    <table class="table">
+        <tr>
+            <th>Revision Log: (last Update: {{resources.updatedAt}})</th>
+            <th></th> <br>
+        </tr>
+        <tr>
+            <td>Revision notes: {{resources.revisionLog}}</td>
+            <td></td> <br>
+        </tr>
+    </table>
 </div>
 
 <!--
@@ -57,23 +57,23 @@
 <br>
 <!--   display current docs associated to the note -->
 <div class=container>
-<h3>Documents associated with this Note:</h3>
-<table class="table">
-    <tr>
-        <th>Document Title</th>
-        <th>Document Id</th>
-    </tr>
-    <tr>
-        {{#each docsThisNote}}
-        <td>{{this.title}}</td>
-        <td>{{this.id}}</td>
-        <td> <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View Doc</a>
-        </td>
-    </tr>
-    {{/each}}
-</table>
-<br>
+    <h3>Documents associated with this Note:</h3>
+    <table class="table">
+        <tr>
+            <th>Document Title</th>
+            <th>Document Id</th>
+            <th></th>
+        </tr>
+        <tr>
+            {{#each docsThisNote}}
+            <td>{{this.title}}</td>
+            <td>{{this.id}}</td>
+            <td> <a class="btn btn-secondary btn-sm" href="/docs/doc{{ this.id }}">View Doc</a></td>
+        </tr>
+        {{/each}}
+    </table>
 </div>
+<br>
 <div class=container>
     <form action="/notes/note{{resources.id}}/client{{thisClient.id}}" method="post">
         <label for="docId">Choose additional document for this Note</label>
