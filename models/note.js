@@ -17,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     setUrgent: DataTypes.BOOLEAN,
     flagExpires: DataTypes.STRING,
     revisionLog: DataTypes.TEXT,
-    lastUpdateUser: DataTypes.STRING,
-    // lastUpdate: DataTypes.DATE,
+    // lastUpdateUser: DataTypes.STRING,
   });
 };
 //add logging field to note and doc models

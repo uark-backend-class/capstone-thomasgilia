@@ -3,37 +3,47 @@ const Doc = require("../db").Doc;
 const Client = require("../db").Client;
 
 exports.newClientPage = (req, res) => {
-  let allClients = Client.findAll();
-  res.render('clientCreate', { action: 'clients', resourceType: "Client", allClients, existingClient: false });
+  res.render('createClient', { existingClient: false });
 };
 
 exports.newClient = async (req, res) => {
   try {
     //always create 'all clients' as client with id 1 if not already created
-    // let allClientsClient1 = {
-    //   id: 1, clientName: "All Clients", ownedByUser: false, hasOwnPriceList: false, linkOwnPriceList: "Not Applicable",
-    //   hasOwnManual: false, linkOwnManual: "Not applicable", revisionLog: ""
-    // };
-    let clientList = Client.findAll();
-    let newClient;
-    // if (clientList.length > 1) {
-      newClient = await Client.create(req.body); //later is replaced with html form i think
-    // } else {
-    //   await Client.create(allClientsClient1);
-    // }
-    // console.log(newClient);
-    res.redirect('/');
+    let allClientsClient1 = {
+      clientName: "All Clients", ownedByUser: false, ownedBy: "N/A", keyClient: false,
+      reqQuote: false, reqQuoteApproval: false, standardDiscount: 0, revisionLog: ""
+    };
+    let thisClient;
+    let allClients = Client.findAll();
+    if (allClients.length > 1) {
+      thisClient = await Client.create(req.body);
+    } else {
+      await Client.create(allClientsClient1);
+      thisClient = await Client.create(req.body);
+    }
+    res.render('viewClient', { thisClient });
   } catch (error) {
     console.log("HERE'S THE ERROR" + error);
   }
 };
 
-exports.getAllClients = async (req, res) => {
+exports.viewClient = async (req, res) => {
+  try {
+    let clientId = req.params.id;
+    let thisClient = await Client.findByPk(clientId);
+    res.render('viewClient', { thisClient });
+  } catch (error) {
+    console.log("HERE'S THE ERROR" + error);
+  }
+};
+
+exports.listClients = async (req, res) => {
   try {
     let allClients = await Client.findAll();
-    res.json(allClients);
+    console.log(allClients);
+    res.render('listClients', { allClients });
   } catch (error) {
-    console.log("HERE/'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR" + error);
   }
 };
 

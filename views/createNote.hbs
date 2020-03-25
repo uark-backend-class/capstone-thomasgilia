@@ -30,7 +30,7 @@
     <input type="radio" id="false" name="setUrgent">
     <label for="false">No</label><br>
   </div>
-  
+
   <div>
     <label for="flagExpires">Flag expiration date:</label>
     <input type="date" id="flagExpires" name="flagExpires" value="01/01/2020">
@@ -44,13 +44,12 @@
     <option value={{this.id}}>{{this.clientName}}</option>
     {{/each}}
   </select>
-
   <br></br>
   <!--dont think i need these two lines-->
   <input type="hidden" name="id" value="{{resources.id}}" />
   {{#if existingResource}}
   <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
-<!--  <input type="hidden" name="clientId" value={{thisClient.id}} />-->
+  <!--  <input type="hidden" name="clientId" value={{thisClient.id}} />-->
   <input type="hidden" name="noteId" value={{thisNote.id}} />
   <button class="btn btn-primary" type="submit">Update {{resourceType}} </button>
   {{else}}

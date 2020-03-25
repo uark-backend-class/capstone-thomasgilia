@@ -8,8 +8,8 @@ module.exports = (sequelize, Sequelize) => {
     category: Sequelize.STRING,
     title: Sequelize.STRING,
     origin: Sequelize.STRING,
-    // lastUpdate: Sequelize.DATE,
     lastUpdateUser: Sequelize.STRING,
     docPath: Sequelize.STRING,
+    revisionLog: Sequelize.TEXT
   });
 };

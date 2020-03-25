@@ -56,9 +56,19 @@ router               //not active yet
 
 router
   .route("/clients")
+  .get(clientController.newClientPage)
   .post(clientController.newClient)    //working in insomnia. ready to connect to view (post method)
-  .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
+// .get(clientController.getAllClients)  //working in insomnia. ready to connect to view.
+// /clients/client{{ this.id }}
 //(not tested after switched order of newClient and getAllClients)
+router
+  .route("/listClients")
+  .get(clientController.listClients)    //working in insomnia. ready to connect to view (post method)
+
+router               //not active yet
+  .route("/clients/client:id")
+  .get(clientController.viewClient);
+
 router
   .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
 //add a get clients route?

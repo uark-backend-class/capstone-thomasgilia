@@ -1,19 +1,19 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\rtf1\fbidis\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
 {\colortbl ;\red0\green0\blue0;\red255\green255\blue255;}
 {\*\generator Riched20 10.0.18362}\viewkind4\uc1 
-\pard\sa160\sl259\slmult0\f0\fs36\lang9 listing and sorting works. going to an individual note works. need to set up docs-\par
-\ul\par
+\pard\ltrpar\sa160\sl259\slmult0\f0\fs36\lang9 listing and sorting works. going to an q q individual note works. need to set up docs-\par
+\ul\lang1033\u8234?C:\\Users\\Gilia\\Desktop\\Corolla.pdf\lang9\par
 game plan for :\par
 \ulnone\fs24 comment out routes/pages farther downstream then build back out\par
 should use upsert when changing associations in a join table (NoteDoc)? or on a regular table (clientId on Note)?\ul\fs36\par
 
-\pard\sl276\slmult1\ulnone\fs22 so i need to grab my params, send to edit/id which then renders the create view\par
+\pard\ltrpar\sl276\slmult1\ulnone\fs22 so i need to grab my params, send to edit/id which then renders the create view\par
 with that current info. then form submits to 3rd/dummy route\par
 including the whole of current info (and new info i guess) then\par
 which takes to the upsert/update functionality which redirects to\par
 plain list view\par
 
-\pard\sa160\sl259\slmult0\ul\fs36 1) see if update works without messing with viewnote\par
+\pard\ltrpar\sa160\sl259\slmult0\ul\fs36 1) see if update works without messing with viewnote\par
 2) move client selection to createnoteordoc\par
 3)reroute to exclude viewnewnote\par
 \par
@@ -22,10 +22,10 @@ TO DO today:\ulnone\par
 hook up buttons within already figured out routes/views\par
 lowerpriority: why does my list view double up results when same view for all docs/docs by client does not?\par
 
-\pard\sa160\sl259\slmult0\qc\fs36\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36\par
 AS OF 3/8:    Requirements for Application\par
 
-\pard\sa160\sl259\slmult0\ul Until end of Sat:\par
+\pard\ltrpar\sa160\sl259\slmult0\ul Until end of Sat:\par
 \ulnone get CRUDS worked out\par
 \fs24 (DONE DOESNT MEAN WORKS IN BROWSER)\fs36\par
 \fs24\tab DONE\tab list all notes\par
@@ -73,39 +73,39 @@ Finalize front end \par
 Add web socket so links always open (if possible)\par
 resume\par
 
-\pard\sa200\sl276\slmult1\ul\fs40 Tweaking/do later:\ulnone\fs24\par
+\pard\ltrpar\sa200\sl276\slmult1\ul\fs40 Tweaking/do later:\ulnone\fs24\par
 -fix date on note form datatype.date and dateonly gave errors so changed to string. also removed <<!--  <input type="hidden" name="lastUpdate" value="\{\{resources.lastUpdate\}\}" />  --> and removed from note model\par
 \fs40 add jquery filtering bootstrap\par
 made a new route/view (or jquery/js fix) to allow clinet to be changed on an already created note.\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\fs22\cell\b M (must)\b0\cell\b S (should)\b0\cell\b C (could)\b0\cell\b W (won't have)\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\fs22\cell\b M (must)\b0\cell\b S (should)\b0\cell\b C (could)\b0\cell\b W (won't have)\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\b Pages/Data\b0\cell\b Login\par
+\pard\intbl\ltrpar\sl259\slmult0\b Pages/Data\b0\cell\b Login\par
 \b0 Login, Request Access\par
 \par
 
-\pard\intbl\sl240\slmult1\b User Workspace\par
+\pard\intbl\ltrpar\sl240\slmult1\b User Workspace\par
 \b0\par
 
-\pard\intbl\sl259\slmult0\b List CLients /Find Client\b0\par
+\pard\intbl\ltrpar\sl259\slmult0\b List CLients /Find Client\b0\par
 
-\pard\intbl\sl240\slmult1 List to/Search for specific clients then route to their page\par
+\pard\intbl\ltrpar\sl240\slmult1 List to/Search for specific clients then route to their page\par
 \par
 \b Client Pages\par
 \b0 Client specific pages with table of information/notes/links in a user friendly format. Client 'owner' listed\cell 
-\pard\intbl\sl259\slmult0\b General Info\par
+\pard\intbl\ltrpar\sl259\slmult0\b General Info\par
 \b0 Gen info page with links to internal & external general sources. Link 'owner' listed\cell 
-\pard\intbl\sl240\slmult1\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Authorizations\par
+\pard\intbl\ltrpar\sl240\slmult1\b Authorizations\par
 \b0 See auth table below for details\cell Level 1 - Read\par
 Level 3 - All Read/Write\par
 Level 5 - Admin\cell 
-\pard\intbl\sl259\slmult0 Level 2 - All Read/Specific Write\cell 
-\pard\intbl\sl240\slmult1 Level 4 - Managers access "secret" section\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0 Level 2 - All Read/Specific Write\cell 
+\pard\intbl\ltrpar\sl240\slmult1 Level 4 - Managers access "secret" section\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Supporting Documents \b0 (excel, word, pdf, outlook) documents that record and support the notes as well as clients' own documents\cell Save link to internal supporting documents saved in existing/simple folders\par
+\pard\intbl\ltrpar\sl240\slmult1\b Supporting Documents \b0 (excel, word, pdf, outlook) documents that record and support the notes as well as clients' own documents\cell Save link to internal supporting documents saved in existing/simple folders\par
 \par
 Links and access info to files held on client web pages etc.\cell Semi-automated link creation to add support documents to existing folders\par
 \par
@@ -116,8 +116,8 @@ Protect those files from change/deletion unless user has write access to that cl
 \par
 --OR-- bridge to existing infrastructure that performs these processes\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Additional/General Features\b0\cell Static fields with dynamic content\cell 
-\pard\intbl\sl259\slmult0 Dynamic fields with dynamic content\par
+\pard\intbl\ltrpar\sl240\slmult1\b Additional/General Features\b0\cell Static fields with dynamic content\cell 
+\pard\intbl\ltrpar\sl259\slmult0 Dynamic fields with dynamic content\par
 \par
 Spell check functionality on notes\par
 \par
@@ -127,74 +127,74 @@ Ability to collapse fields to allow view of item of interest\par
 \par
 client tables have 'action' column in addition to 'notes'/data columns. Ex. if choose protocol, can link/go directly to Zope but also have specific notes available\par
 \cell 
-\pard\intbl\sl240\slmult1 Users can do a 'pull request' so 'owners' can review before changes are applied to tables or support documents. Changes to be approved by Level 2/3 access. \par
+\pard\intbl\ltrpar\sl240\slmult1 Users can do a 'pull request' so 'owners' can review before changes are applied to tables or support documents. Changes to be approved by Level 2/3 access. \par
 Auto-email owner to trigger review. \par
 \par
 User has a 'homepage' i.e. view their starred items/the clients they own for quick access\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Log/Data tracking\b0\cell Revision history (manual input of what changed) for each client or general use table\par
+\pard\intbl\ltrpar\sl240\slmult1\b Log/Data tracking\b0\cell Revision history (manual input of what changed) for each client or general use table\par
 \cell 
-\pard\intbl\sl259\slmult0 Automatic log of user/time of changes for each file and each line of tables\cell 
-\pard\intbl\sl240\slmult1 Detailed version control\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0 Automatic log of user/time of changes for each file and each line of tables\cell 
+\pard\intbl\ltrpar\sl240\slmult1 Detailed version control\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Search\b0\cell\cell\cell Robust search function to search all visible documents for keywords \par
+\pard\intbl\ltrpar\sl240\slmult1\b Search\b0\cell\cell\cell Robust search function to search all visible documents for keywords \par
 \par
 Robust search function to search file names of supporting documents\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Security\b0\cell Hosted on company servers and access based on registered/approved user\cell Periodic data backup in 3\super rd\nosupersub  location\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\b Security\b0\cell Hosted on company servers and access based on registered/approved user\cell Periodic data backup in 3\super rd\nosupersub  location\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Authorization levels\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Authorization levels\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b\fs22 Auth level\b0\cell\b Who can access\b0\cell\b What can access\b0\cell\b Access details\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b\fs22 Auth level\b0\cell\b Who can access\b0\cell\b What can access\b0\cell\b Access details\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 1 - Read only\b0\cell All registered Users\cell All visible\cell Can see visible and links\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 1 - Read only\b0\cell All registered Users\cell All visible\cell Can see visible and links\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 2 - Read/Write Specific\b0\cell Specific client 'owners'\cell Level 1 + Client 'owners' can write their clients only\cell Can see background for their clients\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 2 - Read/Write Specific\b0\cell Specific client 'owners'\cell Level 1 + Client 'owners' can write their clients only\cell Can see background for their clients\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 3 - Read/Write All\b0\cell Senior CSS and Managers\cell Level 1 + All write\cell write in visible and background, upload docs, etc. except secret\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 3 - Read/Write All\b0\cell Senior CSS and Managers\cell Level 1 + All write\cell write in visible and background, upload docs, etc. except secret\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 4 - Manager\b0\cell Managers\cell Level 1 + Level 3 + read/write secret\cell Secret section - per client to hold long term intelligence notes/documents not ready for general knowledge\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 4 - Manager\b0\cell Managers\cell Level 1 + Level 3 + read/write secret\cell Secret section - per client to hold long term intelligence notes/documents not ready for general knowledge\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 5 - Admin\b0\cell Designated admins\cell Level 1 + Level 2 + Level 3 + User list\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\b Level 5 - Admin\b0\cell Designated admins\cell Level 1 + Level 2 + Level 3 + User list\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 \par
 \par
 \par
 
-\pard\sa160\sl259\slmult0\qc\fs36\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36\par
 \par
 Requirements for Application\fs40\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\fs22\cell\b M (must)\b0\cell\b S (should)\b0\cell\b C (could)\b0\cell\b W (won't have)\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\fs22\cell\b M (must)\b0\cell\b S (should)\b0\cell\b C (could)\b0\cell\b W (won't have)\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\b Pages/Data\b0\cell\b Login\par
+\pard\intbl\ltrpar\sl259\slmult0\b Pages/Data\b0\cell\b Login\par
 \b0 Login, Request Access\par
 \par
 \b General Info\par
 \b0 Gen info page with links to internal & external general sources. Link 'owner' listed\par
 
-\pard\intbl\sl240\slmult1\par
+\pard\intbl\ltrpar\sl240\slmult1\par
 
-\pard\intbl\sl259\slmult0\b Find Client\b0\par
+\pard\intbl\ltrpar\sl259\slmult0\b Find Client\b0\par
 
-\pard\intbl\sl240\slmult1 List to/Search for specific clients then route to their page\par
+\pard\intbl\ltrpar\sl240\slmult1 List to/Search for specific clients then route to their page\par
 \par
 \b Client Pages\par
 \b0 Client specific pages with table of information/notes/links in a user friendly format. Client 'owner' listed\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Authorizations\par
+\pard\intbl\ltrpar\sl240\slmult1\b Authorizations\par
 \b0 See auth table below for details\cell Level 1 - Read\par
 Level 3 - All Read/Write\par
 Level 5 - Admin\cell 
-\pard\intbl\sl259\slmult0 Level 2 - All Read/Specific Write\cell 
-\pard\intbl\sl240\slmult1 Level 4 - Managers access "secret" section\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0 Level 2 - All Read/Specific Write\cell 
+\pard\intbl\ltrpar\sl240\slmult1 Level 4 - Managers access "secret" section\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Supporting Documents \b0 (excel, word, pdf, outlook) documents that record and support the notes as well as clients' own documents\cell Save link to internal supporting documents saved in existing/simple folders\par
+\pard\intbl\ltrpar\sl240\slmult1\b Supporting Documents \b0 (excel, word, pdf, outlook) documents that record and support the notes as well as clients' own documents\cell Save link to internal supporting documents saved in existing/simple folders\par
 \par
 Links and access info to files held on client web pages etc.\cell Semi-automated link creation to add support documents to existing folders\par
 \par
@@ -205,8 +205,8 @@ Protect those files from change/deletion unless user has write access to that cl
 \par
 --OR-- bridge to existing infrastructure that performs these processes\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Additional/General Features\b0\cell Static fields with dynamic content\cell 
-\pard\intbl\sl259\slmult0 Dynamic fields with dynamic content\par
+\pard\intbl\ltrpar\sl240\slmult1\b Additional/General Features\b0\cell Static fields with dynamic content\cell 
+\pard\intbl\ltrpar\sl259\slmult0 Dynamic fields with dynamic content\par
 \par
 Spell check functionality on notes\par
 \par
@@ -216,132 +216,132 @@ Ability to collapse fields to allow view of item of interest\par
 \par
 client tables have 'action' column in addition to 'notes'/data columns. Ex. if choose protocol, can link/go directly to Zope but also have specific notes available\par
 \cell 
-\pard\intbl\sl240\slmult1 Users can do a 'pull request' so 'owners' can review before changes are applied to tables or support documents. Changes to be approved by Level 2/3 access. \par
+\pard\intbl\ltrpar\sl240\slmult1 Users can do a 'pull request' so 'owners' can review before changes are applied to tables or support documents. Changes to be approved by Level 2/3 access. \par
 Auto-email owner to trigger review. \par
 \par
 User has a 'homepage' i.e. view their starred items/the clients they own for quick access\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Log/Data tracking\b0\cell Revision history (manual input of what changed) for each client or general use table\par
+\pard\intbl\ltrpar\sl240\slmult1\b Log/Data tracking\b0\cell Revision history (manual input of what changed) for each client or general use table\par
 \cell 
-\pard\intbl\sl259\slmult0 Automatic log of user/time of changes for each file and each line of tables\cell 
-\pard\intbl\sl240\slmult1 Detailed version control\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0 Automatic log of user/time of changes for each file and each line of tables\cell 
+\pard\intbl\ltrpar\sl240\slmult1 Detailed version control\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Search\b0\cell\cell\cell Robust search function to search all visible documents for keywords \par
+\pard\intbl\ltrpar\sl240\slmult1\b Search\b0\cell\cell\cell Robust search function to search all visible documents for keywords \par
 \par
 Robust search function to search file names of supporting documents\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx2592\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx5184\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx7776\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx10368\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Security\b0\cell Hosted on company servers and access based on registered/approved user\cell Periodic data backup in 3\super rd\nosupersub  location\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\b Security\b0\cell Hosted on company servers and access based on registered/approved user\cell Periodic data backup in 3\super rd\nosupersub  location\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Authorization levels\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Authorization levels\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b\fs22 Auth level\b0\cell\b Who can access\b0\cell\b What can access\b0\cell\b Access details\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b\fs22 Auth level\b0\cell\b Who can access\b0\cell\b What can access\b0\cell\b Access details\b0\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 1 - Read only\b0\cell All registered Users\cell All visible\cell Can see visible and links\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 1 - Read only\b0\cell All registered Users\cell All visible\cell Can see visible and links\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 2 - Read/Write Specific\b0\cell Specific client 'owners'\cell Level 1 + Client 'owners' can write their clients only\cell Can see background for their clients\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 2 - Read/Write Specific\b0\cell Specific client 'owners'\cell Level 1 + Client 'owners' can write their clients only\cell Can see background for their clients\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 3 - Read/Write All\b0\cell Senior CSS and Managers\cell Level 1 + All write\cell write in visible and background, upload docs, etc. except secret\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 3 - Read/Write All\b0\cell Senior CSS and Managers\cell Level 1 + All write\cell write in visible and background, upload docs, etc. except secret\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 4 - Manager\b0\cell Managers\cell Level 1 + Level 3 + read/write secret\cell Secret section - per client to hold long term intelligence notes/documents not ready for general knowledge\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Level 4 - Manager\b0\cell Managers\cell Level 1 + Level 3 + read/write secret\cell Secret section - per client to hold long term intelligence notes/documents not ready for general knowledge\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Level 5 - Admin\b0\cell Designated admins\cell Level 1 + Level 2 + Level 3 + User list\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\b Level 5 - Admin\b0\cell Designated admins\cell Level 1 + Level 2 + Level 3 + User list\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 \par
 \par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Routes\fs22\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Routes\fs22\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\b /\b0\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0\b /\b0\cell 
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b /login\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b /login\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b /register\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b /register\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b /geninfo\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b /geninfo\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b /clients\b0\cell\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\b /clients\b0\cell\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Auth Controller\fs22\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Auth Controller\fs22\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b auth-controller\par
+\pard\intbl\ltrpar\sl240\slmult1\b auth-controller\par
 
-\pard\intbl\sl259\slmult0\b0 handles authorization processes\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0\b0 handles authorization processes\cell 
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\b notes-controller\b0\par
+\pard\intbl\ltrpar\sl259\slmult0\b notes-controller\b0\par
 handles data input into tables\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b doc-controller\par
+\pard\intbl\ltrpar\sl240\slmult1\b doc-controller\par
 \b0 handles support document access and upload\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Notes Controller\fs22\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Notes Controller\fs22\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0\cell 
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Document Controller\fs22\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Document Controller\fs22\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0\cell 
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 
-\pard\sa160\sl259\slmult0\qc\fs36 Menus\fs22\par
+\pard\ltrpar\sa160\sl259\slmult0\qc\fs36 Menus\fs22\par
 \trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\b Nav Bar\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\b Nav Bar\b0\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl259\slmult0\cell 
-\pard\intbl\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl259\slmult0\cell 
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row\trowd\trgaph108\trrh1\trpaddl108\trpaddr108\trpaddfl3\trpaddfr3
 \clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx3240\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx6480\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx9720\clcfpat1\clcbpat2\clbrdrl\brdrw8\brdrs\brdrcf1\clbrdrt\brdrw8\brdrs\brdrcf1\clbrdrr\brdrw8\brdrs\brdrcf1\clbrdrb\brdrw8\brdrs\brdrcf1 \cellx12960 
-\pard\intbl\sl240\slmult1\cell\cell\cell\cell\row 
-\pard\sa160\sl259\slmult0\par
+\pard\intbl\ltrpar\sl240\slmult1\cell\cell\cell\cell\row 
+\pard\ltrpar\sa160\sl259\slmult0\par
 \par
 \par
 }

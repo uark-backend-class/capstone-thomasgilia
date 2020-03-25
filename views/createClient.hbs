@@ -1,0 +1,54 @@
+<h1>New Client</h1>
+
+<form action="/clients" method="post">
+    Client Name: <input type="text" name="clientName" value="{{thisClient.clientName}}" />
+    <br>
+    <br />
+
+    <div>
+        <label for="ownedByUser">Has owner?</label>
+        <select name="ownedByUser" id="ownedByUser">
+            <option selected></option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br>
+        Owned By: <input type="text" name="ownedBy" value="{{thisClient.ownedBy}}" />
+        <br>
+        <br />
+
+    </div>
+    <label for="keyClient">Key Client?</label>
+    <select name="keyClient" id="keyClient">
+        <option selected></option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+
+    <br>
+    <br />
+
+    <label for="reqQuote">Requires Quote?</label>
+    <select name="reqQuote" id="reqQuote">
+        <option selected></option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br>
+    <br />
+    <label for="reqQuoteApproval">Requires Quote Approval?</label>
+    <select name="reqQuoteApproval" id="reqQuoteApproval">
+        <option selected></option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br>
+    <br />
+    Standard Discount (%): <input type="integer" name="standardDiscount" value="{{thisClient.revisionLog}}" />
+    <br>
+    <br />
+    Revision log: <input type="textbox" name="revisionLog" value="{{thisClient.revisionLog}}" />
+    <br>
+    <br />
+    <button type="submit">Create Client</button>
+</form>

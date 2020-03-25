@@ -7,18 +7,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     clientName: Sequelize.STRING,
     ownedByUser: Sequelize.BOOLEAN,
-    hasOwnPriceList: Sequelize.BOOLEAN,
-    linkOwnPriceList: Sequelize.STRING,
-    hasOwnManual: Sequelize.BOOLEAN,
-    linkOwnManual: Sequelize.STRING,
-    // hasOwnSOP: Sequelize.BOOLEAN,
-    // linkOwnSOP: Sequelize.STRING,
-    // hasFlag: Sequelize.BOOLEAN,
-    // linkFlag: Sequelize.STRING,
-    // revisionLog: Sequelize.STRING(1234),
-    // lastUpdateUser: Sequelize.STRING,
-    // lastUpdate: Sequelize.DATETIME
+    ownedBy: Sequelize.STRING,
+    keyClient: Sequelize.BOOLEAN,
+    reqQuote: Sequelize.BOOLEAN,
+    reqQuoteApproval: Sequelize.BOOLEAN,
+    standardDiscount: Sequelize.INTEGER,
+    revisionLog: Sequelize.TEXT
   });
 };
 
-//update flags on notes and just have boolean above tell user to go to notes flags if it is true?

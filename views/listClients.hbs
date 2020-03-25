@@ -1,0 +1,58 @@
+<!--listing and sorting works. going to an individual note works. need to set up docs-->
+<!DOCTYPE html>
+<html lang="en">
+<h1>List of all Clients</h1>
+
+<head>
+    <title>List Clients</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<a class="btn btn-warning" href='/homepage/'>My homepage</a>
+<a class="btn btn-primary" href='/clients/'>New Client</a>
+<br></br>
+<div class="container">
+    <p>Search the table:</p>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Client Id</th>
+                <th>Client Owner</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            {{#each allClients }}
+            <tr>
+                <td>{{this.clientName}}</td>
+                <td>{{this.id}}</td>
+                <td>{{this.ownedBy}}</td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" href="/clients/client{{ this.id }}">View Client</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>

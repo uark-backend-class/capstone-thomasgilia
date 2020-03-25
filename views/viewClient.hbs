@@ -1,0 +1,40 @@
+<h1>Client: {{thisClient.clientName}}</h1>
+<a class="btn btn-warning" href='/homepage/'>My homepage</a>
+ <a class="btn btn-primary" href='/listClients/'>Clients</a>
+<br>
+</br>
+<div class=container>
+    <table class="table">
+        <tr>
+            <th>Client Id:</th>
+            <th>Has Owner?:</th>
+            <th>Owned By:</th>
+            <th>Key Client?:</th>
+            <th>Requires Quote?:</th>
+            <th>Requires Quote Approval?:</th>
+            <th>Standard Discount(%):</th>
+        </tr>
+        <tr>
+            <td>{{thisClient.id}}</td>
+            <td>{{thisClient.ownedByUser}}</td>
+            <td>{{thisClient.ownedBy}}</td>
+            <td>{{thisClient.keyClient}}</td>
+            <td>{{thisClient.reqQuote}}</td>
+            <td>{{thisClient.reqQuoteApproval}}</td>
+            <td>{{thisClient.standardDiscount}}</td>
+        </tr>
+    </table>
+</div>
+<div class=container>
+    <table class="table">
+        <tr>
+            <th>Revision Log: <span style="color:blue">[last Update: {{thisClient.updatedAt}}]</span></th>
+            <th></th> <br>
+        </tr>
+        <tr>
+            <td>{{resources.revisionLog}}</td>
+            <td></td> <br>
+        </tr>
+    </table>
+</div>
+<br>
