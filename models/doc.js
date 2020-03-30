@@ -5,11 +5,10 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    category: Sequelize.STRING,
-    title: Sequelize.STRING,
-    origin: Sequelize.STRING,
-    lastUpdateUser: Sequelize.STRING,
-    docPath: Sequelize.STRING,
-    revisionLog: Sequelize.TEXT
+    category: { type: Sequelize.STRING, allowNull: false },
+    title: { type: Sequelize.STRING, allowNull: false },
+    origin: { type: Sequelize.STRING, allowNull: false },
+    docPath: { type: Sequelize.STRING, allowNull: false },
+    
   });
 };

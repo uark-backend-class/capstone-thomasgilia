@@ -5,9 +5,9 @@ const Client = require("../db").Client;
 //can combine/but on notedoc page later if want
 //works - just brings up the form with a get. then the next function will populate and post to same route
 exports.newResource = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   let allClients = await Client.findAll();
-  console.log(allClients);
+  // console.log(allClients);
   res.render('createNote', {
     action: 'notes', buttonText: 'Create Note', resourceType: "Note", allClients,
     isNote: true, existingResource: false
@@ -144,8 +144,6 @@ exports.updateNote = async (req, res) => {
   }
 };
 
-
-
 exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a time
   //coming from  with docId, noteId (and on params), docAssociated hidden
   try {
@@ -165,7 +163,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       tempDocIdArray.push(tempDocId);
     }
     let docIdArray = [...new Set(tempDocIdArray)];   //getting rid of duplicates
-    console.log(docIdArray);
+    // console.log(docIdArray);
     let thisNote = await Note.findByPk(noteId);
     await thisNote.setDocs(docIdArray);  //adding all old and new docs to note. if not in array, will be removed.
 
@@ -192,6 +190,14 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       let doc = await Doc.findByPk(thisDocId);
       allDocsThisClient.push(doc);
     }
+    //need notes this doc
+    let thisDoc = await Doc.findByPk(docId, { include: [Note] });
+    let notesThisDoc = await thisDoc.getNotes();
+    let tempNoteIdArray = [];
+    for (let note of notesThisDoc) {
+      tempNoteIdArray.push(note.id);
+    }
+    console.log(tempNoteIdArray);
     res.render("viewNote", {
       resources, resourceType: "Note", success: "Association processed", allDocsThisClient,
       thisClient, docsThisNote
@@ -203,7 +209,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
 
 exports.deleteNote = async (req, res) => {
   try {
-    console.log(req.params);
+    // console.log(req.params);
     const noteId = req.params.id;
     const obsoleteNote = await Note.findByPk(noteId);
     let title = obsoleteNote.title;

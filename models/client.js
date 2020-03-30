@@ -5,14 +5,14 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    clientName: Sequelize.STRING,
-    ownedByUser: Sequelize.BOOLEAN,
-    ownedBy: Sequelize.STRING,
-    keyClient: Sequelize.BOOLEAN,
-    reqQuote: Sequelize.BOOLEAN,
-    reqQuoteApproval: Sequelize.BOOLEAN,
-    standardDiscount: Sequelize.INTEGER,
-    revisionLog: Sequelize.TEXT
+    clientName: { type: Sequelize.STRING, allowNull: false },
+    ownedByUser: { type: Sequelize.BOOLEAN, allowNull: false },
+    ownedBy: { type: Sequelize.STRING, allowNull: false },
+    keyClient: { type: Sequelize.BOOLEAN, allowNull: false },
+    reqQuote: { type: Sequelize.BOOLEAN, allowNull: false },
+    reqQuoteApproval: { type: Sequelize.BOOLEAN, allowNull: false },
+    standardDiscount: { type: Sequelize.INTEGER, allowNull: false },
+    revisionLog: { type: Sequelize.TEXT, allowNull: false }
   });
 };
 

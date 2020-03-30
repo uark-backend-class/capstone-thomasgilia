@@ -4,23 +4,27 @@
 <body>
   <div class="container">
     <h1>Anna's Homepage</h1>
-    <h4>My clients:  Acme Inc., Lucinda's Beauty</h4>
+  <br>
+    <h5>My clients: Acme Inc., Lucinda's Beauty</h5>
     <br>
     </br>
-    <a class="btn btn-primary" href='/listClients/'>All Clients</a>
-    <br>
-    </br>
-  </div>  
+  </div>
   <div class=container>
     <h3>Access Resources:</h3>
+    <br>
+    <a class="btn btn-primary" href='/listClients/'>All Clients</a>
+    <br></br>
     <form action="/listAllResources" method="post">
-      <input type="radio" id="Note" name="resourceType" value="Note">
-      <label for="Note">Note   </label>
-      <input type="radio" id="Document" name="resourceType" value="Document">
-      <label for="Document">Document   </label>
-      <button class="btn btn-primary" type="submit">List all</button>
+      <input type="hidden" id="Note" name="resourceType" value="Note">
+      <button class="btn btn-primary" type="submit">All Notes</button>
+    </form>
+    <br>
+    <form action="/listAllResources" method="post">
+      <input type="hidden" id="Document" name="resourceType" value="Document">
+      <button class="btn btn-primary" type="submit">All Documents</button>
     </form>
     <br>
 </body>
 </div>
+
 </html>

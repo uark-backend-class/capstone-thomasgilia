@@ -31,13 +31,15 @@ router
   .post(docController.updateDoc);
 
 router.route("/notes/note:noteId/client:clientId")
-  .post(noteController.addDocToNote);
+  .post(noteController.addDocToNote);//////****************** */
 router.route("/docs/note:noteId/client:clientId")
   .post(docController.deleteDoc);
 
 router
   .route("/docs")
   .post(docController.newDoc)         //working in insomnia. 
+
+router.route("/documents").get(docController.rerouteNewDoc)
 
 router
   .route("/docs/note:id")             //can change back to get?

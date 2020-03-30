@@ -3,7 +3,7 @@
 //create relationships between tables/models
 
 const Sequelize = require("sequelize");
-// const { Sequelize,DataTypes } = require("sequelize");
+// const { Sequelize,Sequelize } = require("sequelize");
 //added datatype import per documentation - belongs in db.js only? doesn't matter?
 const UserModel = require("./models/user");
 const WorkspaceModel = require("./models/workspace");
@@ -28,7 +28,7 @@ Client.belongsToMany(User, { through: "UserClient", foreignKey: "ownerId" });
 Client.hasMany(Note);     //notes table has fK = clientId
 Note.belongsTo(Client);
 
-User.hasOne(Workspace);     
+User.hasOne(Workspace);
 Workspace.belongsTo(User);    //workspace table has fK = userId
 
 //standard
@@ -43,6 +43,4 @@ module.exports = {
   Note,
   Doc,
   Client,
-  User,
-  Workspace
 };

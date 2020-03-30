@@ -14,11 +14,12 @@ exports.newClient = async (req, res) => {
       reqQuote: false, reqQuoteApproval: false, standardDiscount: 0, revisionLog: ""
     };
     let thisClient;
-    let allClients = Client.findAll();
-    if (allClients.length > 1) {
+    let allClients = await Client.findAll();
+    // console.log(allClients.length);
+    if (allClients.length <= 1) {
+      await Client.create(allClientsClient1);
       thisClient = await Client.create(req.body);
     } else {
-      await Client.create(allClientsClient1);
       thisClient = await Client.create(req.body);
     }
     res.render('viewClient', { thisClient });

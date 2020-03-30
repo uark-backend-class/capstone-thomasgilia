@@ -3,7 +3,7 @@
     {{resourceType}} with no associated Client
     {{/if}}
 </h1>
-<a class="btn btn-warning" href='/homepage/'>My homepage</a>
+<a class="btn btn-warning" href='/homepage/'>My homepage</a>    
 <a class="btn btn-primary" href='/notes/'>New {{resourceType}}</a>
 <a class="btn btn-primary" href='/edit/note{{resources.id}}'>Edit {{resourceType}}</a>
 <a class="btn btn-primary" href='/delete/note{{resources.id}}'>Delete {{resourceType}}</a></td>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td>{{resources.id}}</td>
-            <td>{{resources.setUrgent}}</td>
+            <td>{{#if resources.setUrgent}}Yes{{else}}No{{/if}}</td>
             <td>{{resources.flagExpires}}</td>
             <td>{{resources.category}}</td>
         </tr>

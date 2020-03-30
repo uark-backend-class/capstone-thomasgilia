@@ -16,11 +16,11 @@
         </tr>
         <tr>
             <td>{{thisClient.id}}</td>
-            <td>{{thisClient.ownedByUser}}</td>
-            <td>{{thisClient.ownedBy}}</td>
-            <td>{{thisClient.keyClient}}</td>
-            <td>{{thisClient.reqQuote}}</td>
-            <td>{{thisClient.reqQuoteApproval}}</td>
+            <td>{{#if thisClient.ownedByUser}}Yes{{else}}No{{/if}}</td>
+            <td>{{#if thisClient.ownedByUser}}{{thisClient.ownedBy}}{{else}}N/A{{/if}}</td>
+            <td>{{#if thisClient.keyClient}}Yes{{else}}No{{/if}}</td>
+            <td>{{#if thisClient.reqQuote}}Yes{{else}}No{{/if}}</td>
+            <td>{{#if thisClient.reqQuoteApproval}}Yes{{else}}No{{/if}}</td>
             <td>{{thisClient.standardDiscount}}</td>
         </tr>
     </table>
@@ -32,7 +32,7 @@
             <th></th> <br>
         </tr>
         <tr>
-            <td>{{resources.revisionLog}}</td>
+            <td>{{thisClient.revisionLog}}</td>
             <td></td> <br>
         </tr>
     </table>
