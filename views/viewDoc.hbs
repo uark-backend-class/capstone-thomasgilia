@@ -4,8 +4,7 @@
     {{/if}}
 </h1>
 <a class="btn btn-warning" href='/homepage/'>My homepage</a>
-<a class="btn btn-primary" href='/docs/note{{noteId}}'>New Document</a>
-<!--<a class="btn btn-primary" href='/docs/note{{thisNote.id}}'>New {{resourceType}}</a>-->
+<a class="btn btn-primary" href='/docs/'>New Document</a>
 <a class="btn btn-primary" href='/edit/doc{{resources.id}}'>Edit {{resourceType}}</a>
 <br>
 <br></br>
@@ -58,16 +57,3 @@
         <br>
     </form>
 </div>
-<!--<div class=container>
-    <form action="/docs/note{{thisNote.id}}/client{{thisClient.id}}" method="post">
-        <label for="obsoleteDocId">Delete this Document</label>
-        <select name="obsoleteDocId" id="obsoleteDocId">
-            <option value={{resources.id}}>{{resources.title}} (Doc Id {{resources.id}})</option>
-        </select>
-        <input type="hidden" name="thisNote" value="{{thisNote}}" />
-        <input type="hidden" name="noteId" value="{{resources.id}}" />
-        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
-        <button type="submit">Delete Document</button>
-        <br>
-    </form>
-</div>-->

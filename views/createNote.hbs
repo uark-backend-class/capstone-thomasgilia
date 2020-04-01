@@ -46,11 +46,9 @@
     {{/each}}
   </select>
   <br></br>
-  <!--dont think i need these two lines-->
   <input type="hidden" name="id" value="{{resources.id}}" />
   {{#if existingResource}}
   <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
-  <!--  <input type="hidden" name="clientId" value={{thisClient.id}} />-->
   <input type="hidden" name="noteId" value={{thisNote.id}} />
   <button class="btn btn-primary" type="submit">Update {{resourceType}} </button>
   {{else}}
