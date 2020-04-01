@@ -34,9 +34,9 @@ exports.newDoc = async (req, res) => {
     let thisNote = await Note.findByPk(noteId);    //updated note
     let thisDoc = await Doc.findByPk(docId, { include: [Note] });
     let notesThisDoc = await thisDoc.getNotes();
-   
+
     res.render("viewDoc", {
-      resourceType: "Document", existingResource: false, resources, thisClient, thisNote,
+      resourceType: "Document", existingResource: false, resources, thisClient, thisNote, noteId,
       notesThisDoc
     });
   } catch (error) {
@@ -64,15 +64,14 @@ exports.viewDoc = async (req, res) => {
     // if (notesThisDoc.length > 1) {
     //   console.log("additional notes associated to the doc")
     // } else { thisNote = docNotes[0] }
-    let thisNote = await
-    for (let note of notesThisDoc) {  
+    // let thisNote = await
+    for (let note of notesThisDoc) {
       clientId = note.clientId;
     }
     let thisClient = await Client.findByPk(clientId);
     let allClients = await Client.findAll();
     res.render("viewDoc", {
-      resourceType: "Document", existingResource: true, resources, allClients, thisClient, notesThisDoc,
-      thisNote
+      resourceType: "Document", existingResource: true, resources, allClients, thisClient, notesThisDoc
     });
     // res.redirect('/');
   } catch (error) {
@@ -94,8 +93,8 @@ exports.deleteDoc = async (req, res) => {
     let thisClient = await Client.findByPk(clientId);   //this particular client
 
     const noteId = req.body.noteId;
-    let resources = await Note.findByPk(noteId, { include: [Doc] });  //updated note
-    let docsThisNote = await resources.getDocs();  //docs for updated note
+    let resourcesTemp = await Note.findByPk(noteId, { include: [Doc] });  //updated note
+    let docsThisNote = await resourcesTemp.getDocs();  //docs for updated note
 
     let notesThisClient = await thisClient.getNotes();
     //--get find each note including docs then pull docs, adding all to an array
@@ -115,6 +114,7 @@ exports.deleteDoc = async (req, res) => {
       let doc = await Doc.findByPk(thisDocId);
       allDocsThisClient.push(doc);
     }
+    let resources = await Note.findByPk(noteId);  //updated note
     res.render("viewNote", {
       resourceType: "Note", existingResource: true, resources, allClients, thisClient, docsThisNote, allDocsThisClient
     });
@@ -126,22 +126,24 @@ exports.deleteDoc = async (req, res) => {
 exports.editDoc = async (req, res) => {
   try {
     let docId = req.params.id;
-    let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
-    let notesThisDoc = await resources.getNotes();
+    let tempResources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
+    let notesThisDoc = await tempResources.getNotes();
+    let resources = await Doc.findByPk(docId);
     // let thisNote;
     let clientId;
     // if (docNotes.length > 1) {
     //   console.log("additional notes associated to the doc")
     // } else { thisNote = docNotes[0] }
-    // for (let note of docNotes) {
-    //   clientId = note.clientId;
-    // }
+    for (let note of notesThisDoc) {
+      clientId = note.clientId;
+      noteId = note.id;
+    }
     let thisClient = await Client.findByPk(clientId);
     if (!resources) {
       res.status(404).send();
       return;
     }
-    res.render('createDoc', { resourceType: "Document", resources, existingResource: true, thisClient, notesThisDoc });
+    res.render('createDoc', { resourceType: "Document", resources, existingResource: true, thisClient, notesThisDoc, noteId });
   } catch (error) {
     console.log("HERE'S THE ERROR IN EDITDOC: " + error);
   }
@@ -152,21 +154,21 @@ exports.updateDoc = async (req, res) => {
   try {
     let docId = req.body.id;
     await Doc.upsert(req.body);          //returns false if updated, true if created
-    let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
-    let docNotes = await resources.getNotes();
-    let thisNote;
+    let tempResources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
+    let notesThisDoc = await tempResources.getNotes();
+    // let thisNote;
     let clientId;
-    if (docNotes.length > 1) {
-      console.log("additional notes associated to the doc")
-    } else { thisNote = docNotes[0] }
-    for (let note of docNotes) {
+    let noteId;
+    for (let note of notesThisDoc) {
       clientId = note.clientId;
+      noteId = note.id;
     }
+    console.log("clinetid" + clientId + "noteid" + noteId);
     let thisClient = await Client.findByPk(clientId);
     let allClients = await Client.findAll();
-
+    let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
     res.render("viewDoc", {
-      resourceType: "Document", existingResource: true, resources, allClients, thisClient, thisNote
+      resourceType: "Document", existingResource: true, resources, allClients, thisClient, notesThisDoc, noteId
     });
     //was trying to fix...
     // let docId = req.body.id;

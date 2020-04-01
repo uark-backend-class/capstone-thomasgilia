@@ -38,11 +38,11 @@
     <input type="hidden" name="notesThisDoc" value="{{notesThisDoc}}" />
     <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
     <input type="hidden" name="clientId" value={{thisClient.id}} />
-    <input type="hidden" name="noteId" value={{thisNote.id}} />
+    <input type="hidden" name="noteId" value={{noteId}} />
     <button class="btn btn-primary" type="submit">Update {{resourceType}} </button>
     {{else}}
     <input type="hidden" name="clientId" value={{thisClient.id}} />
-    <input type="hidden" name="noteId" value={{thisNote.id}} />
+    <input type="hidden" name="noteId" value={{noteId}} />
     <input type="hidden" name="lastUpdateUser" value="" />
     <button class="btn btn-primary" type="submit">Create {{resourceType}} </button>
     {{/if}}

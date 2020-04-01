@@ -218,9 +218,9 @@ exports.deleteNote = async (req, res) => {
       return;
     }
     await obsoleteNote.destroy();
-    console.log(`Note "${title}" was deleted`);   //"Note \'" + title + "\'" + " was deleted");
+    console.log(`Note "${title}" was deleted`);  
     let resources = await Note.findAll();
-    res.render('listNotesOrDocs', { resourceType: "Note", resources});
+    res.render('listNotesOrDocs', { resourceType: "Note", resources, isNote: true});
     // res.redirect('/listAllResources');
   } catch (error) {
     console.log("HERE'S THE ERROR IN DELETENOTE: " + error);
