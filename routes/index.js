@@ -31,15 +31,16 @@ router
   .post(docController.updateDoc);
 
 router.route("/notes/note:noteId/client:clientId")
-  .post(noteController.addDocToNote);//////****************** */
+  .post(noteController.addDocToNote);
 router.route("/docs/note:noteId/client:clientId")
   .post(docController.deleteDoc);
 
 router
   .route("/docs")
   .post(docController.newDoc)         //working in insomnia. 
+  .get(docController.rerouteNewDoc);
 
-router.route("/documents").get(docController.rerouteNewDoc)
+router.route("/documents").get(docController.rerouteNewDoc);  //////****************** */
 
 router
   .route("/docs/note:id")             //can change back to get?
@@ -71,16 +72,16 @@ router               //not active yet
   .route("/clients/client:id")
   .get(clientController.viewClient);
 
-router
-  .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
-//add a get clients route?
+// router
+//   .route("/clients/:id").delete(clientController.deleteClient);      //working insom. put admin and safety step on here later
+// //add a get clients route?
 
-router
-  .route("/users")
-  .post(userController.newUser);    //working in insomnia. ready to connect to view (post method)
-router
-  .route("/users/:id")
-  .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
+// router
+//   .route("/users")
+//   .post(userController.newUser);    //working in insomnia. ready to connect to view (post method)
+// router
+//   .route("/users/:id")
+//   .delete(userController.deleteUser);   //working insom. put admin and safety step on here later. also deletes workspace
 
 router.route("/associateDocsToNote").put(assocController.associateDocsToNote);  //works in insomnia.  deprecated?
 // router.route("/associateClientsToUser").put(assocController.associateClientsToUser);  //working insomnia

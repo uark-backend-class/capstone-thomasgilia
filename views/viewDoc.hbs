@@ -4,31 +4,22 @@
     {{/if}}
 </h1>
 <a class="btn btn-warning" href='/homepage/'>My homepage</a>
-<a class="btn btn-primary" href='/docs/note{{thisNote.id}}'>New {{resourceType}}</a>
+<a class="btn btn-primary" href='/docs/note{{noteId}}'>New Document</a>
+<!--<a class="btn btn-primary" href='/docs/note{{thisNote.id}}'>New {{resourceType}}</a>-->
 <a class="btn btn-primary" href='/edit/doc{{resources.id}}'>Edit {{resourceType}}</a>
-
-<div class=container>
-    <table class="table">
-        <tr>
-            <th>{{resourceType}}: {{resources.title}}</th>
-            <br>
-        </tr>
-        <tr>
-            <td>{{resources.note}}</td>
-            <br>
-        </tr>
-    </table>
-</div>
 <br>
+<br></br>
 <div class=container>
     <table class="table">
         <tr>
+            <th>{{resourceType}} Title:</th>
             <th>{{resourceType}} Id</th>
             <th>Category:</th>
             <th>Origin:</th>
             <th>Pathway:</th>
         </tr>
         <tr>
+            <td> {{resources.title}}</td>
             <td>{{resources.id}}</td>
             <td>{{resources.category}}</td>
             <td>{{resources.origin}}</td>
@@ -50,12 +41,24 @@
             <td>{{this.title}}</td>
             <td>{{this.id}}</td>
             <td><a class="btn btn-secondary btn-sm" href="/notes/note{{ this.id }}">View Note</a></td>
-            {{/each}}
         </tr>
+        {{/each}}
     </table>
 </div>
 <br>
 <div class=container>
+    <form action="/docs/note{{noteId}}/client{{thisClient.id}}" method="post">
+        <label for="obsoleteDocId">Delete this Document</label>
+        <select name="obsoleteDocId" id="obsoleteDocId">
+            <option value={{resources.id}}>{{resources.title}} (Doc Id {{resources.id}})</option>
+        </select>
+         <input type="hidden" name="noteId" value="{{noteId}}" />
+        <input type="hidden" name="clientId" value="{{thisClient.id}}" />
+        <button type="submit">Delete Document</button>
+        <br>
+    </form>
+</div>
+<!--<div class=container>
     <form action="/docs/note{{thisNote.id}}/client{{thisClient.id}}" method="post">
         <label for="obsoleteDocId">Delete this Document</label>
         <select name="obsoleteDocId" id="obsoleteDocId">
@@ -67,4 +70,4 @@
         <button type="submit">Delete Document</button>
         <br>
     </form>
-</div>
+</div>-->

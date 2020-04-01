@@ -24,7 +24,7 @@ exports.newClient = async (req, res) => {
     }
     res.render('viewClient', { thisClient });
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN NEWCLIENT: " + error);
   }
 };
 
@@ -34,7 +34,7 @@ exports.viewClient = async (req, res) => {
     let thisClient = await Client.findByPk(clientId);
     res.render('viewClient', { thisClient });
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN VIEWCLIENT: " + error);
   }
 };
 
@@ -44,10 +44,11 @@ exports.listClients = async (req, res) => {
     console.log(allClients);
     res.render('listClients', { allClients });
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN LISTCLIENTS: " + error);
   }
 };
 
+//BUT NOT HOOKED UP? (DEPRECATED?)
 //works and works with listDocorNote.hbs
 exports.listResourceThisClient = async (req, res) => {
   try {
@@ -77,22 +78,23 @@ exports.listResourceThisClient = async (req, res) => {
       // typeNote,
     });
   } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
+    console.log("HERE'S THE ERROR IN LISTRESOURCETHISCLIENT: " + error);
   }
 };
 
-//doesn't work despite being identical to note and doc deletes
-exports.deleteClient = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const obsoleteClient = await Client.findByPk(id);
-    if (!obsoleteClient) {
-      res.status(404).send();
-      return;
-    }
-    await obsoleteClient.destroy();
-    res.json(obsoleteClient);
-  } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
-  }
-};
+// //NOT HOOKED UP AND DEPRECATED
+// //doesn't work despite being identical to note and doc deletes
+// exports.deleteClient = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const obsoleteClient = await Client.findByPk(id);
+//     if (!obsoleteClient) {
+//       res.status(404).send();
+//       return;
+//     }
+//     await obsoleteClient.destroy();
+//     res.json(obsoleteClient);
+//   } catch (error) {
+//     console.log("HERE'S THE ERROR IN DELETECLIENT: " + error);
+//   }
+// };

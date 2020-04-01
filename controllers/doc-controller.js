@@ -32,21 +32,24 @@ exports.newDoc = async (req, res) => {
     //--set/reset all docs to that note
     await tempThisNote.setDocs(docIdArray);
     let thisNote = await Note.findByPk(noteId);    //updated note
-    let notesThisDoc = await resources.getNotes;
-    
+    let thisDoc = await Doc.findByPk(docId, { include: [Note] });
+    let notesThisDoc = await thisDoc.getNotes();
+   
     res.render("viewDoc", {
-      resourceType: "Document", existingResource: false, resources, thisClient, notesThisDoc, thisNote
+      resourceType: "Document", existingResource: false, resources, thisClient, thisNote,
+      notesThisDoc
     });
   } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
+    console.log("HERE'S THE ERROR IN NEWDOC: " + error);
   }
 };
-//create doc after click button from viewDoc
+
+//redirect after click new doc button
 exports.rerouteNewDoc = async (req, res) => {
   try {
-    res.send("Please create Note with Document's meta data then create new Document");
+    res.send("Before creating/uploading a new Document, please find (or create new) Note containing Document's meta data");
   } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
+    console.log("HERE'S THE ERROR IN REROUTENEWDOC: " + error);
   }
 };
 
@@ -61,18 +64,19 @@ exports.viewDoc = async (req, res) => {
     // if (notesThisDoc.length > 1) {
     //   console.log("additional notes associated to the doc")
     // } else { thisNote = docNotes[0] }
-    for (let note of docNotes) {
+    let thisNote = await
+    for (let note of notesThisDoc) {  
       clientId = note.clientId;
     }
     let thisClient = await Client.findByPk(clientId);
     let allClients = await Client.findAll();
     res.render("viewDoc", {
-      resourceType: "Document", existingResource: true, resources, allClients, thisClient, notesThisDoc
-      //thisNote
+      resourceType: "Document", existingResource: true, resources, allClients, thisClient, notesThisDoc,
+      thisNote
     });
     // res.redirect('/');
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN VIEWDOC: " + error);
   }
 }
 
@@ -115,7 +119,7 @@ exports.deleteDoc = async (req, res) => {
       resourceType: "Note", existingResource: true, resources, allClients, thisClient, docsThisNote, allDocsThisClient
     });
   } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
+    console.log("HERE'S THE ERROR IN DELETEDOC: " + error);
   }
 };
 
@@ -123,23 +127,23 @@ exports.editDoc = async (req, res) => {
   try {
     let docId = req.params.id;
     let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
-    let docNotes = await resources.getNotes();
-    let thisNote;
+    let notesThisDoc = await resources.getNotes();
+    // let thisNote;
     let clientId;
-    if (docNotes.length > 1) {
-      console.log("additional notes associated to the doc")
-    } else { thisNote = docNotes[0] }
-    for (let note of docNotes) {
-      clientId = note.clientId;
-    }
+    // if (docNotes.length > 1) {
+    //   console.log("additional notes associated to the doc")
+    // } else { thisNote = docNotes[0] }
+    // for (let note of docNotes) {
+    //   clientId = note.clientId;
+    // }
     let thisClient = await Client.findByPk(clientId);
     if (!resources) {
       res.status(404).send();
       return;
     }
-    res.render('createDoc', { resourceType: "Document", resources, existingResource: true, thisClient });
+    res.render('createDoc', { resourceType: "Document", resources, existingResource: true, thisClient, notesThisDoc });
   } catch (error) {
-    console.log(error);
+    console.log("HERE'S THE ERROR IN EDITDOC: " + error);
   }
 };
 
@@ -164,7 +168,7 @@ exports.updateDoc = async (req, res) => {
     res.render("viewDoc", {
       resourceType: "Document", existingResource: true, resources, allClients, thisClient, thisNote
     });
- //was trying to fix...
+    //was trying to fix...
     // let docId = req.body.id;
     // await Doc.upsert(req.body);          //returns false if updated, true if created
     // let resources = await Doc.findByPk(docId, { include: [Note] });  //grabbing updated doc
@@ -187,6 +191,6 @@ exports.updateDoc = async (req, res) => {
     //   //thisNote
     // });
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN UPDATEDOC: " + error);
   }
 };

@@ -35,6 +35,7 @@
     <!--dont think i need these two lines-->
     <input type="hidden" name="id" value="{{resources.id}}" />
     {{#if existingResource}}
+    <input type="hidden" name="notesThisDoc" value="{{notesThisDoc}}" />
     <input type="hidden" name="lastUpdateUser" value="{{resources.lastUpdateUser}}" />
     <input type="hidden" name="clientId" value={{thisClient.id}} />
     <input type="hidden" name="noteId" value={{thisNote.id}} />

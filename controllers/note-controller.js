@@ -64,7 +64,7 @@ exports.newNote = async (req, res) => {
     });
     // res.redirect('/');
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN NEWNOTE: " + error);
   }
 };
 
@@ -99,7 +99,7 @@ exports.viewNote = async (req, res) => {
     });
     // res.redirect('/');
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN VIEWNOTE" + error);
   }
 }
 
@@ -140,7 +140,7 @@ exports.updateNote = async (req, res) => {
     });//need noteId here?
 
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN UPDATENOTE: " + error);
   }
 };
 
@@ -203,7 +203,7 @@ exports.addDocToNote = async (req, res) => {  //just assuming one doc added at a
       thisClient, docsThisNote
     });
   } catch (error) {
-    console.log("HERE'S THE ERROR: " + error);
+    console.log("HERE'S THE ERROR IN ADDDOCTONOTE: " + error);
   }
 };
 
@@ -218,13 +218,21 @@ exports.deleteNote = async (req, res) => {
       return;
     }
     await obsoleteNote.destroy();
-    console.log(title + " was deleted");
-    // res.render('listNotesOrDocs', { resourceType: "Note" });
-    res.redirect('/listAllResources');
+    console.log(`Note "${title}" was deleted`);   //"Note \'" + title + "\'" + " was deleted");
+    let resources = await Note.findAll();
+    res.render('listNotesOrDocs', { resourceType: "Note", resources});
+    // res.redirect('/listAllResources');
   } catch (error) {
-    console.log("HERE'S THE ERROR" + error);
+    console.log("HERE'S THE ERROR IN DELETENOTE: " + error);
   }
 };
+// console.log(title + " was deleted");
+// // res.render('listNotesOrDocs', { resourceType: "Note" });
+// res.redirect('/listAllResources');
+// } catch (error) {
+// console.log("HERE'S THE ERROR" + error);
+// }
+// };
 
 exports.editNote = async (req, res) => {
   try {
@@ -240,7 +248,7 @@ exports.editNote = async (req, res) => {
     res.render('createNote', { resourceType: "Note", resources, existingResource: true, thisClient });
     // res.redirect('/notes/note:id');
   } catch (error) {
-    console.log(error);
+    console.log("HERE'S THE ERROR IN EDITNOTE: " + error);
   }
 };
 
