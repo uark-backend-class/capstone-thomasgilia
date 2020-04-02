@@ -1,6 +1,7 @@
 {
   "name": "capstone-thomasgilia",
   "version": "1.0.0",
+  "engines": {"node": "10.16.x"},
   "description": "Departmental note and document repository. \r --Control access and write authorization.\r --Track changes to notes by user/time stamp. \r --Allow supporting document upload. \r --User friendly interface with the notes.\r --Links to client repositories and other outside resources.",
   "main": "index.js",
   "scripts": {
