@@ -4,7 +4,8 @@
   "description": "Departmental note and document repository. \r --Control access and write authorization.\r --Track changes to notes by user/time stamp. \r --Allow supporting document upload. \r --User friendly interface with the notes.\r --Links to client repositories and other outside resources.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
