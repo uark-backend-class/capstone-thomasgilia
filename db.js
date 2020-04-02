@@ -1,7 +1,3 @@
-//To Do:
-//Link libraries with models to create instances (?)
-//create relationships between tables/models
-
 const Sequelize = require("sequelize");
 const DocModel = require("./models/doc");
 const NoteModel = require("./models/note");
