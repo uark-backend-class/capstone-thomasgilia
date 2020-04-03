@@ -7,12 +7,10 @@ const exphbs = require('express-handlebars');
 
 app.use(express.urlencoded({ extended: true }));    
 app.use(express.json());    
-app.use(routes);
+app.use('/', routes);
 
 app.use(express.static("public"));        
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Now listening");
-});
+module.exports = app;

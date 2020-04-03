@@ -1,5 +1,5 @@
 
-exports.homepage = async (req, res) => {
+exports.homepage = (req, res) => {
     try {
         res.render("homepage");
     } catch (error) {
